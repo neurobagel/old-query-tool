@@ -9,8 +9,10 @@ module.exports = {
     requireConfigFile: false
   },
   extends: [
-    '@nuxtjs',
-    'plugin:nuxt/recommended'
+    'plugin:nuxt/recommended',
+    'plugin:vue/recommended',
+    // https://www.npmjs.com/package/eslint-config-airbnb-base
+    'airbnb-base'
   ],
   plugins: [
   ],
