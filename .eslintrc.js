@@ -11,6 +11,7 @@ module.exports = {
   extends: [
     'plugin:nuxt/recommended',
     'plugin:vue/recommended',
+    'plugin:cypress/recommended',
     // https://www.npmjs.com/package/eslint-config-airbnb-base
     'airbnb-base',
   ],
@@ -18,4 +19,12 @@ module.exports = {
   ],
   // add your custom rules here
   rules: {},
+  overrides: [
+    {
+      files: ['cypress.config.js', './cypress/support/component.js'],
+      rules: {
+        'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
+      },
+    },
+  ],
 };
