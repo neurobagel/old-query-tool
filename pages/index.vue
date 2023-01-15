@@ -1,5 +1,7 @@
 <template>
-  <div>Query Tool</div>
+  <div data-cy="text">
+    Query Tool
+  </div>
 </template>
 
 <script>
