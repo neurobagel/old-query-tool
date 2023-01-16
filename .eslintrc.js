@@ -2,18 +2,29 @@ module.exports = {
   root: true,
   env: {
     browser: true,
-    node: true
+    node: true,
   },
   parserOptions: {
     parser: '@babel/eslint-parser',
-    requireConfigFile: false
+    requireConfigFile: false,
   },
   extends: [
-    '@nuxtjs',
-    'plugin:nuxt/recommended'
+    'plugin:nuxt/recommended',
+    'plugin:vue/recommended',
+    'plugin:cypress/recommended',
+    // https://www.npmjs.com/package/eslint-config-airbnb-base
+    'airbnb-base',
   ],
   plugins: [
   ],
   // add your custom rules here
-  rules: {}
-}
+  rules: {},
+  overrides: [
+    {
+      files: ['cypress.config.js', './cypress/support/component.js'],
+      rules: {
+        'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
+      },
+    },
+  ],
+};
