@@ -24,7 +24,7 @@
 </div>
 <br>
 
-Query Tool is a Vue application, developed in [JavaScript](https://www.javascript.com/) using a variety of tools including [Nuxt](https://nuxtjs.org/), [Cypress](https://www.cypress.io/), and [BootstarpVue](https://bootstrap-vue.org/docs).
+Query Tool is a Vue application, developed in [JavaScript](https://www.javascript.com/) using a variety of tools including [Nuxt](https://nuxtjs.org/), [Cypress](https://www.cypress.io/), and [BootstrapVue](https://bootstrap-vue.org/docs).
 
 [Getting started](#getting-started) |
 [Testing](#testing) |
@@ -39,7 +39,7 @@ Query Tool is a Vue application, developed in [JavaScript](https://www.javascrip
 To run Query Tool, you'll need [node package manager (npm)](https://www.npmjs.com/) and [Node.js](https://nodejs.org/en/).
 You can find the instructions on installing npm and node in the official [documentation](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
 
-Once you have npm and node installed, you'll need to install the dependencies outlined in the package-lock.json file.
+Once you have npm and node installed, you'll need to install the dependencies outlined in the package.json file.
 You can do so by running the following command:
 
 ```bash
@@ -53,7 +53,7 @@ To launch the tool in developer mode run the following command:
 npm run dev
 ```
 
-You can also build and run the project from the build by running the following command:
+You can also build and then run the tool from the (production) build of the application by running the following command:
 
 ```bash
 npm run build && npm run start
