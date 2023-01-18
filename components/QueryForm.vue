@@ -30,6 +30,12 @@
               </div>
             </b-form-group>
           </b-form-row>
+          <b-button
+            variant="primary"
+            type="submit"
+          >
+            Query Metadata
+          </b-button>
         </b-form>
       </b-row>
     </b-col>
