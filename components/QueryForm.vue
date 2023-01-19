@@ -8,7 +8,7 @@
         <h2>Query fields</h2>
       </b-row>
       <b-row>
-        <b-form>
+        <b-form @submit.prevent="submitQuery">
           <age-field
             @update-age="updateAge"
           />
@@ -45,12 +45,26 @@ export default {
     return {
       minAge: null,
       maxAge: null,
+      results: [],
     };
   },
   methods: {
     updateAge(minAge, maxAge) {
       this.minAge = minAge;
       this.maxAge = maxAge;
+    },
+    async submitQuery() {
+      const url = process.env.API_QUERY_URL;
+      try {
+        const resp = await this.$axios.get(url);
+        if (resp.statusText === 'OK') {
+          this.results = resp.data;
+        }
+      } catch (err) {
+        // TODO Handle situations that may throw an error e.g., when min age > max age
+        // could emit an event here and show a "error view" in results or use vuelidate
+        // to validate the form before submission
+      }
     },
   },
 };
