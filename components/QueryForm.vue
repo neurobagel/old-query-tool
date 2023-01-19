@@ -9,30 +9,9 @@
       </b-row>
       <b-row>
         <b-form>
-          <b-form-row class="row">
-            <b-form-group class="col-md-6">
-              <div class="mb-3">
-                <label class="form-label">Age lower</label>
-                <b-form-input
-                  type="number"
-                  name="age_lower"
-                  step="any"
-                  class="numberinput form-control"
-                />
-              </div>
-            </b-form-group>
-            <b-form-group class="col-md-6">
-              <div class="mb-3">
-                <label class="form-label">Age upper</label>
-                <b-form-input
-                  type="number"
-                  name="age_upper"
-                  step="any"
-                  class="numberinput form-control"
-                />
-              </div>
-            </b-form-group>
-          </b-form-row>
+          <age-field
+            @update-age="updateAge"
+          />
           <b-button
             variant="primary"
             type="submit"
@@ -62,5 +41,17 @@
 
 <script>
 export default {
+  data() {
+    return {
+      minAge: null,
+      maxAge: null,
+    };
+  },
+  methods: {
+    updateAge(minAge, maxAge) {
+      this.minAge = minAge;
+      this.maxAge = maxAge;
+    },
+  },
 };
 </script>
