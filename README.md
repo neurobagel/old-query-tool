@@ -45,6 +45,17 @@ You can do so by running the following command:
 ```bash
 npm install
 ```
+
+### `Set the Environment Variables`
+
+You'll need to set the environment variables (API_QUERY_URL) required to run the query tool. Query tool utilizes [nuxt dotenv module](https://github.com/nuxt-community/dotenv-module) for managing environment variables. 
+
+To set environment variables, create an `.env` file in the root directory and add the environment variables there. If you're running the API locally on your machine, your `.env` file would look something like this:
+
+```bash
+API_QUERY_URL=http://localhost:8000/query/?
+```
+
 ### `Launch Query Tool`
 
 To launch the tool in developer mode run the following command:
