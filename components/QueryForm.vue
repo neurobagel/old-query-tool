@@ -28,13 +28,19 @@
       <b-row>
         <h2>Results</h2>
       </b-row>
-      <div class="row d-flex justify-content-center">
+      <b-row class="d-flex justify-content-center">
         <div class="d-flex align-items-center">
-          <h3 style="color: gray">
+          <h3
+            v-if="results.length === 0"
+            style="color: gray"
+          >
             Click 'Query Metadata' for results
           </h3>
+          <div v-else>
+            {{ results }}
+          </div>
         </div>
-      </div>
+      </b-row>
     </b-col>
   </b-row>
 </template>
@@ -54,15 +60,19 @@ export default {
       this.maxAge = maxAge;
     },
     async submitQuery() {
-      const url = process.env.API_QUERY_URL;
+      let url = process.env.API_QUERY_URL;
+      if (this.minAge) {
+        url += `min_age=${this.minAge}`;
+      }
+      if (this.maxAge) {
+        url += `&max_age=${this.maxAge}`;
+      }
       try {
         const resp = await this.$axios.get(url);
-        if (resp.statusText === 'OK') {
-          this.results = resp.data;
-        }
+        this.results = resp.data;
       } catch (err) {
         // TODO Handle situations that may throw an error e.g., when min age > max age
-        // could emit an event here and show a "error view" in results or use vuelidate
+        // could emit an event here and show an "error view" in results or use vuelidate
         // to validate the form before submission
       }
     },
