@@ -33,7 +33,7 @@
       <b-row class="d-flex justify-content-center">
         <div class="d-flex align-items-center">
           <h3
-            v-if="results.length === 0"
+            v-if="Object.is(results, null)"
             style="color: gray"
           >
             Click 'Query Metadata' for results
@@ -53,7 +53,7 @@ export default {
     return {
       minAge: null,
       maxAge: null,
-      results: [],
+      results: null,
     };
   },
   methods: {
