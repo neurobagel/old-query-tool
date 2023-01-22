@@ -27,6 +27,7 @@
 Query Tool is a Vue application, developed in [JavaScript](https://www.javascript.com/) using a variety of tools including [Nuxt](https://nuxtjs.org/), [Cypress](https://www.cypress.io/), and [BootstrapVue](https://bootstrap-vue.org/docs).
 
 [Getting started](#getting-started) |
+[Usage](#usage) |
 [Testing](#testing) |
 [License](#license)
 
@@ -71,6 +72,14 @@ npm run build && npm run start
 ```
 
 You can verify the tool is running once you receive info messages from Nuxt regarding environment, rendering, and what port the tool is running on in your terminal.
+
+## Usage
+
+To define a cohort, set your inclusion criteria using the following query fields:
+
+- Age: The minimum and/or maximum age (in years) of participant that should be included in the results.
+
+Once you've defind your criteria, submit them as a query and query tool will display the results.
 
 ## Testing
 
