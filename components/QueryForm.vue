@@ -10,11 +10,13 @@
       <b-row>
         <b-form @submit.prevent="submitQuery">
           <age-field
+            data-cy="ageField"
             @update-age="updateAge"
           />
           <b-button
             variant="primary"
             type="submit"
+            data-cy="submitQuery"
           >
             Query Metadata
           </b-button>
