@@ -8,6 +8,7 @@
           type="number"
           step="any"
           class="numberinput form-control"
+          data-cy="minAge"
           @input="updateAge"
         />
       </div>
@@ -20,6 +21,7 @@
           type="number"
           step="any"
           class="numberinput form-control"
+          data-cy="maxAge"
           @input="updateAge"
         />
       </div>
