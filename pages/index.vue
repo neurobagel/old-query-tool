@@ -6,12 +6,25 @@
       </h1>
       <hr class="mt-0 mb-4">
     </b-row>
-    <query-form />
+    <b-row class="mx-4">
+      <query-form @update-results="updateResults" />
+      <results :results="results" />
+    </b-row>
   </b-container>
 </template>
 
 <script>
 export default {
-  name: 'IndexPage',
+  data() {
+    return {
+      results: null,
+    };
+  },
+  methods: {
+    updateResults(results) {
+      this.results = results;
+    },
+  },
+
 };
 </script>
