@@ -6,7 +6,7 @@
           <b-col cols="8">
             <b-row class="d-flex justify-content-center">
               <b-col
-                col="1"
+                cols="1"
                 class="d-flex align-items-center card-checkbox"
               >
                 <input
@@ -29,7 +29,7 @@
                 <b-row>
                   <b-col cols="6">
                     <p class="card-text">
-                      {{ numMatchingSubjects }}
+                      {{ `${numMatchingSubjects} subjects` }}
                     </p>
                   </b-col>
                 </b-row>
@@ -48,7 +48,21 @@
                 role="toolbar"
                 aria-label="Toolbar with button groups"
               >
-                {{ "display modalities here" }}
+                <b-button-group
+                  v-for="modal in imageModals"
+                  :key="modal"
+                  class="mr-2"
+                  role="group"
+                  :aria-label="modalities[modal].ariaLabel"
+                >
+                  <b-button
+                    type="button"
+                    class="btn card-modality"
+                    :style="modalities[modal].style"
+                  >
+                    {{ modalities[modal].name }}
+                  </b-button>
+                </b-button-group>
               </b-button-toolbar>
             </b-row>
           </b-col>
@@ -72,6 +86,43 @@ export default {
       type: Number,
       default: null,
     },
+    imageModals: {
+      type: Array,
+      default: null,
+    },
+  },
+  data() {
+    return {
+      modalities: {
+        'http://purl.org/nidash/nidm#T1Weighted': {
+          name: 'T1',
+          style: 'background-color: rgb(164, 208, 90);',
+          ariaLabel: 'First group',
+        },
+        'http://purl.org/nidash/nidm#T2Weighted': {
+          name: 'T2',
+          style: 'background-color: rgb(127, 23, 167); color: white;',
+          ariaLabel: 'Second group',
+        },
+        'http://purl.org/nidash/nidm#DiffusionWeighted': {
+          name: 'DWI',
+          style: 'background-color: rgb(70, 76, 174); color: white;',
+          ariaLabel: 'Third group',
+        },
+        'http://purl.org/nidash/nidm#FlowWeighted':
+        {
+          name: 'Flow',
+          style: 'background-color: rgb(236, 197, 50); color: white;',
+          ariaLabel: 'Fourth group',
+        },
+        'http://purl.org/nidash/nidm#EEG':
+        {
+          name: 'EEG',
+          style: 'background-color:rgb(128, 1, 1); color: white;',
+          ariaLabel: 'Fifth group',
+        },
+      },
+    };
   },
 };
 </script>
