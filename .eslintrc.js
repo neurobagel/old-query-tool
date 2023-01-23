@@ -26,6 +26,12 @@ module.exports = {
         'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
       },
     },
+    {
+      files: '*.vue',
+      rules: {
+        'vue/multi-word-component-names': 'off',
+      },
+    },
   ],
   ignorePatterns: 'cypress.config.js',
 };
