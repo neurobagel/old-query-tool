@@ -14,6 +14,12 @@
         >
           Click 'Query Metadata' for results
         </h3>
+        <h3
+          v-else-if="results.length === 0"
+          style="color: gray;"
+        >
+          No results
+        </h3>
         <div v-else>
           {{ results }}
         </div>
