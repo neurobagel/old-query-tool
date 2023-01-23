@@ -46,9 +46,21 @@
           </p>
         </div>
       </b-col>
-      <div>
-        {{ results }}
-      </div>
+    </b-row>
+    <b-row
+      v-if="!Object.is(results, null) && results.length !== 0"
+      id="card-listbox"
+      class="d-flex justify-content-center"
+    >
+      <b-list-group id="results-list-group">
+        <result-card
+          v-for="res in results"
+          :key="res.id"
+          :dataset="res.dataset"
+          :dataset-name="res.dataset_name"
+          :num-matching-subjects="res.num_matching_subjects"
+        />
+      </b-list-group>
     </b-row>
   </b-col>
 </template>
