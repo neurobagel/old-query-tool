@@ -14,6 +14,7 @@
                   class="form-check-input dataset-checkbox"
                   type="checkbox"
                   value=""
+                  :checked="selectAll"
                   aria-label="..."
                 >
               </b-col>
@@ -89,6 +90,10 @@ export default {
     imageModals: {
       type: Array,
       default: null,
+    },
+    selectAll: {
+      type: Boolean,
+      default: false,
     },
   },
   data() {

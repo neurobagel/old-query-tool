@@ -29,6 +29,7 @@
       <b-col cols="7">
         <input
           id="dataset-checkall"
+          v-model="selectAll"
           class="form-check-input"
           type="checkbox"
           value=""
@@ -60,6 +61,7 @@
           :dataset-name="res.dataset_name"
           :num-matching-subjects="res.num_matching_subjects"
           :image-modals="res.image_modals"
+          :select-all="selectAll"
         />
       </b-list-group>
     </b-row>
@@ -74,6 +76,11 @@ export default {
       required: false,
       default: null,
     },
+  },
+  data() {
+    return {
+      selectAll: false,
+    };
   },
   methods: {
     summarizeStats() {
