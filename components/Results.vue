@@ -20,9 +20,34 @@
         >
           No results
         </h3>
-        <div v-else>
-          {{ results }}
+      </div>
+    </b-row>
+    <b-row
+      v-if="!Object.is(results, null) && results.length !== 0"
+      id="query-controls"
+    >
+      <b-col cols="7">
+        <input
+          id="dataset-checkall"
+          class="form-check-input"
+          type="checkbox"
+          value=""
+          aria-label="..."
+        >
+        <label
+          for="dataset-checkall"
+          class="form-label"
+        >Select all datasets</label>
+      </b-col>
+      <b-col cols="5">
+        <div id="summary-stats">
+          <p id="summary-stats-table">
+            {{ summarizeStats() }}
+          </p>
         </div>
+      </b-col>
+      <div>
+        {{ results }}
       </div>
     </b-row>
   </b-col>
@@ -35,6 +60,17 @@ export default {
       type: Array,
       required: false,
       default: null,
+    },
+  },
+  methods: {
+    summarizeStats() {
+      let datasets = 0;
+      let subjects = 0;
+      this.results.forEach((res) => {
+        datasets += 1;
+        subjects += res.num_matching_subjects;
+      });
+      return `Summary stats: ${datasets} datasets, ${subjects} subjects`;
     },
   },
 
