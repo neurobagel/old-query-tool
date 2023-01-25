@@ -6,7 +6,7 @@ describe('Age field', () => {
     cy.get("[data-cy='minAge']").should('be.visible');
     cy.get("[data-cy='maxAge']").should('be.visible');
   });
-  it('Types text into the age input fields', () => {
+  it('Ignores when text is entered into the age input fields', () => {
     cy.mount(AgeField);
     cy.get("[data-cy='minAge']").type('hello').should('have.value', '');
     cy.get("[data-cy='maxAge']").type('world').should('have.value', '');
