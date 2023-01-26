@@ -65,6 +65,29 @@
         />
       </b-list-group>
     </b-row>
+    <b-col
+      class="d-flex flex-row-reverse"
+      style="margin-top: 1em;"
+    >
+      <b-row
+        v-if="!Object.is(results, null) && results.length !== 0"
+        class="mr-auto"
+      >
+        <b-button
+          id="download-results-button"
+          disabled
+        >
+          <b-icon
+            icon="download"
+            font-scale="1"
+          />
+          <a
+            id="download-results-link"
+            href="#"
+          >Download Results</a>
+        </b-button>
+      </b-row>
+    </b-col>
   </b-col>
 </template>
 
