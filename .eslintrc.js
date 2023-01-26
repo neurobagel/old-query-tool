@@ -21,10 +21,11 @@ module.exports = {
   rules: {},
   overrides: [
     {
-      files: ['cypress.config.js', './cypress/support/component.js'],
+      files: './cypress/support/component.js',
       rules: {
         'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
       },
     },
   ],
+  ignorePatterns: 'cypress.config.js',
 };
