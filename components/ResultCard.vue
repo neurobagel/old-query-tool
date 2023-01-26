@@ -11,11 +11,13 @@
               >
                 <input
                   id=""
+                  ref="checkbox"
                   class="form-check-input dataset-checkbox"
                   type="checkbox"
                   value=""
                   :checked="selectAll"
                   aria-label="..."
+                  @change="updateDownload"
                 >
               </b-col>
               <b-col
@@ -96,6 +98,7 @@ export default {
       default: false,
     },
   },
+  emits: ['update-download'],
   data() {
     return {
       modalities: {
@@ -127,7 +130,13 @@ export default {
           ariaLabel: 'Fifth group',
         },
       },
+      id: this.datasetName,
     };
+  },
+  methods: {
+    updateDownload() {
+      this.$emit('update-download', this.datasetName, this.$refs.checkbox.checked);
+    },
   },
 };
 </script>

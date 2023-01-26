@@ -34,6 +34,7 @@
           type="checkbox"
           value=""
           aria-label="..."
+          @change="UpdateDownloadSelectAll"
         >
         <label
           for="dataset-checkall"
@@ -62,6 +63,7 @@
           :num-matching-subjects="res.num_matching_subjects"
           :image-modals="res.image_modals"
           :select-all="selectAll"
+          @update-download="updateDownload"
         />
       </b-list-group>
     </b-row>
@@ -103,6 +105,7 @@ export default {
   data() {
     return {
       selectAll: false,
+      download: [],
     };
   },
   methods: {
@@ -114,6 +117,24 @@ export default {
         subjects += res.num_matching_subjects;
       });
       return `Summary stats: ${datasets} datasets, ${subjects} subjects`;
+    },
+    UpdateDownloadSelectAll() {
+      if (this.selectAll) {
+        this.results.forEach((result) => {
+          if (!this.download.includes(result.dataset_name)) {
+            this.download.push(result.dataset_name);
+          }
+        });
+      } else {
+        this.download = [];
+      }
+    },
+    updateDownload(datasetName, checked) {
+      if (checked) {
+        this.download.push(datasetName);
+      } else {
+        this.download = this.download.filter((item) => item !== datasetName);
+      }
     },
   },
 
