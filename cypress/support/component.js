@@ -18,7 +18,7 @@ import './commands';
 
 // Import BootstrapVue into cypress component context
 // so cypress applies bootstrap styles when displaying components
-import './bootstrap-vue';
+import '../../plugins/bootstrap-vue';
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
