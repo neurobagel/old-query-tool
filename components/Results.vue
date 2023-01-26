@@ -67,29 +67,10 @@
         />
       </b-list-group>
     </b-row>
-    <b-col
-      class="d-flex flex-row-reverse"
-      style="margin-top: 1em;"
-    >
-      <b-row
-        v-if="!Object.is(results, null) && results.length !== 0"
-        class="mr-auto"
-      >
-        <b-button
-          id="download-results-button"
-          disabled
-        >
-          <b-icon
-            icon="download"
-            font-scale="1"
-          />
-          <a
-            id="download-results-link"
-            href="#"
-          >Download Results</a>
-        </b-button>
-      </b-row>
-    </b-col>
+    <download-results-button
+      :results="results"
+      :downloads="downloads"
+    />
   </b-col>
 </template>
 
@@ -105,7 +86,7 @@ export default {
   data() {
     return {
       selectAll: false,
-      download: [],
+      downloads: [],
     };
   },
   methods: {
@@ -120,23 +101,22 @@ export default {
     },
     UpdateDownloadSelectAll() {
       if (this.selectAll) {
-        this.results.forEach((result) => {
-          if (!this.download.includes(result.dataset_name)) {
-            this.download.push(result.dataset_name);
+        this.results.forEach((res) => {
+          if (!this.downloads.includes(res.dataset_name)) {
+            this.downloads.push(res.dataset_name);
           }
         });
       } else {
-        this.download = [];
+        this.downloads = [];
       }
     },
     updateDownload(datasetName, checked) {
       if (checked) {
-        this.download.push(datasetName);
+        this.downloads.push(datasetName);
       } else {
-        this.download = this.download.filter((item) => item !== datasetName);
+        this.downloads = this.downloads.filter((item) => item !== datasetName);
       }
     },
   },
-
 };
 </script>
