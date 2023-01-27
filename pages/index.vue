@@ -8,7 +8,7 @@
     </b-row>
     <b-row class="mx-4">
       <query-form @update-results="updateResults" />
-      <results :results="results" />
+      <results-container :results="results" />
     </b-row>
   </b-container>
 </template>

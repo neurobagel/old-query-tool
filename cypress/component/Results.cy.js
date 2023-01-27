@@ -1,4 +1,4 @@
-import Results from '../../components/Results.vue';
+import ResultsContainer from '../../components/ResultsContainer.vue';
 import ResultCard from '../../components/ResultCard.vue';
 import DownloadResultsButton from '../../components/DownloadResultsButton.vue';
 
@@ -29,11 +29,11 @@ const props = {
 
 describe('Results', () => {
   it('Displays default view of results component', () => {
-    cy.mount(Results);
+    cy.mount(ResultsContainer);
     cy.get("[data-cy='default-view']").should('be.visible');
   });
   it('Displays no results view of results component', () => {
-    cy.mount(Results, {
+    cy.mount(ResultsContainer, {
       propsData: {
         results: [],
       },
@@ -41,7 +41,7 @@ describe('Results', () => {
     cy.get("[data-cy='no-results-view']").should('be.visible');
   });
   it('Checks and unchecks select all checkbox', () => {
-    cy.mount(Results, {
+    cy.mount(ResultsContainer, {
       stubs,
       propsData: props,
     });
@@ -53,13 +53,13 @@ describe('Results', () => {
     cy.get("[data-cy='card-not-so-cool-dataset-checkbox']").should('not.be.checked');
   });
   it('Displays the summary stats', () => {
-    cy.mount(Results, {
+    cy.mount(ResultsContainer, {
       propsData: props,
     });
     cy.get("[data-cy='summary-stats']").should('be.visible').contains('Summary stats: 2 datasets, 4 subjects');
   });
   it('Displays a result card for each dataset in results prop', () => {
-    cy.mount(Results, {
+    cy.mount(ResultsContainer, {
       stubs,
       propsData: props,
     });
@@ -67,7 +67,7 @@ describe('Results', () => {
     cy.get("[data-cy='not-so-cool-dataset']").should('be.visible');
   });
   it('Displays download results button (and its component) and enables/disables it by checking/unchecking checkboxes', () => {
-    cy.mount(Results, {
+    cy.mount(ResultsContainer, {
       stubs,
       propsData: props,
     });
