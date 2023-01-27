@@ -1,16 +1,16 @@
 import QueryForm from '../../components/QueryForm.vue';
-import AgeField from '../../components/AgeField.vue';
+import AgeFields from '../../components/AgeFields.vue';
 
 const stubs = {
-  'age-field': AgeField,
+  'age-fields': AgeFields,
 };
 
 describe('Query form', () => {
-  it('Displays the AgeField component and submitQuery button', () => {
+  it('Displays the age fields and submit query button', () => {
     cy.mount(QueryForm, {
       stubs,
     });
-    cy.get("[data-cy='ageField']").should('be.visible');
-    cy.get("[data-cy='submitQuery']").should('be.visible');
+    cy.get("[data-cy='age-fields']").should('be.visible');
+    cy.get("[data-cy='submit-query']").should('be.visible');
   });
 });

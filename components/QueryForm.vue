@@ -1,54 +1,31 @@
 <template>
-  <b-row class="mx-4">
-    <b-col
-      id="query-fields-column"
-      cols="2"
-    >
-      <b-row>
-        <h2>Query fields</h2>
-      </b-row>
-      <b-row>
-        <b-form @submit.prevent="submitQuery">
-          <age-field
-            data-cy="ageField"
-            @update-age="updateAge"
-          />
-          <b-button
-            variant="primary"
-            type="submit"
-            data-cy="submitQuery"
-          >
-            Query Metadata
-          </b-button>
-        </b-form>
-      </b-row>
-    </b-col>
-    <b-col
-      id="query-results-column"
-      cols="10"
-    >
-      <b-row>
-        <h2>Results</h2>
-      </b-row>
-      <b-row class="d-flex justify-content-center">
-        <div class="d-flex align-items-center">
-          <h3
-            v-if="Object.is(results, null)"
-            style="color: gray"
-          >
-            Click 'Query Metadata' for results
-          </h3>
-          <div v-else>
-            {{ results }}
-          </div>
-        </div>
-      </b-row>
-    </b-col>
-  </b-row>
+  <b-col
+    cols="2"
+  >
+    <b-row>
+      <h2>Query fields</h2>
+    </b-row>
+    <b-row>
+      <b-form @submit.prevent="submitQuery">
+        <age-fields
+          data-cy="age-fields"
+          @update-age="updateAge"
+        />
+        <b-button
+          variant="primary"
+          type="submit"
+          data-cy="submit-query"
+        >
+          Query Metadata
+        </b-button>
+      </b-form>
+    </b-row>
+  </b-col>
 </template>
 
 <script>
 export default {
+  emits: ['update-results'],
   data() {
     return {
       minAge: null,
@@ -72,6 +49,7 @@ export default {
       try {
         const resp = await this.$axios.get(url);
         this.results = resp.data;
+        this.$emit('update-results', this.results);
       } catch (err) {
         // TODO Handle situations that may throw an error e.g., when min age > max age
         // could emit an event here and show an "error view" in results or use vuelidate
