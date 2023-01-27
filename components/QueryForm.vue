@@ -1,6 +1,5 @@
 <template>
   <b-col
-    id="query-fields-column"
     cols="2"
   >
     <b-row>
@@ -8,14 +7,14 @@
     </b-row>
     <b-row>
       <b-form @submit.prevent="submitQuery">
-        <age-field
-          data-cy="ageField"
+        <age-fields
+          data-cy="age-fields"
           @update-age="updateAge"
         />
         <b-button
           variant="primary"
           type="submit"
-          data-cy="submitQuery"
+          data-cy="submit-query"
         >
           Query Metadata
         </b-button>

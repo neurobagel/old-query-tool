@@ -10,7 +10,6 @@
                 class="d-flex align-items-center card-checkbox"
               >
                 <input
-                  id=""
                   ref="checkbox"
                   class="form-check-input dataset-checkbox"
                   type="checkbox"
@@ -18,7 +17,7 @@
                   :checked="selectAll"
                   aria-label="..."
                   :data-cy="`card-${datasetName}-checkbox`"
-                  @change="updateDownload"
+                  @change="updateDownloads"
                 >
               </b-col>
               <b-col
@@ -97,7 +96,7 @@ export default {
       default: false,
     },
   },
-  emits: ['update-download'],
+  emits: ['update-downloads'],
   data() {
     return {
       modalities: {
@@ -129,12 +128,11 @@ export default {
           ariaLabel: 'Fifth group',
         },
       },
-      id: this.datasetName,
     };
   },
   methods: {
-    updateDownload() {
-      this.$emit('update-download', this.datasetName, this.$refs.checkbox.checked);
+    updateDownloads() {
+      this.$emit('update-downloads', this.datasetName, this.$refs.checkbox.checked);
     },
   },
 };

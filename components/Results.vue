@@ -1,6 +1,5 @@
 <template>
   <b-col
-    id="query-results-column"
     cols="10"
   >
     <b-row>
@@ -30,14 +29,13 @@
     >
       <b-col cols="7">
         <input
-          id="dataset-checkall"
           v-model="selectAll"
           class="form-check-input"
           type="checkbox"
           value=""
           aria-label="..."
           data-cy="select-all"
-          @change="UpdateDownloadSelectAll"
+          @change="UpdateDownloadsSelectAll"
         >
         <label
           for="dataset-checkall"
@@ -47,7 +45,6 @@
       <b-col cols="5">
         <div id="summary-stats">
           <p
-            id="summary-stats-table"
             data-cy="summary-stats"
           >
             {{ summarizeStats() }}
@@ -69,7 +66,7 @@
           :image-modals="res.image_modals"
           :select-all="selectAll"
           :data-cy="res.dataset_name"
-          @update-download="updateDownload"
+          @update-downloads="updateDownloads"
         />
       </b-list-group>
     </b-row>
@@ -106,7 +103,7 @@ export default {
       });
       return `Summary stats: ${datasets} datasets, ${subjects} subjects`;
     },
-    UpdateDownloadSelectAll() {
+    UpdateDownloadsSelectAll() {
       if (this.selectAll) {
         this.results.forEach((res) => {
           if (!this.downloads.includes(res.dataset_name)) {
@@ -117,7 +114,7 @@ export default {
         this.downloads = [];
       }
     },
-    updateDownload(datasetName, checked) {
+    updateDownloads(datasetName, checked) {
       if (checked) {
         this.downloads.push(datasetName);
       } else {

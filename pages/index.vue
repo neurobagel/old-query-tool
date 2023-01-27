@@ -29,10 +29,6 @@ export default {
 };
 </script>
 <style>
-/* Tags */
-
-/* Classes */
-
 /* Card */
 
 .btn-group {
@@ -56,11 +52,6 @@ export default {
 
     padding-left: 0;
 }
-.card-dataset-source {
-
-    color: red;
-    font-size: 1em;
-}
 .card-modality {
 
     font-size: 1em;
@@ -80,9 +71,8 @@ export default {
     white-space: nowrap;
 }
 
-/* IDs */
-
 /* Card list */
+
 #card-listbox {
 
     border: 1em;
@@ -97,33 +87,11 @@ export default {
 
     background-color: #0d6efd;
     color: white;
-    /* visibility: hidden; */
-}
-
-#download-results-link {
-
-    color: white;
-    text-decoration: none;
 }
 
 #query-controls {
 
     padding-top: 1em;
-    padding-bottom: 1em;
-}
-
-/* #query-fields-column {
-
-    margin-right: 1em;
-}
-
-#query-results-column {
-
-    margin-left: 1em;
-} */
-
-#repo-row {
-
     padding-bottom: 1em;
 }
 
