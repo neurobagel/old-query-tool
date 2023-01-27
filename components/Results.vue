@@ -62,6 +62,7 @@
           :num-matching-subjects="res.num_matching_subjects"
           :image-modals="res.image_modals"
           :select-all="selectAll"
+          :data-cy="res.dataset_name"
           @update-download="updateDownload"
         />
       </b-list-group>
