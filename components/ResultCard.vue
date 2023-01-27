@@ -17,6 +17,7 @@
                   value=""
                   :checked="selectAll"
                   aria-label="..."
+                  :data-cy="`card-${datasetName}-checkbox`"
                   @change="updateDownload"
                 >
               </b-col>

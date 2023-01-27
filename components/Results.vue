@@ -36,6 +36,7 @@
           type="checkbox"
           value=""
           aria-label="..."
+          data-cy="select-all"
           @change="UpdateDownloadSelectAll"
         >
         <label
