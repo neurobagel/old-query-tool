@@ -5,7 +5,10 @@
     <b-row>
       <h2>Results</h2>
     </b-row>
-    <b-row class="d-flex justify-content-center">
+    <b-row
+      v-if="!displayResults"
+      class="d-flex justify-content-center"
+    >
       <div class="d-flex align-items-center">
         <h3
           v-if="Object.is(results, null)"
@@ -24,7 +27,7 @@
       </div>
     </b-row>
     <b-row
-      v-if="!Object.is(results, null) && results.length !== 0"
+      v-if="displayResults"
       id="query-controls"
     >
       <b-col cols="7">
@@ -33,7 +36,6 @@
           class="form-check-input"
           type="checkbox"
           value=""
-          aria-label="..."
           data-cy="select-all"
           @change="UpdateDownloadsSelectAll"
         >
@@ -53,7 +55,7 @@
       </b-col>
     </b-row>
     <b-row
-      v-if="!Object.is(results, null) && results.length !== 0"
+      v-if="displayResults"
       id="card-listbox"
       class="d-flex justify-content-center"
     >
@@ -92,6 +94,11 @@ export default {
       selectAll: false,
       downloads: [],
     };
+  },
+  computed: {
+    displayResults() {
+      return !Object.is(this.results, null) && this.results.length !== 0;
+    },
   },
   methods: {
     summarizeStats() {

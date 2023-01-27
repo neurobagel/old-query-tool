@@ -15,7 +15,6 @@
                   type="checkbox"
                   value=""
                   :checked="selectAll"
-                  aria-label="..."
                   :data-cy="`card-${datasetName}-checkbox`"
                   @change="updateDownloads"
                 >
@@ -49,23 +48,19 @@
             <b-row>
               <b-button-toolbar
                 class="d-flex justify-content-end"
-                role="toolbar"
-                aria-label="Toolbar with button groups"
               >
                 <b-button-group
-                  v-for="modal in imageModals"
-                  :key="modal"
+                  v-for="modality in imageModals"
+                  :key="modality"
                   class="mr-2"
-                  role="group"
-                  :aria-label="modalities[modal].ariaLabel"
                 >
                   <b-button
                     type="button"
                     class="btn card-modality"
-                    :style="modalities[modal].style"
-                    :data-cy="`card-${datasetName}-${modalities[modal].name}`"
+                    :style="modalities[modality].style"
+                    :data-cy="`card-${datasetName}-${modalities[modality].name}`"
                   >
-                    {{ modalities[modal].name }}
+                    {{ modalities[modality].name }}
                   </b-button>
                 </b-button-group>
               </b-button-toolbar>
@@ -103,29 +98,24 @@ export default {
         'http://purl.org/nidash/nidm#T1Weighted': {
           name: 'T1',
           style: 'background-color: rgb(164, 208, 90);',
-          ariaLabel: 'First group',
         },
         'http://purl.org/nidash/nidm#T2Weighted': {
           name: 'T2',
           style: 'background-color: rgb(127, 23, 167); color: white;',
-          ariaLabel: 'Second group',
         },
         'http://purl.org/nidash/nidm#DiffusionWeighted': {
           name: 'DWI',
           style: 'background-color: rgb(70, 76, 174); color: white;',
-          ariaLabel: 'Third group',
         },
         'http://purl.org/nidash/nidm#FlowWeighted':
         {
           name: 'Flow',
           style: 'background-color: rgb(236, 197, 50); color: white;',
-          ariaLabel: 'Fourth group',
         },
         'http://purl.org/nidash/nidm#EEG':
         {
           name: 'EEG',
           style: 'background-color:rgb(128, 1, 1); color: white;',
-          ariaLabel: 'Fifth group',
         },
       },
     };

@@ -1,17 +1,17 @@
 <template>
   <b-col
+    v-if="displayDownloadResultsButton"
     class="d-flex flex-row-reverse"
     style="margin-top: 1em;"
   >
     <b-row
-      v-if="!Object.is(results, null) && results.length !== 0"
       class="mr-auto"
     >
       <b-button
         id="download-results-button"
         :disabled="downloads.length === 0"
         data-cy="download-results-button"
-        @click="download"
+        @click="downloadResults"
       >
         <b-icon
           icon="download"
@@ -37,35 +37,31 @@ export default {
       default: () => [],
     },
   },
+  computed: {
+    displayDownloadResultsButton() {
+      return !Object.is(this.results, null) && this.results.length !== 0;
+    },
+  },
   methods: {
     generateCSVString() {
-      const data = [];
-      this.results.filter((res) => this.downloads.includes(res.dataset_name)).forEach((res) => {
-        res.subject_file_paths.forEach((path) => {
-          data.push({
-            'dataset ': res.dataset_name,
-            'number of matching subjects': res.num_matching_subjects,
-            'subject file paths': path,
+      const headers = ['dataset', 'number of matching subjects', 'subject file paths'];
+      const csvRows = [headers];
+
+      this.results.filter((res) => this.downloads.includes(res.dataset_name))
+        .forEach((res) => {
+          res.subject_file_paths.forEach((path) => {
+            csvRows.push([
+              res.dataset_name,
+              res.num_matching_subjects,
+              path,
+            ].join(','));
           });
         });
-      });
-
-      const csvRows = [];
-      const headers = Object.keys(data[0]);
-
-      csvRows.push(headers.join(','));
-      data.forEach((row) => {
-        const values = headers.map((header) => {
-          const val = row[header];
-          return `"${val}"`;
-        });
-        csvRows.push(values.join(','));
-      });
 
       return csvRows.join('\n');
     },
 
-    download() {
+    downloadResults() {
       const element = document.createElement('a');
       element.setAttribute('href', `data:text/csv;charset=utf-8,
       ${encodeURIComponent(this.generateCSVString())}`);
