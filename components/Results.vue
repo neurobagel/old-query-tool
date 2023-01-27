@@ -45,7 +45,10 @@
       </b-col>
       <b-col cols="5">
         <div id="summary-stats">
-          <p id="summary-stats-table">
+          <p
+            id="summary-stats-table"
+            data-cy="summary-stats"
+          >
             {{ summarizeStats() }}
           </p>
         </div>
