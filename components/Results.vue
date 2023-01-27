@@ -11,6 +11,7 @@
         <h3
           v-if="Object.is(results, null)"
           style="color: gray"
+          data-cy="default-view"
         >
           Click 'Query Metadata' for results
         </h3>

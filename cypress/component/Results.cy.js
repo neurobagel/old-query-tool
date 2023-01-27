@@ -6,6 +6,10 @@ const stubs = {
 };
 
 describe('Results', () => {
+  it('Displays default view of results component', () => {
+    cy.mount(Results);
+    cy.get("[data-cy='default-view']").should('be.visible');
+  });
   it('Displays a result card for each dataset in results prop', () => {
     cy.mount(Results, {
       stubs,
