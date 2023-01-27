@@ -18,6 +18,7 @@
         <h3
           v-else-if="results.length === 0"
           style="color: gray;"
+          data-cy="no-results-view"
         >
           No results
         </h3>
