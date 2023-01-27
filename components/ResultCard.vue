@@ -40,11 +40,6 @@
             </b-row>
           </b-col>
           <b-col cols="4">
-            <b-row id="repo-row">
-              <div class="card-dataset-source d-flex justify-content-end">
-                <a :href="dataset">{{ "N/A" }}</a>
-              </div>
-            </b-row>
             <b-row>
               <b-button-toolbar
                 class="d-flex justify-content-end"
@@ -77,10 +72,6 @@
 <script>
 export default {
   props: {
-    dataset: {
-      type: String,
-      default: null,
-    },
     datasetName: {
       type: String,
       default: null,

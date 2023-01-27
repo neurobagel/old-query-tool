@@ -58,7 +58,6 @@
         <result-card
           v-for="res in results"
           :key="res.id"
-          :dataset="res.dataset"
           :dataset-name="res.dataset_name"
           :num-matching-subjects="res.num_matching_subjects"
           :image-modals="res.image_modals"
