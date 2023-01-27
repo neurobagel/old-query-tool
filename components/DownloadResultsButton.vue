@@ -10,6 +10,7 @@
       <b-button
         id="download-results-button"
         :disabled="downloads.length === 0"
+        data-cy="download-results-button"
         @click="download"
       >
         <b-icon

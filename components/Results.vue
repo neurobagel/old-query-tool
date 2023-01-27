@@ -76,6 +76,7 @@
     <download-results-button
       :results="results"
       :downloads="downloads"
+      data-cy="download-results"
     />
   </b-col>
 </template>

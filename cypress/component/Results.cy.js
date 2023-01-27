@@ -1,8 +1,10 @@
 import Results from '../../components/Results.vue';
 import ResultCard from '../../components/ResultCard.vue';
+import DownloadResultsButton from '../../components/DownloadResultsButton.vue';
 
 const stubs = {
   'result-card': ResultCard,
+  'download-results-button': DownloadResultsButton,
 };
 
 const props = {
@@ -63,5 +65,19 @@ describe('Results', () => {
     });
     cy.get("[data-cy='cool-dataset']").should('be.visible');
     cy.get("[data-cy='not-so-cool-dataset']").should('be.visible');
+  });
+  it('Displays download results button (and its component) and enables/disables it by checking/unchecking checkboxes', () => {
+    cy.mount(Results, {
+      stubs,
+      propsData: props,
+    });
+    cy.get("[data-cy='download-results']").should('be.visible');
+    cy.get("[data-cy='download-results-button']").should('be.disabled');
+    cy.get("[data-cy='select-all']").check();
+    cy.get("[data-cy='download-results-button']").should('not.be.disabled');
+    cy.get("[data-cy='card-cool-dataset-checkbox']").uncheck();
+    cy.get("[data-cy='download-results-button']").should('not.be.disabled');
+    cy.get("[data-cy='card-not-so-cool-dataset-checkbox']").uncheck();
+    cy.get("[data-cy='download-results-button']").should('be.disabled');
   });
 });
