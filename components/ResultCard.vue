@@ -26,13 +26,19 @@
                 class="card-content"
               >
                 <b-row>
-                  <h5 class="card-title">
+                  <h5
+                    class="card-title"
+                    :data-cy="`card-${datasetName}-dataset`"
+                  >
                     {{ datasetName }}
                   </h5>
                 </b-row>
                 <b-row>
                   <b-col cols="6">
-                    <p class="card-text">
+                    <p
+                      class="card-text"
+                      :data-cy="`card-${datasetName}-subjects`"
+                    >
                       {{ `${numMatchingSubjects} subjects` }}
                     </p>
                   </b-col>
@@ -58,6 +64,7 @@
                     type="button"
                     class="btn card-modality"
                     :style="modalities[modal].style"
+                    :data-cy="`card-${datasetName}-${modalities[modal].name}`"
                   >
                     {{ modalities[modal].name }}
                   </b-button>
