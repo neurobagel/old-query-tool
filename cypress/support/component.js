@@ -20,6 +20,9 @@ import './commands';
 // so cypress applies bootstrap styles when displaying components
 import '../../plugins/bootstrap-vue';
 
+// Import vue Select similiar to BootstrapVue
+import '../../plugins/vue-select';
+
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
 
