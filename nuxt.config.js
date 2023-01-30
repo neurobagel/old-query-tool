@@ -24,6 +24,7 @@ export default {
   plugins: [
     '@plugins/bootstrap-vue',
     '@plugins/vue-select',
+    '@plugins/categorical-options',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
