@@ -11,6 +11,7 @@
           data-cy="age-fields"
           @update-age="updateAge"
         />
+        <sex-field @update-sex="updateSex" />
         <b-button
           variant="primary"
           type="submit"
@@ -30,6 +31,7 @@ export default {
     return {
       minAge: null,
       maxAge: null,
+      sex: null,
       results: null,
     };
   },
@@ -38,6 +40,9 @@ export default {
       this.minAge = minAge;
       this.maxAge = maxAge;
     },
+    updateSex(sex) {
+      this.sex = sex;
+    },
     async submitQuery() {
       let url = process.env.API_QUERY_URL;
       if (this.minAge) {
@@ -45,6 +50,9 @@ export default {
       }
       if (this.maxAge) {
         url += `&max_age=${this.maxAge}`;
+      }
+      if (this.sex) {
+        url += `&sex=${this.sex}`;
       }
       try {
         const resp = await this.$axios.get(url);
