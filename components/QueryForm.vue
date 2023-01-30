@@ -11,7 +11,12 @@
           data-cy="age-fields"
           @update-age="updateAge"
         />
-        <sex-field @update-sex="updateSex" />
+        <categorical-field
+          name="Sex"
+          :default-selected="Object.keys(categoricalOptions['Sex'])[0]"
+          :options="Object.keys(categoricalOptions['Sex'])"
+          @update-categorical-field="updateCategoricalField"
+        />
         <b-button
           variant="primary"
           type="submit"
@@ -40,8 +45,14 @@ export default {
       this.minAge = minAge;
       this.maxAge = maxAge;
     },
-    updateSex(sex) {
-      this.sex = sex;
+    updateCategoricalField(name, selected) {
+      switch (name) {
+        case 'Sex':
+          this.sex = this.categoricalOptions[name][selected];
+          break;
+        default:
+          break;
+      }
     },
     async submitQuery() {
       let url = process.env.API_QUERY_URL;
