@@ -1,31 +1,42 @@
 <template>
   <div class="mb-3">
-    <label class="form-label">Sex</label>
+    <label class="form-label">{{ name }}</label>
     <v-select
-      v-model="sex"
-      :options="Object.keys(options)"
-      @input="updateSex"
+      v-model="selected"
+      :options="options"
+      @input="updateCategoricalField"
     />
   </div>
 </template>
 
 <script>
 export default {
-  emits: ['update-sex'],
+  props: {
+    name: {
+      type: String,
+      default: null,
+      require: false,
+    },
+    defaultSelected: {
+      type: String,
+      default: null,
+      require: false,
+    },
+    options: {
+      type: Array,
+      default: null,
+      require: false,
+    },
+  },
+  emits: ['update-categorical-field'],
   data() {
     return {
-      options: {
-        All: null,
-        male: 'male',
-        female: 'female',
-        other: 'other',
-      },
-      sex: 'All',
+      selected: this.defaultSelected,
     };
   },
   methods: {
-    updateSex() {
-      this.$emit('update-sex', this.options[this.sex]);
+    updateCategoricalField() {
+      this.$emit('update-categorical-field', this.name, this.selected);
     },
   },
 };
