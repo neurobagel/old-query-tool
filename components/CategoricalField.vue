@@ -1,8 +1,12 @@
 <template>
   <div class="mb-3">
-    <label class="form-label">{{ name }}</label>
+    <label
+      data-cy="categorical-field-label"
+      class="form-label"
+    >{{ name }}</label>
     <v-select
       v-model="selected"
+      data-cy="categorical-field-select"
       :options="options"
       @input="updateCategoricalField"
     />
