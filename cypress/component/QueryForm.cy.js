@@ -12,8 +12,8 @@ describe('Query form', () => {
     cy.mount(QueryForm, {
       stubs,
     });
-    cy.get('[data-cy=age-fields]').should('be.visible');
-    cy.get('[data-cy=sex]').should('be.visible');
-    cy.get('[data-cy=submit-query]').should('be.visible');
+    cy.get('[data-cy="age-fields"]').should('be.visible');
+    cy.get('[data-cy="sex"]').should('be.visible');
+    cy.get('[data-cy="submit-query"]').should('be.visible');
   });
 });
