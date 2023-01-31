@@ -25,4 +25,18 @@ describe('Categorical field', () => {
       cy.get('.vs__selected').contains(option);
     });
   });
+  it('Emits update-categorical-field event when the value for categorical field is updated', () => {
+    cy.mount(CategoricalField, {
+      listeners: {
+        'update-categorical-field': cy.spy().as('spy'),
+      },
+      propsData: {
+        name: fields.sex.name,
+        defaultSelected: fields.sex.defaultSelected,
+        options: fields.sex.options,
+      },
+    });
+    cy.get('[data-cy=categorical-field-select]').type(fields.sex.options[2]).type('{enter}');
+    cy.get('@spy').should('have.been.calledWith', fields.sex.name, fields.sex.options[2]);
+  });
 });
