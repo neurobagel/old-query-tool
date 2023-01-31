@@ -16,12 +16,11 @@
 // Import commands.js using ES2015 syntax:
 import './commands';
 
-// Import BootstrapVue into cypress component context
-// so cypress applies bootstrap styles when displaying components
+// Import plugins into cypress component context
+// so cypress is aware of them when running component tests
 import '../../plugins/bootstrap-vue';
-
-// Import vue Select similiar to BootstrapVue
 import '../../plugins/vue-select';
+import '../../plugins/categorical-options';
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
