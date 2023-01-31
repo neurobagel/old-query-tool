@@ -26,13 +26,13 @@ describe('Download results button', () => {
     cy.mount(DownloadResultsButton, {
       propsData: props,
     });
-    cy.get("[data-cy='download-results-button']").should('be.visible').should('be.disabled');
+    cy.get('[data-cy="download-results-button"]').should('be.visible').should('be.disabled');
   });
   it('Displays the enabled download results button', () => {
     props.downloads = ['cool-dataset'];
     cy.mount(DownloadResultsButton, {
       propsData: props,
     });
-    cy.get("[data-cy='download-results-button']").should('be.visible').should('not.be.disabled');
+    cy.get('[data-cy="download-results-button"]').should('be.visible').should('not.be.disabled');
   });
 });
