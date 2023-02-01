@@ -13,7 +13,8 @@ describe('Query form', () => {
       stubs,
     });
     cy.get('[data-cy="age-fields"]').should('be.visible');
-    cy.get('[data-cy="sex"]').should('be.visible');
+    cy.get('[data-cy="sex-field"]').should('be.visible');
+    cy.get('[data-cy="modality-field"]').should('be.visible');
     cy.get('[data-cy="submit-query"]').should('be.visible');
   });
 });

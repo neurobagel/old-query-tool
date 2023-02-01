@@ -13,13 +13,14 @@
         />
         <categorical-field
           name="Sex"
-          data-cy="sex"
+          data-cy="sex-field"
           :default-selected="Object.keys(categoricalOptions.Sex)[0]"
           :options="Object.keys(categoricalOptions.Sex)"
           @update-categorical-field="updateCategoricalField"
         />
         <categorical-field
           name="Modality"
+          data-cy="modality-field"
           :default-selected="Object.keys(categoricalOptions.Modality)[0]"
           :options="Object.keys(categoricalOptions.Modality)"
           @update-categorical-field="updateCategoricalField"
