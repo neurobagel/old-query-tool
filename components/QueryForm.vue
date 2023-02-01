@@ -13,9 +13,16 @@
         />
         <categorical-field
           name="Sex"
-          data-cy="sex"
-          :default-selected="Object.keys(categoricalOptions['Sex'])[0]"
-          :options="Object.keys(categoricalOptions['Sex'])"
+          data-cy="sex-field"
+          :default-selected="Object.keys(categoricalOptions.Sex)[0]"
+          :options="Object.keys(categoricalOptions.Sex)"
+          @update-categorical-field="updateCategoricalField"
+        />
+        <categorical-field
+          name="Modality"
+          data-cy="modality-field"
+          :default-selected="Object.keys(categoricalOptions.Modality)[0]"
+          :options="Object.keys(categoricalOptions.Modality)"
           @update-categorical-field="updateCategoricalField"
         />
         <b-button
@@ -39,6 +46,7 @@ export default {
       maxAge: null,
       sex: null,
       results: null,
+      modality: null,
     };
   },
   methods: {
@@ -50,6 +58,9 @@ export default {
       switch (name) {
         case 'Sex':
           this.sex = this.categoricalOptions[name][selected];
+          break;
+        case 'Modality':
+          this.modality = this.categoricalOptions[name][selected];
           break;
         default:
           break;
@@ -65,6 +76,9 @@ export default {
       }
       if (this.sex) {
         url += `&sex=${this.sex}`;
+      }
+      if (this.modality) {
+        url += `&image_modal=${this.modality}`;
       }
       try {
         const resp = await this.$axios.get(url);

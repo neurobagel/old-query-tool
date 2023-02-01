@@ -79,6 +79,7 @@ To define a cohort, set your inclusion criteria using the following query fields
 
 - Age: The minimum and/or maximum age (in years) of participant that should be included in the results.
 - Sex: The sex of participant that should be included in the results.
+- Modality: The imaging modality of participant scans that should be included in the results.
 
 
 Once you've defined your criteria, submit them as a query and query tool will display the results.
