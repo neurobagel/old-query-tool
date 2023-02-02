@@ -20,8 +20,8 @@ describe('Categorical field', () => {
     cy.get('[data-cy="categorical-field-label"]').contains(fields.sex.name);
     cy.get('.vs__selected').contains('All');
     fields.sex.options.forEach((option) => {
-      cy.get('[data-cy="categorical-field-select"]').should('be.visible').click().contains(option);
-      cy.get('[data-cy="categorical-field-select"]').type(option).type('{enter}');
+      cy.get('[data-cy="Sex-select"]').should('be.visible').click().contains(option);
+      cy.get('[data-cy="Sex-select"]').type(option).type('{enter}');
       cy.get('.vs__selected').contains(option);
     });
   });
@@ -36,7 +36,7 @@ describe('Categorical field', () => {
         options: fields.sex.options,
       },
     });
-    cy.get('[data-cy="categorical-field-select"]').type(fields.sex.options[2]).type('{enter}');
+    cy.get('[data-cy="Sex-select"]').type(fields.sex.options[2]).type('{enter}');
     cy.get('@spy').should('have.been.calledWith', fields.sex.name, fields.sex.options[2]);
   });
 });

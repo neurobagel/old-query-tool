@@ -11,7 +11,7 @@
     </b-row>
     <v-select
       v-model="selected"
-      data-cy="categorical-field-select"
+      :data-cy="`${name}-select`"
       :options="options"
       :disabled="disabled"
       @input="updateCategoricalField"
