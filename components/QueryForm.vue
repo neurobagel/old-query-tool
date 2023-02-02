@@ -32,6 +32,12 @@
           :options="Object.keys(categoricalOptions.Sex)"
           @update-categorical-field="updateField"
         />
+        <categorical-field
+          name="Diagnosis"
+          :default-selected="Object.keys(categoricalOptions.Diagnosis)[0]"
+          :options="Object.keys(categoricalOptions.Diagnosis)"
+          @update-categorical-field="updateField"
+        />
         <continuous-field
           name="Minimum number of sessions"
           data-cy="min-num-sessions-field"
@@ -78,6 +84,7 @@ export default {
       minAge: null,
       maxAge: null,
       sex: null,
+      diagnosis: null,
       min_num_sessions: null,
       assessment: null,
       modality: null,
@@ -95,6 +102,9 @@ export default {
           break;
         case 'Sex':
           this.sex = this.categoricalOptions[name][input];
+          break;
+        case 'Diagnosis':
+          this.diagnosis = this.categoricalOptions[name][input];
           break;
         case 'Minimum number of sessions':
           this.min_num_sessions = input;
@@ -119,6 +129,9 @@ export default {
       }
       if (this.sex) {
         url += `&sex=${this.sex}`;
+      }
+      if (this.diagnosis) {
+        url += `&diagnosis=${this.diagnosis}`;
       }
       if (this.min_num_sessions) {
         url += `&min_num_sessions=${this.min_num_sessions}`;
