@@ -7,30 +7,40 @@
     </b-row>
     <b-row>
       <b-form @submit.prevent="submitQuery">
-        <age-fields
-          data-cy="age-fields"
-          @update-age="updateAge"
-        />
+        <b-form-row class="row">
+          <b-form-group class="col-md-6">
+            <continuous-field
+              name="Min Age"
+              @update-continuous-field="updateField"
+            />
+          </b-form-group>
+          <b-form-group class="col-md-6">
+            <continuous-field
+              name="Max Age"
+              @update-continuous-field="updateField"
+            />
+          </b-form-group>
+        </b-form-row>
         <categorical-field
           name="Sex"
           data-cy="sex-field"
           :default-selected="Object.keys(categoricalOptions.Sex)[0]"
           :options="Object.keys(categoricalOptions.Sex)"
-          @update-categorical-field="updateCategoricalField"
+          @update-categorical-field="updateField"
         />
         <categorical-field
           name="Assessment tool"
           data-cy="assessment-tool-field"
           :default-selected="Object.keys(categoricalOptions['Assessment tool'])[0]"
           :options="Object.keys(categoricalOptions['Assessment tool'])"
-          @update-categorical-field="updateCategoricalField"
+          @update-categorical-field="updateField"
         />
         <categorical-field
           name="Modality"
           data-cy="modality-field"
           :default-selected="Object.keys(categoricalOptions.Modality)[0]"
           :options="Object.keys(categoricalOptions.Modality)"
-          @update-categorical-field="updateCategoricalField"
+          @update-categorical-field="updateField"
         />
         <b-button
           variant="primary"
@@ -64,20 +74,22 @@ export default {
     };
   },
   methods: {
-    updateAge(minAge, maxAge) {
-      this.minAge = minAge;
-      this.maxAge = maxAge;
-    },
-    updateCategoricalField(name, selected) {
+    updateField(name, input) {
       switch (name) {
+        case 'Min Age':
+          this.minAge = input;
+          break;
+        case 'Max Age':
+          this.maxAge = input;
+          break;
         case 'Sex':
-          this.sex = this.categoricalOptions[name][selected];
+          this.sex = this.categoricalOptions[name][input];
           break;
         case 'Modality':
-          this.modality = this.categoricalOptions[name][selected];
+          this.modality = this.categoricalOptions[name][input];
           break;
         case 'Assessment tool':
-          this.assessment = this.categoricalOptions[name][selected];
+          this.assessment = this.categoricalOptions[name][input];
           break;
         default:
           break;
