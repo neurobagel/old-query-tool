@@ -32,6 +32,11 @@
           :options="Object.keys(categoricalOptions.Sex)"
           @update-categorical-field="updateField"
         />
+        <continuous-field
+          name="Minimum number of sessions"
+          step="1"
+          @update-continuous-field="updateField"
+        />
         <categorical-field
           name="Assessment tool"
           data-cy="assessment-tool-field"
@@ -72,9 +77,10 @@ export default {
       minAge: null,
       maxAge: null,
       sex: null,
-      results: null,
-      modality: null,
+      min_num_sessions: null,
       assessment: null,
+      modality: null,
+      results: null,
     };
   },
   methods: {
@@ -89,11 +95,14 @@ export default {
         case 'Sex':
           this.sex = this.categoricalOptions[name][input];
           break;
-        case 'Modality':
-          this.modality = this.categoricalOptions[name][input];
+        case 'Minimum number of sessions':
+          this.min_num_sessions = input;
           break;
         case 'Assessment tool':
           this.assessment = this.categoricalOptions[name][input];
+          break;
+        case 'Modality':
+          this.modality = this.categoricalOptions[name][input];
           break;
         default:
           break;
@@ -109,6 +118,9 @@ export default {
       }
       if (this.sex) {
         url += `&sex=${this.sex}`;
+      }
+      if (this.min_num_sessions) {
+        url += `&min_num_sessions=${this.min_num_sessions}`;
       }
       if (this.assessment) {
         url += `&assessment=${this.assessment}`;
