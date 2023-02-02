@@ -39,6 +39,12 @@
 
 <script>
 export default {
+  props: {
+    categoricalOptions: {
+      type: Array,
+      default: null,
+    },
+  },
   emits: ['update-results'],
   data() {
     return {

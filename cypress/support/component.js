@@ -20,7 +20,6 @@ import './commands';
 // so cypress is aware of them when running component tests
 import '../../plugins/bootstrap-vue';
 import '../../plugins/vue-select';
-import '../../plugins/categorical-options';
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')

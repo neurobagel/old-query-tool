@@ -7,10 +7,28 @@ const stubs = {
   'categorical-field': CategoricalField,
 };
 
+const props = {
+  categoricalOptions: {
+    Sex: {
+      All: null,
+      male: 'male',
+      female: 'female',
+      other: 'other',
+    },
+    Modality: {
+      All: null,
+      'Flow weighted': 'nidm:FlowWeighted',
+      'T1 weighted': 'nidm:T1Weighted',
+      'T2 weighted': 'nidm:T2Weighted',
+    },
+  },
+};
+
 describe('Query form', () => {
   it('Displays the age and sex fields and submit query button', () => {
     cy.mount(QueryForm, {
       stubs,
+      propsData: props,
     });
     cy.get('[data-cy="age-fields"]').should('be.visible');
     cy.get('[data-cy="sex-field"]').should('be.visible');
