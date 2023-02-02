@@ -13,6 +13,7 @@
       v-model="selected"
       data-cy="categorical-field-select"
       :options="options"
+      :disabled="disabled"
       @input="updateCategoricalField"
     />
   </div>
@@ -32,6 +33,10 @@ export default {
     options: {
       type: Array,
       default: null,
+    },
+    disabled: {
+      type: Boolean,
+      default: false,
     },
   },
   emits: ['update-categorical-field'],

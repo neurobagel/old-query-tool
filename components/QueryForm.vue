@@ -37,11 +37,13 @@
           data-cy="diagnosis-field"
           :default-selected="Object.keys(categoricalOptions.Diagnosis)[0]"
           :options="Object.keys(categoricalOptions.Diagnosis)"
+          :disabled="is_control"
           @update-categorical-field="updateField"
         >
           <template #control>
             <b-form-group class="col-md-7">
               <input
+                v-model="is_control"
                 class="form-check-input"
                 type="checkbox"
               >
@@ -96,6 +98,7 @@ export default {
       maxAge: null,
       sex: null,
       diagnosis: null,
+      is_control: false,
       min_num_sessions: null,
       assessment: null,
       modality: null,
@@ -143,6 +146,9 @@ export default {
       }
       if (this.diagnosis) {
         url += `&diagnosis=${this.diagnosis}`;
+      }
+      if (this.is_control) {
+        url += `&is_control=${this.is_control}`;
       }
       if (this.min_num_sessions) {
         url += `&min_num_sessions=${this.min_num_sessions}`;
