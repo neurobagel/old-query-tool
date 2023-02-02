@@ -10,4 +10,8 @@ describe('Continuous field', () => {
     cy.get('[data-cy="continuous-field-input"]').should('be.visible');
     cy.get('[data-cy="continuous-field-label"]').should('be.visible');
   });
+  it('Ignores when text is entered into the input field', () => {
+    cy.mount(ContinuousField, { propsData: props });
+    cy.get('[data-cy="continuous-field-input"]').type('hello').should('have.value', '');
+  });
 });
