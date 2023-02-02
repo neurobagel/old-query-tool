@@ -38,7 +38,17 @@
           :default-selected="Object.keys(categoricalOptions.Diagnosis)[0]"
           :options="Object.keys(categoricalOptions.Diagnosis)"
           @update-categorical-field="updateField"
-        />
+        >
+          <template #control>
+            <b-form-group class="col-md-7">
+              <input
+                class="form-check-input"
+                type="checkbox"
+              >
+              <label class="form-label">Healthy control</label>
+            </b-form-group>
+          </template>
+        </categorical-field>
         <continuous-field
           name="Minimum number of sessions"
           data-cy="min-num-sessions-field"
