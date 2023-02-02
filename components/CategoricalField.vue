@@ -19,17 +19,14 @@ export default {
     name: {
       type: String,
       default: null,
-      require: false,
     },
     defaultSelected: {
       type: String,
       default: null,
-      require: false,
     },
     options: {
       type: Array,
       default: null,
-      require: false,
     },
   },
   emits: ['update-categorical-field'],
