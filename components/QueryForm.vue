@@ -12,6 +12,7 @@
             <continuous-field
               name="Min Age"
               data-cy="min-age-field"
+              step="any"
               @update-continuous-field="updateField"
             />
           </b-form-group>
@@ -19,6 +20,7 @@
             <continuous-field
               name="Max Age"
               data-cy="max-age-field"
+              step="any"
               @update-continuous-field="updateField"
             />
           </b-form-group>

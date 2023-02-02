@@ -8,7 +8,7 @@
       v-model="input"
       data-cy="continuous-field-input"
       type="number"
-      step="any"
+      :step="step"
       class="numberinput form-control"
       min="0"
       @input="updateField"
@@ -20,6 +20,10 @@
 export default {
   props: {
     name: {
+      type: String,
+      default: null,
+    },
+    step: {
       type: String,
       default: null,
     },
