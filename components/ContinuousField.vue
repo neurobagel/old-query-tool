@@ -5,7 +5,6 @@
       class="form-label"
     >{{ name }}</label>
     <b-form-input
-      v-model="input"
       data-cy="continuous-field-input"
       type="number"
       :step="step"
@@ -21,22 +20,17 @@ export default {
   props: {
     name: {
       type: String,
-      default: null,
+      required: true,
     },
     step: {
       type: String,
-      default: null,
+      default: '1',
     },
   },
   emits: ['update-continuous-field'],
-  data() {
-    return {
-      input: null,
-    };
-  },
   methods: {
-    updateField() {
-      this.$emit('update-continuous-field', this.name, this.input);
+    updateField(value) {
+      this.$emit('update-continuous-field', this.name, value);
     },
   },
 };
