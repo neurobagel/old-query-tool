@@ -44,6 +44,7 @@
             <b-form-group class="col-md-7">
               <input
                 v-model="is_control"
+                data-cy="control-checkbox"
                 class="form-check-input"
                 type="checkbox"
               >
