@@ -34,6 +34,7 @@
         />
         <continuous-field
           name="Minimum number of sessions"
+          data-cy="min-num-sessions-field"
           step="1"
           @update-continuous-field="updateField"
         />
