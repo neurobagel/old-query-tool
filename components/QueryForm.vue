@@ -19,6 +19,13 @@
           @update-categorical-field="updateCategoricalField"
         />
         <categorical-field
+          name="Assessment tool"
+          data-cy="assessment-tool-field"
+          :default-selected="Object.keys(categoricalOptions['Assessment tool'])[0]"
+          :options="Object.keys(categoricalOptions['Assessment tool'])"
+          @update-categorical-field="updateCategoricalField"
+        />
+        <categorical-field
           name="Modality"
           data-cy="modality-field"
           :default-selected="Object.keys(categoricalOptions.Modality)[0]"
@@ -39,6 +46,12 @@
 
 <script>
 export default {
+  props: {
+    categoricalOptions: {
+      type: Object,
+      default: null,
+    },
+  },
   emits: ['update-results'],
   data() {
     return {
@@ -47,6 +60,7 @@ export default {
       sex: null,
       results: null,
       modality: null,
+      assessment: null,
     };
   },
   methods: {
@@ -62,6 +76,9 @@ export default {
         case 'Modality':
           this.modality = this.categoricalOptions[name][selected];
           break;
+        case 'Assessment tool':
+          this.assessment = this.categoricalOptions[name][selected];
+          break;
         default:
           break;
       }
@@ -76,6 +93,9 @@ export default {
       }
       if (this.sex) {
         url += `&sex=${this.sex}`;
+      }
+      if (this.assessment) {
+        url += `&assessment=${this.assessment}`;
       }
       if (this.modality) {
         url += `&image_modal=${this.modality}`;

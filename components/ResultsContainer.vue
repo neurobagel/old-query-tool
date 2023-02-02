@@ -85,7 +85,6 @@ export default {
   props: {
     results: {
       type: Array,
-      required: false,
       default: null,
     },
   },
