@@ -1,27 +1,22 @@
 import CategoricalField from '../../components/CategoricalField.vue';
 
-const fields = {
-  sex: {
-    name: 'Sex',
-    defaultSelected: 'All',
-    options: ['All', 'male', 'female', 'other'],
-  },
+const props = {
+  name: 'Diagnosis',
+  defaultSelected: 'All',
+  options: ['All', 'Depressive disorder',
+    'Parkinson\'s disease'],
 };
 
 describe('Categorical field', () => {
-  it('Displays a vue select component with options and a label for sex field', () => {
+  it('Displays a vue select component with options and a label for diagnosis field', () => {
     cy.mount(CategoricalField, {
-      propsData: {
-        name: fields.sex.name,
-        defaultSelected: fields.sex.defaultSelected,
-        options: fields.sex.options,
-      },
+      propsData: props,
     });
-    cy.get('[data-cy="categorical-field-label"]').contains(fields.sex.name);
+    cy.get('[data-cy="categorical-field-label"]').contains(props.name);
     cy.get('.vs__selected').contains('All');
-    fields.sex.options.forEach((option) => {
-      cy.get('[data-cy="Sex-select"]').should('be.visible').click().contains(option);
-      cy.get('[data-cy="Sex-select"]').type(option).type('{enter}');
+    props.options.forEach((option) => {
+      cy.get('[data-cy="Diagnosis-select"]').should('be.visible').click().contains(option);
+      cy.get('[data-cy="Diagnosis-select"]').type(option).type('{enter}');
       cy.get('.vs__selected').contains(option);
     });
   });
@@ -30,13 +25,9 @@ describe('Categorical field', () => {
       listeners: {
         'update-categorical-field': cy.spy().as('spy'),
       },
-      propsData: {
-        name: fields.sex.name,
-        defaultSelected: fields.sex.defaultSelected,
-        options: fields.sex.options,
-      },
+      propsData: props,
     });
-    cy.get('[data-cy="Sex-select"]').type(fields.sex.options[2]).type('{enter}');
-    cy.get('@spy').should('have.been.calledWith', fields.sex.name, fields.sex.options[2]);
+    cy.get('[data-cy="Diagnosis-select"]').type(props.options[2]).type('{enter}');
+    cy.get('@spy').should('have.been.calledWith', props.name, props.options[2]);
   });
 });
