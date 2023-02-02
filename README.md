@@ -79,6 +79,7 @@ To define a cohort, set your inclusion criteria using the following query fields
 
 - Age: Minimum and/or maximum age (in years) of participant that should be included in the results.
 - Sex: Sex of participant that should be included in the results.
+- Diagnosis: Diagnosis of participant that should be included in the results
 - Minimum number of sessions: Minimum number of imaging sessions that participant should have to be included in the results.
 - Assessment tool: Non-imaging assessment completed by participant that should be included in the results.
 - Modality: Imaging modality of participant scans that should be included in the results.
