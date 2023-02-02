@@ -11,12 +11,14 @@
           <b-form-group class="col-md-6">
             <continuous-field
               name="Min Age"
+              data-cy="min-age-field"
               @update-continuous-field="updateField"
             />
           </b-form-group>
           <b-form-group class="col-md-6">
             <continuous-field
               name="Max Age"
+              data-cy="max-age-field"
               @update-continuous-field="updateField"
             />
           </b-form-group>

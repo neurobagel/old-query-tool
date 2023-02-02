@@ -1,9 +1,9 @@
 import QueryForm from '../../components/QueryForm.vue';
-import AgeFields from '../../components/AgeFields.vue';
+import ContinuousField from '../../components/ContinuousField.vue';
 import CategoricalField from '../../components/CategoricalField.vue';
 
 const stubs = {
-  'age-fields': AgeFields,
+  'continuous-field': ContinuousField,
   'categorical-field': CategoricalField,
 };
 
@@ -34,8 +34,8 @@ describe('Query form', () => {
       stubs,
       propsData: props,
     });
-    cy.get('[data-cy="age-fields"]').should('be.visible');
-    cy.get('[data-cy="sex-field"]').should('be.visible');
+    cy.get('[data-cy="min-age-field"]').should('be.visible');
+    cy.get('[data-cy="max-age-field"]').should('be.visible');
     cy.get('[data-cy="assessment-tool-field"]').should('be.visible');
     cy.get('[data-cy="modality-field"]').should('be.visible');
     cy.get('[data-cy="submit-query"]').should('be.visible');
