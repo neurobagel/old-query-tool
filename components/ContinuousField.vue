@@ -1,8 +1,12 @@
 <template>
   <div class="mb-3">
-    <label class="form-label">{{ name }}</label>
+    <label
+      data-cy="continuous-field-label"
+      class="form-label"
+    >{{ name }}</label>
     <b-form-input
       v-model="input"
+      data-cy="continuous-field-input"
       type="number"
       step="any"
       class="numberinput form-control"
