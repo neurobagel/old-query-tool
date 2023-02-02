@@ -7,7 +7,10 @@
       <hr class="mt-0 mb-4">
     </b-row>
     <b-row class="mx-4">
-      <query-form @update-results="updateResults" />
+      <query-form
+        :categorical-options="categoricalOptions"
+        @update-results="updateResults"
+      />
       <results-container :results="results" />
     </b-row>
   </b-container>
@@ -18,6 +21,20 @@ export default {
   data() {
     return {
       results: null,
+      categoricalOptions: {
+        Sex: {
+          All: null,
+          male: 'male',
+          female: 'female',
+          other: 'other',
+        },
+        Modality: {
+          All: null,
+          'Flow weighted': 'nidm:FlowWeighted',
+          'T1 weighted': 'nidm:T1Weighted',
+          'T2 weighted': 'nidm:T2Weighted',
+        },
+      },
     };
   },
   methods: {
