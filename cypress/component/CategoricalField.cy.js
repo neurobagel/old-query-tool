@@ -9,7 +9,7 @@ const fields = {
 };
 
 describe('Categorical field', () => {
-  it('Displays a vue select component with options and label for sex field', () => {
+  it('Displays a vue select component with options and a label for sex field', () => {
     cy.mount(CategoricalField, {
       propsData: {
         name: fields.sex.name,
