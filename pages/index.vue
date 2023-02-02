@@ -28,6 +28,10 @@ export default {
           female: 'female',
           other: 'other',
         },
+        'Assessment tool': {
+          All: null,
+          'Cool assessment tool': 'bg:cogAtlas-1234',
+        },
         Modality: {
           All: null,
           'Flow weighted': 'nidm:FlowWeighted',
