@@ -34,6 +34,7 @@
         />
         <categorical-field
           name="Diagnosis"
+          data-cy="diagnosis-field"
           :default-selected="Object.keys(categoricalOptions.Diagnosis)[0]"
           :options="Object.keys(categoricalOptions.Diagnosis)"
           @update-categorical-field="updateField"

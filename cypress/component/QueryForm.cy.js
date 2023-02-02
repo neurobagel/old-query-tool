@@ -15,6 +15,11 @@ const props = {
       female: 'female',
       other: 'other',
     },
+    Diagnosis: {
+      All: null,
+      'Depressive disorder': 'snomed:35489007',
+      'Parkinson\'s disease': 'snomed:49049000',
+    },
     'Assessment tool': {
       All: null,
       'Cool assessment tool': 'bg:cogAtlas-1234',
@@ -36,6 +41,7 @@ describe('Query form', () => {
     });
     cy.get('[data-cy="min-age-field"]').should('be.visible');
     cy.get('[data-cy="max-age-field"]').should('be.visible');
+    cy.get('[data-cy="diagnosis-field"]').should('be.visible');
     cy.get('[data-cy="min-num-sessions-field"]').should('be.visible');
     cy.get('[data-cy="assessment-tool-field"]').should('be.visible');
     cy.get('[data-cy="modality-field"]').should('be.visible');
