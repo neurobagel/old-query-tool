@@ -30,4 +30,13 @@ describe('Categorical field', () => {
     cy.get('[data-cy="Diagnosis-select"]').type(props.options[2]).type('{enter}');
     cy.get('@spy').should('have.been.calledWith', props.name, props.options[2]);
   });
+  it('Displays control slot', () => {
+    cy.mount(CategoricalField, {
+      propsData: props,
+      slots: {
+        control: '<p data-cy="control">healthy control</p>',
+      },
+    });
+    cy.get('[data-cy="control"]').should('be.visible').should('have.text', 'healthy control');
+  });
 });
