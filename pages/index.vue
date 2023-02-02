@@ -28,6 +28,11 @@ export default {
           female: 'female',
           other: 'other',
         },
+        Diagnosis: {
+          All: null,
+          'Depressive disorder': 'snomed:35489007',
+          'Parkinson\'s disease': 'snomed:49049000',
+        },
         'Assessment tool': {
           All: null,
           'Cool assessment tool': 'bg:cogAtlas-1234',
