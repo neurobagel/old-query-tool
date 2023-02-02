@@ -36,6 +36,7 @@ describe('Query form', () => {
     });
     cy.get('[data-cy="min-age-field"]').should('be.visible');
     cy.get('[data-cy="max-age-field"]').should('be.visible');
+    cy.get('[data-cy="min-num-sessions-field"]').should('be.visible');
     cy.get('[data-cy="assessment-tool-field"]').should('be.visible');
     cy.get('[data-cy="modality-field"]').should('be.visible');
     cy.get('[data-cy="submit-query"]').should('be.visible');
