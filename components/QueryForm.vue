@@ -20,6 +20,7 @@
         />
         <categorical-field
           name="Assessment tool"
+          data-cy="assessment-tool-field"
           :default-selected="Object.keys(categoricalOptions['Assessment tool'])[0]"
           :options="Object.keys(categoricalOptions['Assessment tool'])"
           @update-categorical-field="updateCategoricalField"
