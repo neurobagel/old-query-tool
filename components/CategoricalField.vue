@@ -1,13 +1,19 @@
 <template>
   <div class="mb-3">
-    <label
-      data-cy="categorical-field-label"
-      class="form-label"
-    >{{ name }}</label>
+    <b-row class="row">
+      <b-form-group class="col">
+        <label
+          data-cy="categorical-field-label"
+          class="form-label"
+        >{{ name }}</label>
+      </b-form-group>
+      <slot name="control" />
+    </b-row>
     <v-select
       v-model="selected"
-      data-cy="categorical-field-select"
+      :data-cy="`${name}-select`"
       :options="options"
+      :disabled="disabled"
       @input="updateCategoricalField"
     />
   </div>
@@ -27,6 +33,10 @@ export default {
     options: {
       type: Array,
       default: null,
+    },
+    disabled: {
+      type: Boolean,
+      default: false,
     },
   },
   emits: ['update-categorical-field'],

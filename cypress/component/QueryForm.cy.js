@@ -34,7 +34,7 @@ const props = {
 };
 
 describe('Query form', () => {
-  it('Displays query fields and submit query button', () => {
+  it('Displays query fields, healthy control checkbox, and submit query button', () => {
     cy.mount(QueryForm, {
       stubs,
       propsData: props,
@@ -42,9 +42,18 @@ describe('Query form', () => {
     cy.get('[data-cy="min-age-field"]').should('be.visible');
     cy.get('[data-cy="max-age-field"]').should('be.visible');
     cy.get('[data-cy="diagnosis-field"]').should('be.visible');
+    cy.get('[data-cy="healthy-control-checkbox"]').should('be.visible');
     cy.get('[data-cy="min-num-sessions-field"]').should('be.visible');
     cy.get('[data-cy="assessment-tool-field"]').should('be.visible');
     cy.get('[data-cy="modality-field"]').should('be.visible');
     cy.get('[data-cy="submit-query"]').should('be.visible');
+  });
+  it('Checks the healthy control checkbox and disables diagnosis field', () => {
+    cy.mount(QueryForm, {
+      stubs,
+      propsData: props,
+    });
+    cy.get('[data-cy="healthy-control-checkbox"]').check();
+    cy.get('[data-cy="Diagnosis-select"]').should('have.class', 'vs--disabled');
   });
 });
