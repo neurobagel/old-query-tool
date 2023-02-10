@@ -134,6 +134,16 @@ export default {
           break;
       }
     },
+    displayToast(message) {
+      this.$bvToast.toast(message, {
+        appendToast: true,
+        autoHideDelay: '5000',
+        noCloseButton: true,
+        solid: true,
+        title: 'Error',
+        variant: 'danger',
+      });
+    },
     async submitQuery() {
       let url = process.env.API_QUERY_URL;
       if (this.minAge) {
