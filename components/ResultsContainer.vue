@@ -11,7 +11,14 @@
     >
       <div class="d-flex align-items-center">
         <h3
-          v-if="Object.is(results, null)"
+          v-if="!Object.is(error, null)"
+          style="color: gray"
+          data-cy="error-view"
+        >
+          {{ error }}
+        </h3>
+        <h3
+          v-else-if="Object.is(results, null)"
           style="color: gray"
           data-cy="default-view"
         >
@@ -85,6 +92,10 @@ export default {
   props: {
     results: {
       type: Array,
+      default: null,
+    },
+    error: {
+      type: String,
       default: null,
     },
   },
