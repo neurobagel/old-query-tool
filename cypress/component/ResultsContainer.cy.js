@@ -28,11 +28,20 @@ const props = {
 };
 
 describe('Results', () => {
-  it('Displays default view of results component', () => {
+  it('Displays error view of results container component', () => {
+    cy.mount(ResultsContainer, {
+      propsData: {
+        results: null,
+        error: 'Cool error',
+      },
+    });
+    cy.get('[data-cy="error-view"]').should('be.visible').contains('Cool error');
+  });
+  it('Displays default view of results container component', () => {
     cy.mount(ResultsContainer);
     cy.get('[data-cy="default-view"]').should('be.visible');
   });
-  it('Displays no results view of results component', () => {
+  it('Displays no results view of results container component', () => {
     cy.mount(ResultsContainer, {
       propsData: {
         results: [],
