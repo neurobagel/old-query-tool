@@ -9,9 +9,12 @@
     <b-row class="mx-4">
       <query-form
         :categorical-options="categoricalOptions"
-        @update-results="updateResults"
+        @update-response="updateResponse"
       />
-      <results-container :results="results" />
+      <results-container
+        :results="results"
+        :error="error"
+      />
     </b-row>
   </b-container>
 </template>
@@ -21,6 +24,7 @@ export default {
   data() {
     return {
       results: null,
+      error: null,
       categoricalOptions: {
         Sex: {
           All: null,
@@ -47,8 +51,9 @@ export default {
     };
   },
   methods: {
-    updateResults(results) {
+    updateResponse(results, error) {
       this.results = results;
+      this.error = error;
     },
   },
 
