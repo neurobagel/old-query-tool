@@ -131,4 +131,7 @@ export default {
     float: right;
 }
 
+.toast:not(.show) {
+   display: block;
+}
 </style>
