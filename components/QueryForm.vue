@@ -6,7 +6,7 @@
       <h2>Query fields</h2>
     </b-row>
     <b-row>
-      <b-form @submit.prevent="submitQuery">
+      <b-form @submit.prevent="validateQueryForm">
         <b-form-row class="row">
           <b-form-group class="col-md-6">
             <continuous-field
@@ -143,6 +143,13 @@ export default {
         title: 'Error',
         variant: 'danger',
       });
+    },
+    validateQueryForm() {
+      if (this.minAge && this.maxAge && Number(this.minAge) > Number(this.maxAge)) {
+        this.displayToast('Maximum age must be greater than or equal to minimum age');
+      } else {
+        this.submitQuery();
+      }
     },
     async submitQuery() {
       let url = process.env.API_QUERY_URL;
