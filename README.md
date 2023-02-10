@@ -47,6 +47,14 @@ You can do so by running the following command:
 npm install
 ```
 
+**use node v16.x LTS**!
+
+:warning: 
+The Query Tool is built with the Nuxt framework and currently depends on Nuxt2. 
+Nuxt2 does not support node versions beyond the v16 LTS (see e.g. [this Github issue](https://github.com/nuxt/nuxt/issues/10844)).
+If you want to run the tool locally, make sure you are using node v16.x.
+A good way to manage different node versions is to use the [node version manager](https://github.com/nvm-sh/nvm) tool.
+
 ### `Set the Environment Variables`
 
 You'll need to set the environment variables (API_QUERY_URL) required to run the query tool. Query tool utilizes [nuxt dotenv module](https://github.com/nuxt-community/dotenv-module) for managing environment variables. 
