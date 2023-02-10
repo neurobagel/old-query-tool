@@ -56,4 +56,15 @@ describe('Query form', () => {
     cy.get('[data-cy="healthy-control-checkbox"]').check();
     cy.get('[data-cy="Diagnosis-select"]').should('have.class', 'vs--disabled');
   });
+  it('Calls displayToast method', () => {
+    cy.spy(QueryForm.methods, 'displayToast').as('spy');
+    cy.mount(QueryForm, {
+      stubs,
+      propsData: props,
+    });
+    cy.get('[data-cy="Min Age-continuous-field-input"]').type(7);
+    cy.get('[data-cy="Max Age-continuous-field-input"]').type(3);
+    cy.get('[data-cy="submit-query"]').click();
+    cy.get('@spy').should('have.been.calledWith', 'Maximum age must be greater than or equal to minimum age');
+  });
 });

@@ -5,7 +5,7 @@
       class="form-label"
     >{{ name }}</label>
     <b-form-input
-      data-cy="continuous-field-input"
+      :data-cy="`${name}-continuous-field-input`"
       type="number"
       :step="step"
       class="numberinput form-control"
