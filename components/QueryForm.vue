@@ -92,7 +92,7 @@ export default {
       default: null,
     },
   },
-  emits: ['update-results'],
+  emits: ['update-response'],
   data() {
     return {
       minAge: null,
@@ -180,11 +180,10 @@ export default {
       try {
         const resp = await this.$axios.get(url);
         this.results = resp.data;
-        this.$emit('update-results', this.results);
+        this.$emit('update-response', this.results, null);
       } catch (err) {
-        // TODO Handle situations that may throw an error e.g., when min age > max age
-        // could emit an event here and show an "error view" in results or use vuelidate
-        // to validate the form before submission
+        this.results = null;
+        this.$emit('update-response', this.results, 'Oops, something went wrong');
       }
     },
   },
