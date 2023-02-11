@@ -103,7 +103,6 @@ export default {
       min_num_sessions: null,
       assessment: null,
       modality: null,
-      results: null,
     };
   },
   methods: {
@@ -179,11 +178,9 @@ export default {
       }
       try {
         const resp = await this.$axios.get(url);
-        this.results = resp.data;
-        this.$emit('update-response', this.results, null);
+        this.$emit('update-response', resp.data, null);
       } catch (err) {
-        this.results = null;
-        this.$emit('update-response', this.results, 'Oops, something went wrong');
+        this.$emit('update-response', null, 'Oops, something went wrong');
       }
     },
   },

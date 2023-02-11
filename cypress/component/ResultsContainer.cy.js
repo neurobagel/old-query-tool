@@ -37,11 +37,11 @@ describe('Results', () => {
     });
     cy.get('[data-cy="error-view"]').should('be.visible').contains('Cool error');
   });
-  it('Displays default view of results container component', () => {
+  it('Displays the default view if no query has been executed yet i.e., results is null', () => {
     cy.mount(ResultsContainer);
     cy.get('[data-cy="default-view"]').should('be.visible');
   });
-  it('Displays no results view of results container component', () => {
+  it('Displays the no results view if results is empty and there is no error i.e., error is null', () => {
     cy.mount(ResultsContainer, {
       propsData: {
         results: [],
