@@ -89,7 +89,7 @@ export default {
   props: {
     categoricalOptions: {
       type: Object,
-      default: null,
+      required: true,
     },
   },
   emits: ['update-response'],

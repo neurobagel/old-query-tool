@@ -76,7 +76,7 @@ export default {
   props: {
     datasetName: {
       type: String,
-      default: null,
+      required: true,
     },
     numMatchingSubjects: {
       type: Number,

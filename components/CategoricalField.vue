@@ -24,7 +24,7 @@ export default {
   props: {
     name: {
       type: String,
-      default: null,
+      required: true,
     },
     defaultSelected: {
       type: String,
@@ -32,7 +32,7 @@ export default {
     },
     options: {
       type: Array,
-      default: null,
+      default: Array,
     },
     disabled: {
       type: Boolean,
