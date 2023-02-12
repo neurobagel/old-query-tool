@@ -14,7 +14,7 @@
       :data-cy="`${name}-select`"
       :options="options"
       :disabled="disabled"
-      @input="updateCategoricalField"
+      @input="updateField"
     />
   </div>
 </template>
@@ -46,7 +46,7 @@ export default {
     };
   },
   methods: {
-    updateCategoricalField() {
+    updateField() {
       this.$emit('update-categorical-field', this.name, this.selected);
     },
   },

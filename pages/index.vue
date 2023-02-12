@@ -2,7 +2,7 @@
   <b-container fluid>
     <b-row class="mx-4">
       <h1 class="mt-2">
-        Cohort Definition Tool
+        Query Tool
       </h1>
       <hr class="mt-0 mb-4">
     </b-row>
@@ -41,7 +41,7 @@ export default {
           All: null,
           'Cool assessment tool': 'bg:cogAtlas-1234',
         },
-        Modality: {
+        'Imaging modality': {
           All: null,
           'Flow weighted': 'nidm:FlowWeighted',
           'T1 weighted': 'nidm:T1Weighted',
