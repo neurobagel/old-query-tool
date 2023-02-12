@@ -97,25 +97,25 @@ export default {
       modalities: {
         'http://purl.org/nidash/nidm#T1Weighted': {
           name: 'T1',
-          style: 'background-color: rgb(164, 208, 90);',
+          style: 'background-color: rgb(189, 183, 107);',
         },
         'http://purl.org/nidash/nidm#T2Weighted': {
           name: 'T2',
-          style: 'background-color: rgb(127, 23, 167); color: white;',
+          style: 'background-color: rgb(143, 188, 143); color: white;',
         },
         'http://purl.org/nidash/nidm#DiffusionWeighted': {
           name: 'DWI',
-          style: 'background-color: rgb(70, 76, 174); color: white;',
+          style: 'background-color: rgb(205, 92, 92); color: white;',
         },
         'http://purl.org/nidash/nidm#FlowWeighted':
         {
           name: 'Flow',
-          style: 'background-color: rgb(236, 197, 50); color: white;',
+          style: 'background-color: rgb(70, 130, 180); color: white;',
         },
         'http://purl.org/nidash/nidm#EEG':
         {
           name: 'EEG',
-          style: 'background-color:rgb(128, 1, 1); color: white;',
+          style: 'background-color: rgb(216, 191, 216); color: white;',
         },
       },
     };
