@@ -32,7 +32,7 @@ export default {
     },
     downloads: {
       type: Array,
-      default: Array,
+      default: () => [],
     },
   },
   computed: {

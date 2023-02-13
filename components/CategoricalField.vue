@@ -32,7 +32,7 @@ export default {
     },
     options: {
       type: Array,
-      default: Array,
+      default: () => [],
     },
     disabled: {
       type: Boolean,
