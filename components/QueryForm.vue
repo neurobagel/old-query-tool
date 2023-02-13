@@ -66,10 +66,10 @@
           @update-categorical-field="updateField"
         />
         <categorical-field
-          name="Modality"
+          name="Imaging modality"
           data-cy="modality-field"
-          :default-selected="Object.keys(categoricalOptions.Modality)[0]"
-          :options="Object.keys(categoricalOptions.Modality)"
+          :default-selected="Object.keys(categoricalOptions['Imaging modality'])[0]"
+          :options="Object.keys(categoricalOptions['Imaging modality'])"
           @update-categorical-field="updateField"
         />
         <b-button
@@ -77,7 +77,7 @@
           type="submit"
           data-cy="submit-query"
         >
-          Query Metadata
+          Submit Query
         </b-button>
       </b-form>
     </b-row>
@@ -89,7 +89,7 @@ export default {
   props: {
     categoricalOptions: {
       type: Object,
-      default: null,
+      required: true,
     },
   },
   emits: ['update-response'],

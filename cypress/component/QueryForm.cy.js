@@ -24,7 +24,7 @@ const props = {
       All: null,
       'Cool assessment tool': 'bg:cogAtlas-1234',
     },
-    Modality: {
+    'Imaging modality': {
       All: null,
       'Flow weighted': 'nidm:FlowWeighted',
       'T1 weighted': 'nidm:T1Weighted',

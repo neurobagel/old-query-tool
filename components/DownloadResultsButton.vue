@@ -28,11 +28,11 @@ export default {
   props: {
     results: {
       type: Array,
-      default: null,
+      required: true,
     },
     downloads: {
       type: Array,
-      default: null,
+      default: () => [],
     },
   },
   computed: {

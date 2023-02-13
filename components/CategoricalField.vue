@@ -14,7 +14,7 @@
       :data-cy="`${name}-select`"
       :options="options"
       :disabled="disabled"
-      @input="updateCategoricalField"
+      @input="updateField"
     />
   </div>
 </template>
@@ -24,7 +24,7 @@ export default {
   props: {
     name: {
       type: String,
-      default: null,
+      required: true,
     },
     defaultSelected: {
       type: String,
@@ -32,7 +32,7 @@ export default {
     },
     options: {
       type: Array,
-      default: null,
+      default: () => [],
     },
     disabled: {
       type: Boolean,
@@ -46,7 +46,7 @@ export default {
     };
   },
   methods: {
-    updateCategoricalField() {
+    updateField() {
       this.$emit('update-categorical-field', this.name, this.selected);
     },
   },
