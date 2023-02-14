@@ -4,6 +4,9 @@
 
     
 <div>
+    <a href="https://github.com/neurobagel/query-tool/actions/workflows/cd.yaml">
+        <img src="https://img.shields.io/github/actions/workflow/status/neurobagel/query-tool/cd.yaml?color=B0C4DE&label=cd&style=flat-square" alt="cd">
+    </a>
     <a href="https://github.com/neurobagel/query-tool/actions/workflows/test.yaml">
         <img src="https://img.shields.io/github/actions/workflow/status/neurobagel/query-tool/test.yaml?color=BDB76B&label=test&style=flat-square" alt="test">
     </a>
@@ -26,16 +29,23 @@
 
 Query Tool is a Vue application, developed in [JavaScript](https://www.javascript.com/) using a variety of tools including [Nuxt](https://nuxtjs.org/), [Cypress](https://www.cypress.io/), and [BootstrapVue](https://bootstrap-vue.org/docs).
 
-[Getting started](#getting-started) |
+[Quickstart](#quickstart) |
+[Local Installation](#local-installation) |
 [Usage](#usage) |
 [Testing](#testing) |
 [License](#license)
 
 </div>
 
-## Getting Started
+## Quickstart
 
-### `Install Dependencies`
+The query tool is hosted at https://query.neurobagel.org/ and interfaces with [Neurobagel API](https://api.neurobagel.org/docs).
+
+NOTE: Currently, to access the query tool, you must be connected to the McGill network.
+
+## Local Installation
+
+### Install Dependencies
 
 To run Query Tool, you'll need [node package manager (npm)](https://www.npmjs.com/) and [Node.js](https://nodejs.org/en/).
 You can find the instructions on installing npm and node in the official [documentation](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
@@ -55,7 +65,7 @@ Nuxt2 does not support node versions beyond the v16 LTS (see e.g. [this Github i
 If you want to run the tool locally, make sure you are using node v16.x.
 A good way to manage different node versions is to use the [node version manager](https://github.com/nvm-sh/nvm) tool.
 
-### `Set the Environment Variables`
+### Set the Environment Variables
 
 You'll need to set the environment variables (API_QUERY_URL) required to run the query tool. Query tool utilizes [nuxt dotenv module](https://github.com/nuxt-community/dotenv-module) for managing environment variables. 
 
@@ -65,7 +75,7 @@ To set environment variables, create an `.env` file in the root directory and ad
 API_QUERY_URL=http://localhost:8000/query/?
 ```
 
-### `Launch Query Tool`
+### Launch Query Tool
 
 To launch the tool in developer mode run the following command:
 
