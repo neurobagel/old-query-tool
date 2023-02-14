@@ -4,6 +4,9 @@
 
     
 <div>
+    <a href="https://github.com/neurobagel/query-tool/actions/workflows/cd.yaml">
+        <img src="https://img.shields.io/github/actions/workflow/status/neurobagel/query-tool/cd.yaml?color=B0C4DE&label=cd&style=flat-square" alt="cd">
+    </a>
     <a href="https://github.com/neurobagel/query-tool/actions/workflows/test.yaml">
         <img src="https://img.shields.io/github/actions/workflow/status/neurobagel/query-tool/test.yaml?color=BDB76B&label=test&style=flat-square" alt="test">
     </a>
