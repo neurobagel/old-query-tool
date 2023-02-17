@@ -9,6 +9,11 @@ jobs:
       - name: Checkout 🔍
         uses: actions/checkout@v3
 
+      - name: Set up node env
+        uses: actions/setup-node@v2.1.2
+        with:
+          node-version: 16
+
       - name: Run end to end tests 🧪
         uses: cypress-io/github-action@v5
         with:
