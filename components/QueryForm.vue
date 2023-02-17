@@ -151,7 +151,7 @@ export default {
       }
     },
     async submitQuery() {
-      let url = process.env.API_QUERY_URL;
+      let url = `${process.env.API_QUERY_URL}query/?`;
       if (this.minAge) {
         url += `min_age=${this.minAge}`;
       }
