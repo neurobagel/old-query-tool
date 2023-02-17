@@ -1,4 +1,4 @@
-name: test
+name: component tests
 
 on: [pull_request, workflow_dispatch]
 
@@ -8,8 +8,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      # Install NPM dependencies, cache them correctly
-      - name: Run Component tests 🧪
+      
+      - name: Run component tests 🧪
         uses: cypress-io/github-action@v4
         with:
           component: true
