@@ -3,14 +3,23 @@ name: end to end tests
 on: [pull_request, workflow_dispatch]
 
 jobs:
-  cypress-run:
+  e2e-test:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout 🔍
-        uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v3
 
-      - name: Run end to end tests 🧪
-        uses: cypress-io/github-action@v4
+      - name: Set up node env
+        uses: actions/setup-node@v2.1.2
+        with:
+          node-version: 16
+      
+      - name: Create .env file
+        run: |
+          echo "API_QUERY_URL=" > .env
+
+      - name: Run end to end tests
+        uses: cypress-io/github-action@v5
         with:
           build: npm run build
           start: npm start
