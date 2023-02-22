@@ -72,7 +72,7 @@ You'll need to set the environment variables (API_QUERY_URL) required to run the
 To set environment variables, create an `.env` file in the root directory and add the environment variables there. If you're running the API locally on your machine, your `.env` file would look something like this:
 
 ```bash
-API_QUERY_URL=http://localhost:8000/query/?
+API_QUERY_URL=http://localhost:8000/
 ```
 
 ### Launch Query Tool
