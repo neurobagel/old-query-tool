@@ -7,14 +7,14 @@
     <a href="https://github.com/neurobagel/query-tool/actions/workflows/pages/pages-build-deployment">
         <img src="https://img.shields.io/website?down_color=CD5C5C&down_message=down&label=deployed%20app&style=flat-square&up_color=B0C4DE&up_message=live&url=https%3A%2F%2Fquery.neurobagel.org%2F" alt="deployed app">
     </a>
-    <a href="https://github.com/neurobagel/query-tool/actions/workflows/test.yaml">
-        <img src="https://img.shields.io/github/actions/workflow/status/neurobagel/query-tool/test.yaml?color=BDB76B&label=test&style=flat-square" alt="test">
+    <a href="https://github.com/neurobagel/query-tool/actions/workflows/component-test.yaml">
+        <img src="https://img.shields.io/github/actions/workflow/status/neurobagel/query-tool/component-test.yaml?color=BDB76B&label=component test&style=flat-square" alt="component test">
+    </a>
+    <a href="https://github.com/neurobagel/query-tool/actions/workflows/e2e-test.yaml">
+        <img src="https://img.shields.io/github/actions/workflow/status/neurobagel/query-tool/e2e-test.yaml?color=8FBC8F&label=e2e test&style=flat-square" alt="e2e test">
     </a>
     <a href="https://nodejs.org/en//">
-        <img src="https://img.shields.io/badge/node-16.14-8FBC8F?style=flat-square" alt="Node">
-    <a href="https://www.npmjs.com/">
-        <img src="https://img.shields.io/badge/npm-8.3-CD5C5C?style=flat-square" alt="npm">
-    </a>
+        <img src="https://img.shields.io/badge/node-16.14-CD5C5C?style=flat-square" alt="Node">
     <a href="https://nuxtjs.org/">
         <img src="https://img.shields.io/badge/nuxt-2.15-F0FFF0?style=flat-square" alt="Nuxt">
     </a>
