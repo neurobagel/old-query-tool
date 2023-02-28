@@ -28,7 +28,7 @@ export default {
   props: {
     results: {
       type: Array,
-      required: true,
+      default: () => [],
     },
     downloads: {
       type: Array,
