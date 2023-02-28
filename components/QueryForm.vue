@@ -161,7 +161,7 @@ export default {
       if (this.sex) {
         url += `&sex=${this.sex}`;
       }
-      if (this.diagnosis) {
+      if (this.diagnosis && !this.is_control) {
         url += `&diagnosis=${this.diagnosis}`;
       }
       if (this.is_control) {
