@@ -27,7 +27,7 @@
 </div>
 <br>
 
-Query Tool is a Vue application, developed in [JavaScript](https://www.javascript.com/) using a variety of tools including [Nuxt](https://nuxtjs.org/), [Cypress](https://www.cypress.io/), and [BootstrapVue](https://bootstrap-vue.org/docs).
+The query tool is a Vue application, developed in [JavaScript](https://www.javascript.com/) using a variety of tools including [Nuxt](https://nuxtjs.org/), [Cypress](https://www.cypress.io/), and [BootstrapVue](https://bootstrap-vue.org/docs).
 
 [Quickstart](#quickstart) |
 [Local Installation](#local-installation) |
@@ -47,7 +47,7 @@ NOTE: Currently, to access the query tool, you must be connected to the McGill n
 
 ### Install Dependencies
 
-To run Query Tool, you'll need [node package manager (npm)](https://www.npmjs.com/) and [Node.js](https://nodejs.org/en/).
+To run the query tool, you'll need [node package manager (npm)](https://www.npmjs.com/) and [Node.js](https://nodejs.org/en/).
 You can find the instructions on installing npm and node in the official [documentation](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
 
 Once you have npm and node installed, you'll need to install the dependencies outlined in the package.json file.
@@ -60,14 +60,14 @@ npm install
 **use node v16.x LTS**!
 
 :warning: 
-The Query Tool is built with the Nuxt framework and currently depends on Nuxt2. 
+The query tool is built with the Nuxt framework and currently depends on Nuxt2. 
 Nuxt2 does not support node versions beyond the v16 LTS (see e.g. [this Github issue](https://github.com/nuxt/nuxt/issues/10844)).
 If you want to run the tool locally, make sure you are using node v16.x.
 A good way to manage different node versions is to use the [node version manager](https://github.com/nvm-sh/nvm) tool.
 
 ### Set the Environment Variables
 
-You'll need to set the `API_QUERY_URL` environment variable required to run the query tool. `API_QUERY_URL` is the [Neurobagel API](https://github.com/neurobagel/api) URL that query tool uses to send requests to for results. Query tool utilizes [nuxt dotenv module](https://github.com/nuxt-community/dotenv-module) for managing environment variables. 
+You'll need to set the `API_QUERY_URL` environment variable required to run the query tool. `API_QUERY_URL` is the [Neurobagel API](https://github.com/neurobagel/api) URL that the query tool uses to send requests to for results. The query tool utilizes [nuxt dotenv module](https://github.com/nuxt-community/dotenv-module) for managing environment variables. 
 
 To set environment variables, create an `.env` file in the root directory and add the environment variables there. If you're running the API locally on your machine (following the instructions [here](https://github.com/neurobagel/api#local-installation)), your `.env` file would look something like this:
 
@@ -81,7 +81,7 @@ if you're using the remote api, your `.env` file would look something like this:
 API_QUERY_URL=https://api.neurobagel.org/
 ```
 
-### Launch Query Tool
+### Launch the Query Tool
 
 To launch the tool in developer mode run the following command:
 
@@ -110,11 +110,11 @@ To define a cohort, set your inclusion criteria using the following:
 - Modality: Imaging modality of participant scans that should be included in the results.
 
 
-Once you've defined your criteria, submit them as a query and query tool will display the results.
+Once you've defined your criteria, submit them as a query and the query tool will display the results.
 
 ## Testing
 
-Query Tool utilizes [Cypress](https://www.cypress.io/) framework for testing.
+The query tool utilizes [Cypress](https://www.cypress.io/) framework for testing.
 
 To run the tests execute the following command:
 
@@ -124,4 +124,4 @@ npx cypress open
 
 ### License
 
-Query Tool is released under the terms of the [MIT License](LICENSE)
+The query tool is released under the terms of the [MIT License](LICENSE)
