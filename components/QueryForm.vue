@@ -126,7 +126,7 @@ export default {
         case 'Assessment tool':
           this.assessment = this.categoricalOptions[name][input];
           break;
-        case 'Modality':
+        case 'Imaging modality':
           this.modality = this.categoricalOptions[name][input];
           break;
         default:
