@@ -47,6 +47,7 @@ export default {
           'Hearing problem': 'snomed:300228004',
           'Mental disorder': 'snomed:74732009',
           Migraine: 'snomed:37796009',
+          "Parkinson's disease": 'snomed:49049000',
           Schizophrenia: 'snomed:58214004',
           'Separation anxiety': 'snomed:126943008',
           Smoker: 'snomed:77176002',
