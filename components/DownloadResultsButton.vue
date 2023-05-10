@@ -42,12 +42,12 @@ export default {
   },
   methods: {
     generateCSVString() {
-      const headers = ['dataset', 'number of matching subjects', 'subject file paths'];
+      const headers = ['dataset', 'number of matching subjects', 'subject data'];
       const csvRows = [headers];
 
       this.results.filter((res) => this.downloads.includes(res.dataset_name))
         .forEach((res) => {
-          res.subject_file_paths.forEach((path) => {
+          res.subject_data.forEach((path) => {
             csvRows.push([
               res.dataset_name,
               res.num_matching_subjects,
