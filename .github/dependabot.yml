@@ -11,3 +11,11 @@ updates:
     directory: '/'
     schedule:
       interval: 'weekly'
+
+  - package-ecosystem: 'npm'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+    ignore:
+      - dependency-name: 'nuxt'
+        update-types: ["version-update:semver-major"]
