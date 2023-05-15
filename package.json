@@ -35,6 +35,6 @@
     "eslint-plugin-nuxt": "^4.0.0",
     "eslint-plugin-vue": "^9.5.1",
     "husky": "^8.0.0",
-    "lint-staged": "^13.1.2"
+    "lint-staged": "^13.2.2"
   }
 }
