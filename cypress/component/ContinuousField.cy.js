@@ -12,7 +12,8 @@ describe('Continuous field', () => {
   });
   it('Ignores when text is entered into the input field', () => {
     cy.mount(ContinuousField, { propsData: props });
-    cy.get('[data-cy="Min Age-continuous-field-input"]').type('hello').should('have.value', '');
+    cy.get('[data-cy="Min Age-continuous-field-input"]').type('hello');
+    cy.get('[data-cy="Min Age-continuous-field-input"]').should('have.value', '');
   });
   it('Emits update-continuous-field event when the value for min age and max age are updated', () => {
     cy.mount(ContinuousField, {

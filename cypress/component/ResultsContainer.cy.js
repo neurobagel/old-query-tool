@@ -54,10 +54,12 @@ describe('Results', () => {
       stubs,
       propsData: props,
     });
-    cy.get('[data-cy="select-all"]').should('be.visible').check().should('be.checked');
+    cy.get('[data-cy="select-all"]').should('be.visible').check();
+    cy.get('[data-cy="select-all"]').should('be.checked');
     cy.get('[data-cy="card-cool-dataset-checkbox"]').should('be.checked');
     cy.get('[data-cy="card-not-so-cool-dataset-checkbox"]').should('be.checked');
-    cy.get('[data-cy="select-all"]').uncheck().should('not.be.checked');
+    cy.get('[data-cy="select-all"]').uncheck();
+    cy.get('[data-cy="select-all"]').should('not.be.checked');
     cy.get('[data-cy="card-cool-dataset-checkbox"]').should('not.be.checked');
     cy.get('[data-cy="card-not-so-cool-dataset-checkbox"]').should('not.be.checked');
   });

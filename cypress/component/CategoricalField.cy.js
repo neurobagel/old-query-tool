@@ -15,8 +15,10 @@ describe('Categorical field', () => {
     cy.get('[data-cy="categorical-field-label"]').contains(props.name);
     cy.get('.vs__selected').contains('All');
     props.options.forEach((option) => {
-      cy.get('[data-cy="Diagnosis-select"]').should('be.visible').click().contains(option);
-      cy.get('[data-cy="Diagnosis-select"]').type(option).type('{enter}');
+      cy.get('[data-cy="Diagnosis-select"]').should('be.visible').click();
+      cy.get('[data-cy="Diagnosis-select"]').contains(option);
+      cy.get('[data-cy="Diagnosis-select"]').type(option);
+      cy.get('[data-cy="Diagnosis-select"]').type('{enter}');
       cy.get('.vs__selected').contains(option);
     });
   });
@@ -27,7 +29,8 @@ describe('Categorical field', () => {
       },
       propsData: props,
     });
-    cy.get('[data-cy="Diagnosis-select"]').type(props.options[2]).type('{enter}');
+    cy.get('[data-cy="Diagnosis-select"]').type(props.options[2]);
+    cy.get('[data-cy="Diagnosis-select"]').type('{enter}');
     cy.get('@spy').should('have.been.calledWith', props.name, props.options[2]);
   });
   it('Displays control slot', () => {
