@@ -19,3 +19,5 @@ updates:
     ignore:
       - dependency-name: 'nuxt'
         update-types: ["version-update:semver-major"]
+      - dependency-name: 'vue'
+        update-types: ["version-update:semver-major"]
