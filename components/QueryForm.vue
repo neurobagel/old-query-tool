@@ -77,6 +77,7 @@
           type="submit"
           data-cy="submit-query"
         >
+        <b-spinner v-if="isFetching" small></b-spinner>
           Submit Query
         </b-button>
       </b-form>
@@ -103,6 +104,7 @@ export default {
       min_num_sessions: null,
       assessment: null,
       modality: null,
+      isFetching: false,
     };
   },
   methods: {
@@ -151,6 +153,7 @@ export default {
       }
     },
     async submitQuery() {
+      this.isFetching = true;
       let url = `${process.env.API_QUERY_URL}query/?`;
       if (this.minAge) {
         url += `min_age=${this.minAge}`;
@@ -182,6 +185,7 @@ export default {
       } catch (err) {
         this.$emit('update-response', null, 'Oops, something went wrong');
       }
+      this.isFetching = false;
     },
   },
 };
