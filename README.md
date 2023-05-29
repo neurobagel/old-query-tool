@@ -110,7 +110,12 @@ To define a cohort, set your inclusion criteria using the following:
 - Modality: Imaging modality of participant scans that should be included in the results.
 
 
-Once you've defined your criteria, submit them as a query and the query tool will display the results.
+Once you've defined your criteria, submit them as a query and the query tool will display the results.\
+The query tool offers two different CSV files for results:
+- Dataset-level results csv contains: dataset portal uri, dataset file path, dataset name, number of matching subjects, and available imaging modalities
+- Subject-level results csv contains: dataset file path, subject id, age, sex, diagnosis, session id, session file path, number of sessions, and imaging modality
+
+You can choose which file to download by checking and uncehcking the `Toggle Results CSV` checkbox above the `Download Results` button.
 
 ## Testing
 
