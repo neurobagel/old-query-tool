@@ -5,8 +5,18 @@
     style="margin-top: 1em;"
   >
     <b-row
-      class="mr-auto"
+      class="flex-column"
     >
+      <b-col>
+        <input
+          class="form-check-input"
+          type="checkbox"
+        >
+        <label
+          class="form-label"
+        >Toggle Results CSV</label>
+      </b-col>
+
       <b-button
         id="download-results-button"
         :disabled="downloads.length === 0"
