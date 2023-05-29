@@ -9,6 +9,7 @@
     >
       <b-col>
         <input
+          v-model="toggleCSV"
           class="form-check-input"
           type="checkbox"
         >
@@ -27,7 +28,7 @@
           icon="download"
           font-scale="1"
         />
-        Download Results
+        {{ toggleDownloadResultsButtonText() }}
       </b-button>
     </b-row>
   </b-col>
@@ -45,12 +46,20 @@ export default {
       default: () => [],
     },
   },
+  data() {
+    return {
+      toggleCSV: false,
+    };
+  },
   computed: {
     displayDownloadResultsButton() {
       return !Object.is(this.results, null) && this.results.length !== 0;
     },
   },
   methods: {
+    toggleDownloadResultsButtonText() {
+      return this.toggleCSV ? 'Download Subject-level Results' : 'Download Dataset-level Results';
+    },
     generateCSVString() {
       const headers = ['dataset', 'number of matching subjects', 'subject data'];
       const csvRows = [headers];
