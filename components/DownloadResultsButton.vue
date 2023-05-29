@@ -10,6 +10,7 @@
       <b-col>
         <input
           v-model="toggleCSV"
+          data-cy="toggle-csv-checkbox"
           class="form-check-input"
           type="checkbox"
         >
