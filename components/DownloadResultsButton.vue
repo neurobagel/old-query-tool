@@ -61,19 +61,42 @@ export default {
       return this.toggleCSV ? 'Download Subject-level Results' : 'Download Dataset-level Results';
     },
     generateCSVString() {
-      const headers = ['dataset', 'number of matching subjects', 'subject data'];
-      const csvRows = [headers];
+      const csvRows = [];
+      const datasets = this.results.filter((res) => this.downloads.includes(res.dataset_name));
 
-      this.results.filter((res) => this.downloads.includes(res.dataset_name))
-        .forEach((res) => {
-          res.subject_data.forEach((path) => {
+      if (this.toggleCSV) {
+        const headers = ['DatasetFilePath', 'SubjectID', 'Age', 'Sex', 'Diagnosis', 'SessionID', 'SessionPath', 'NumSessions', 'Modality'];
+        csvRows.push(headers);
+
+        datasets.forEach((res) => {
+          res.subject_data.forEach((subject) => {
             csvRows.push([
-              res.dataset_name,
-              res.num_matching_subjects,
-              path,
+              res.dataset_file_path,
+              subject.sub_id,
+              subject.age,
+              subject.sex,
+              subject.diagnosis?.join('  '),
+              subject.session_id,
+              subject.session_file_path,
+              subject.num_sessions,
+              subject.image_modal?.join('  '),
             ].join(','));
           });
         });
+      } else {
+        const headers = ['PortalURI', 'DatasetFilePath', 'DatasetName', 'NumMatchingSubjects', 'AvailableImageModalities'];
+        csvRows.push(headers);
+
+        datasets.forEach((res) => {
+          csvRows.push([
+            res.dataset_portal_uri,
+            res.dataset_file_path,
+            res.dataset_name,
+            res.num_matching_subjects,
+            res.image_modals.join('  '),
+          ].join(','));
+        });
+      }
 
       return csvRows.join('\n');
     },
