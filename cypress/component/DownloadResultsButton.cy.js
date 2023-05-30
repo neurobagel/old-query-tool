@@ -35,19 +35,19 @@ describe('Download results button', () => {
     });
     cy.get('[data-cy="download-results-button"]').should('be.visible').should('not.be.disabled');
   });
-  it('Displays the toggle results csv checkbox', () => {
+  it('Displays the toggle results tsv checkbox', () => {
     cy.mount(DownloadResultsButton, {
       propsData: props,
     });
-    cy.get('[data-cy="toggle-csv-checkbox"]').should('be.visible');
+    cy.get('[data-cy="toggle-tsv-checkbox"]').should('be.visible');
   });
   it("Changes the download results button's text when the box is checked and unchecked", () => {
     cy.mount(DownloadResultsButton, {
       propsData: props,
     });
-    cy.get('[data-cy="toggle-csv-checkbox"]').check();
-    cy.get('[data-cy="download-results-button"]').contains('Download Subject-level Results');
-    cy.get('[data-cy="toggle-csv-checkbox"]').uncheck();
+    cy.get('[data-cy="toggle-tsv-checkbox"]').check();
+    cy.get('[data-cy="download-results-button"]').contains('Download Participant-level Results');
+    cy.get('[data-cy="toggle-tsv-checkbox"]').uncheck();
     cy.get('[data-cy="download-results-button"]').contains('Download Dataset-level Results');
   });
 });
