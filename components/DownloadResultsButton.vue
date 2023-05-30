@@ -9,14 +9,14 @@
     >
       <b-col>
         <input
-          v-model="toggleCSV"
-          data-cy="toggle-csv-checkbox"
+          v-model="toggleResultsTSV"
+          data-cy="toggle-tsv-checkbox"
           class="form-check-input"
           type="checkbox"
         >
         <label
           class="form-label"
-        >Toggle Results CSV</label>
+        >Toggle Results TSV</label>
       </b-col>
 
       <b-button
@@ -49,7 +49,7 @@ export default {
   },
   data() {
     return {
-      toggleCSV: false,
+      toggleResultsTSV: false,
     };
   },
   computed: {
@@ -59,54 +59,54 @@ export default {
   },
   methods: {
     toggleDownloadResultsButtonText() {
-      return this.toggleCSV ? 'Download Subject-level Results' : 'Download Dataset-level Results';
+      return this.toggleResultsTSV ? 'Download Participant-level Results' : 'Download Dataset-level Results';
     },
-    generateCSVString() {
-      const csvRows = [];
+    generateTSVString() {
+      const tsvRows = [];
       const datasets = this.results.filter((res) => this.downloads.includes(res.dataset_name));
 
-      if (this.toggleCSV) {
-        const headers = ['DatasetFilePath', 'SubjectID', 'Age', 'Sex', 'Diagnosis', 'SessionID', 'SessionPath', 'NumSessions', 'Modality'];
-        csvRows.push(headers);
+      if (this.toggleResultsTSV) {
+        const headers = ['DatasetFilePath', 'SubjectID', 'Age', 'Sex', 'Diagnosis', 'SessionID', 'SessionPath', 'NumSessions', 'Modality'].join('\t');
+        tsvRows.push(headers);
 
         datasets.forEach((res) => {
           res.subject_data.forEach((subject) => {
-            csvRows.push([
+            tsvRows.push([
               res.dataset_file_path,
               subject.sub_id,
               subject.age,
               subject.sex,
-              subject.diagnosis?.join('  '),
+              subject.diagnosis?.join(', '),
               subject.session_id,
               subject.session_file_path,
               subject.num_sessions,
-              subject.image_modal?.join('  '),
-            ].join(','));
+              subject.image_modal?.join(', '),
+            ].join('\t'));
           });
         });
       } else {
-        const headers = ['PortalURI', 'DatasetFilePath', 'DatasetName', 'NumMatchingSubjects', 'AvailableImageModalities'];
-        csvRows.push(headers);
+        const headers = ['PortalURI', 'DatasetFilePath', 'DatasetName', 'NumMatchingSubjects', 'AvailableImageModalities'].join('\t');
+        tsvRows.push(headers);
 
         datasets.forEach((res) => {
-          csvRows.push([
+          tsvRows.push([
             res.dataset_portal_uri,
             res.dataset_file_path,
             res.dataset_name,
             res.num_matching_subjects,
-            res.image_modals.join('  '),
-          ].join(','));
+            res.image_modals.join(', '),
+          ].join('\t'));
         });
       }
 
-      return csvRows.join('\n');
+      return tsvRows.join('\n');
     },
 
     downloadResults() {
       const element = document.createElement('a');
-      element.setAttribute('href', `data:text/csv;charset=utf-8,
-      ${encodeURIComponent(this.generateCSVString())}`);
-      element.setAttribute('download', 'results.csv');
+      element.setAttribute('href', `data:text/tsv;charset=utf-8,
+      ${encodeURIComponent(this.generateTSVString())}`);
+      element.setAttribute('download', 'results.tsv');
 
       element.style.display = 'none';
       document.body.appendChild(element);
