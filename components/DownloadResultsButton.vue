@@ -106,7 +106,11 @@ export default {
       const element = document.createElement('a');
       element.setAttribute('href', `data:text/tsv;charset=utf-8,
       ${encodeURIComponent(this.generateTSVString())}`);
-      element.setAttribute('download', 'results.tsv');
+      if (this.toggleResultsTSV) {
+        element.setAttribute('download', 'participant-results.tsv');
+      } else {
+        element.setAttribute('download', 'dataset-results.tsv');
+      }
 
       element.style.display = 'none';
       document.body.appendChild(element);
