@@ -29,7 +29,7 @@
           icon="download"
           font-scale="1"
         />
-        {{ toggleDownloadResultsButtonText() }}
+        {{ toggleDownloadResultsButtonText }}
       </b-button>
     </b-row>
   </b-col>
@@ -56,11 +56,11 @@ export default {
     displayDownloadResultsButton() {
       return !Object.is(this.results, null) && this.results.length !== 0;
     },
-  },
-  methods: {
     toggleDownloadResultsButtonText() {
       return this.toggleResultsTSV ? 'Download Participant-level Results' : 'Download Dataset-level Results';
     },
+  },
+  methods: {
     generateTSVString() {
       const tsvRows = [];
       const datasets = this.results.filter((res) => this.downloads.includes(res.dataset_name));
