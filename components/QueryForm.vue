@@ -77,7 +77,10 @@
           type="submit"
           data-cy="submit-query"
         >
-        <b-spinner v-if="isFetching" small></b-spinner>
+          <b-spinner
+            v-if="isFetching"
+            small
+          />
           Submit Query
         </b-button>
       </b-form>
