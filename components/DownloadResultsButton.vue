@@ -16,7 +16,7 @@
         >
         <label
           class="form-label"
-        >Toggle Results TSV</label>
+        >Toggle level of detail to download</label>
       </b-col>
 
       <b-button
