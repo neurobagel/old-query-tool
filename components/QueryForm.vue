@@ -150,7 +150,9 @@ export default {
     },
     validateQueryForm() {
       if (this.minAge && this.maxAge && Number(this.minAge) > Number(this.maxAge)) {
-        this.displayToast('Maximum age must be greater than or equal to minimum age');
+        this.displayToast('The value of maximum age field must be greater than or equal to the value of minimum age field');
+      } else if (this.min_num_sessions === '0') {
+        this.displayToast('The value for minimum number of sessions field must be greater than 0');
       } else {
         this.submitQuery();
       }
