@@ -92,9 +92,9 @@ export default {
           tsvRows.push([
             res.dataset_portal_uri,
             res.dataset_file_path,
-            res.dataset_name,
+            res.dataset_name.replace('\n', ' '),
             res.num_matching_subjects,
-            res.image_modals.join(', '),
+            res.image_modals?.join(', '),
           ].join('\t'));
         });
       }
@@ -104,7 +104,7 @@ export default {
 
     downloadResults() {
       const element = document.createElement('a');
-      element.setAttribute('href', `data:text/tsv;charset=utf-8,
+      element.setAttribute('href', `data:text/tab-separated-values;charset=utf-8,
       ${encodeURIComponent(this.generateTSVString())}`);
       if (this.toggleResultsTSV) {
         element.setAttribute('download', 'participant-results.tsv');
