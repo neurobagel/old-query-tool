@@ -9,7 +9,7 @@
       type="number"
       :step="step"
       class="numberinput form-control"
-      min="0"
+      :min="min"
       @input="updateField"
     />
   </div>
@@ -18,6 +18,10 @@
 <script>
 export default {
   props: {
+    min: {
+      type: String,
+      default: '0',
+    },
     name: {
       type: String,
       required: true,
