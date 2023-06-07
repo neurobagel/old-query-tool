@@ -66,11 +66,5 @@ describe('Query form', () => {
     cy.get('[data-cy="submit-query"]').click();
     // See https://stackoverflow.com/questions/71295432/unable-to-see-toast-in-cypress/71301155#71301155
     cy.contains('#b-toaster-top-right', 'The value of maximum age field must be greater than or equal to the value of minimum age field');
-
-    cy.get('[data-cy="Min Age-continuous-field-input"]').clear();
-    cy.get('[data-cy="Max Age-continuous-field-input"]').clear();
-    cy.get('[data-cy="Minimum number of sessions-continuous-field-input"]').type(0);
-    cy.get('[data-cy="submit-query"]').click();
-    cy.contains('#b-toaster-top-right', 'The value for minimum number of sessions field must be greater than 0');
   });
 });

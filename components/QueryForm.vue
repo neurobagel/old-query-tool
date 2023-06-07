@@ -53,6 +53,7 @@
           </template>
         </categorical-field>
         <continuous-field
+          min="1"
           name="Minimum number of sessions"
           data-cy="min-num-sessions-field"
           step="1"
@@ -151,8 +152,6 @@ export default {
     validateQueryForm() {
       if (this.minAge && this.maxAge && Number(this.minAge) > Number(this.maxAge)) {
         this.displayToast('The value of maximum age field must be greater than or equal to the value of minimum age field');
-      } else if (this.min_num_sessions === '0') {
-        this.displayToast('The value for minimum number of sessions field must be greater than 0');
       } else {
         this.submitQuery();
       }
