@@ -10,12 +10,12 @@ const response = [
 ];
 
 describe('Dataset results TSV', () => {
-  it('Intercepts the request sent to the API and asserts over the request url', () => {
+  it('Removes a newline character from a dataset name in the downloaded results file', () => {
     cy.intercept('query/?*', response).as('call');
     cy.visit('/');
     cy.get('[data-cy="submit-query"]').click();
     cy.get('[data-cy="select-all"]').check();
     cy.get('[data-cy="download-results-button"]').click();
-    cy.readFile('cypress/downloads/dataset-results.tsv').should('not.contain', 'some\nname');
+    cy.readFile('cypress/downloads/dataset-results.tsv').should('contain', 'some name');
   });
 });
