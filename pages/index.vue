@@ -156,4 +156,11 @@ export default {
 .toast:not(.show) {
    display: block;
 }
+
+/** Vue select */
+.vs__clear {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 </style>
