@@ -1,6 +1,6 @@
 <template>
   <b-col
-    cols="10"
+    cols="12" md="8" xl="9"
   >
     <b-row>
       <h2>Results</h2>
