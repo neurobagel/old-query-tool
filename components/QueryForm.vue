@@ -1,5 +1,5 @@
 <template>
-  <b-col cols="12" md="4" xl="3">
+  <b-col cols="12" md="4" xl="2">
     <b-row>
       <h2>Query fields</h2>
     </b-row>
