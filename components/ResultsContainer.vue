@@ -1,7 +1,5 @@
 <template>
-  <b-col
-    cols="10"
-  >
+  <b-col cols="12" md="8" xl="10">
     <b-row>
       <h2>Results</h2>
     </b-row>
