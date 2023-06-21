@@ -112,9 +112,10 @@ To define a cohort, set your inclusion criteria using the following:
 
 Once you've defined your criteria, submit them as a query and the query tool will display the results.\
 The query tool offers two different TSV files for results:
-- Dataset-level results TSV contains: dataset portal uri, dataset file path, dataset name, number of matching subjects, and available imaging modalities
-- Participant-level results TSV contains: dataset file path, subject id, age, sex, diagnosis, session id, session file path, number of sessions, and imaging modality
+- Dataset-level results TSV contains: dataset id, dataset name, dataset portal uri, number of matching subjects, and available imaging modalities
+- Participant-level results TSV contains: dataset id, subject id, age, sex, diagnosis, session id, session file path, number of sessions, and imaging modality
 
+The output files can be joined using `DatasetID` as key.\
 You can choose which file to download by checking and uncehcking the `Toggle Results TSV` checkbox above the `Download Results` button.
 
 ## Testing
