@@ -66,7 +66,7 @@ export default {
       const datasets = this.results.filter((res) => this.downloads.includes(res.dataset_name));
 
       if (this.toggleResultsTSV) {
-        const headers = ['DatasetID', 'SubjectID', 'Age', 'Sex', 'Diagnosis', 'SessionID', 'SessionPath', 'NumSessions', 'Modality'].join('\t');
+        const headers = ['DatasetID', 'SubjectID', 'Age', 'Sex', 'Diagnosis', 'Assessment', 'SessionID', 'SessionPath', 'NumSessions', 'Modality'].join('\t');
         tsvRows.push(headers);
 
         datasets.forEach((res) => {
@@ -77,6 +77,7 @@ export default {
               subject.age,
               subject.sex,
               subject.diagnosis?.join(', '),
+              subject.assessment?.join(', '),
               subject.session_id,
               subject.session_file_path,
               subject.num_sessions,
