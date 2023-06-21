@@ -95,6 +95,24 @@ export default {
   data() {
     return {
       modalities: {
+        'http://purl.org/nidash/nidm#ArterialSpinLabeling': {
+          name: 'ASL',
+          style: 'background-color: rgb(69, 77, 87); color: white;',
+        },
+        'http://purl.org/nidash/nidm#DiffusionWeighted': {
+          name: 'DWI',
+          style: 'background-color: rgb(205, 92, 92); color: white;',
+        },
+        'http://purl.org/nidash/nidm#EEG':
+        {
+          name: 'EEG',
+          style: 'background-color: rgb(216, 191, 216); color: white;',
+        },
+        'http://purl.org/nidash/nidm#FlowWeighted':
+        {
+          name: 'Flow',
+          style: 'background-color: rgb(70, 130, 180); color: white;',
+        },
         'http://purl.org/nidash/nidm#T1Weighted': {
           name: 'T1',
           style: 'background-color: rgb(189, 183, 107);',
@@ -102,20 +120,6 @@ export default {
         'http://purl.org/nidash/nidm#T2Weighted': {
           name: 'T2',
           style: 'background-color: rgb(143, 188, 143); color: white;',
-        },
-        'http://purl.org/nidash/nidm#DiffusionWeighted': {
-          name: 'DWI',
-          style: 'background-color: rgb(205, 92, 92); color: white;',
-        },
-        'http://purl.org/nidash/nidm#FlowWeighted':
-        {
-          name: 'Flow',
-          style: 'background-color: rgb(70, 130, 180); color: white;',
-        },
-        'http://purl.org/nidash/nidm#EEG':
-        {
-          name: 'EEG',
-          style: 'background-color: rgb(216, 191, 216); color: white;',
         },
       },
     };
