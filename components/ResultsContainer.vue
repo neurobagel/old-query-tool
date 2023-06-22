@@ -1,5 +1,9 @@
 <template>
-  <b-col cols="12" md="8" xl="10">
+  <b-col
+    cols="12"
+    md="8"
+    xl="10"
+  >
     <b-row>
       <h2>Results</h2>
     </b-row>
@@ -20,7 +24,7 @@
           style="color: gray"
           data-cy="default-view"
         >
-          Click 'Query Metadata' for results
+          Click 'Submit Query' for results
         </h3>
         <h3
           v-else-if="results.length === 0"

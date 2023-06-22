@@ -66,17 +66,18 @@ export default {
       const datasets = this.results.filter((res) => this.downloads.includes(res.dataset_name));
 
       if (this.toggleResultsTSV) {
-        const headers = ['DatasetFilePath', 'SubjectID', 'Age', 'Sex', 'Diagnosis', 'SessionID', 'SessionPath', 'NumSessions', 'Modality'].join('\t');
+        const headers = ['DatasetID', 'SubjectID', 'Age', 'Sex', 'Diagnosis', 'Assessment', 'SessionID', 'SessionPath', 'NumSessions', 'Modality'].join('\t');
         tsvRows.push(headers);
 
         datasets.forEach((res) => {
           res.subject_data.forEach((subject) => {
             tsvRows.push([
-              res.dataset_file_path,
+              res.dataset_uuid,
               subject.sub_id,
               subject.age,
               subject.sex,
               subject.diagnosis?.join(', '),
+              subject.assessment?.join(', '),
               subject.session_id,
               subject.session_file_path,
               subject.num_sessions,
@@ -85,14 +86,14 @@ export default {
           });
         });
       } else {
-        const headers = ['PortalURI', 'DatasetFilePath', 'DatasetName', 'NumMatchingSubjects', 'AvailableImageModalities'].join('\t');
+        const headers = ['DatasetID', 'DatasetName', 'PortalURI', 'NumMatchingSubjects', 'AvailableImageModalities'].join('\t');
         tsvRows.push(headers);
 
         datasets.forEach((res) => {
           tsvRows.push([
-            res.dataset_portal_uri,
-            res.dataset_file_path,
+            res.dataset_uuid,
             res.dataset_name.replace('\n', ' '),
+            res.dataset_portal_uri,
             res.num_matching_subjects,
             res.image_modals?.join(', '),
           ].join('\t'));
