@@ -24,7 +24,7 @@
           style="color: gray"
           data-cy="default-view"
         >
-          Click 'Query Metadata' for results
+          Click 'Submit Query' for results
         </h3>
         <h3
           v-else-if="results.length === 0"
