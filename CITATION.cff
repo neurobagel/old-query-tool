@@ -3,7 +3,7 @@
 
 cff-version: 1.2.0
 
-title: "neurobagel query tool"
+title: "Neurobagel Query Tool: Web app for cohort searches across Neurobagel graphs."
 
 version: 0.1.0
 
