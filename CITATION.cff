@@ -20,14 +20,8 @@ contact:
 
 authors:
   - affiliation: "ORIGAMI lab, McGill University, Montréal, Canada"
-    family-names: Urchs
-    given-names: Sebastian 
-    orcid: "https://orcid.org/0000-0001-5504-8579"
-
-  - affiliation: "ORIGAMI lab, McGill University, Montréal, Canada"
-    family-names: Dai
-    given-names: Alyssa
-    orcid: "https://orcid.org/0000-0003-0174-6800"
+    family-names: Jahanpour
+    given-names: Arman
 
   - affiliation: "ORIGAMI lab, McGill University, Montréal, Canada"
     family-names: Armoza
@@ -35,14 +29,20 @@ authors:
     orcid: "https://orcid.org/0000-0002-7193-9344"
 
   - affiliation: "ORIGAMI lab, McGill University, Montréal, Canada"
-    family-names: Jahanpour
-    given-names: Arman    
+    family-names: Dai
+    given-names: Alyssa
+    orcid: "https://orcid.org/0000-0003-0174-6800"
 
   - affiliation: "ORIGAMI lab, McGill University, Montréal, Canada"
     email:  nikhil.bhagwat@mcgill.ca
     family-names: Bhagwat
     given-names: Nikhil
     orcid: "https://orcid.org/0000-0001-6073-7141"
+
+- affiliation: "ORIGAMI lab, McGill University, Montréal, Canada"
+    family-names: Urchs
+    given-names: Sebastian 
+    orcid: "https://orcid.org/0000-0001-5504-8579"
 
   - affiliation: "ORIGAMI lab, McGill University, Montréal, Canada"
     family-names: Poline
