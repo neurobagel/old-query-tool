@@ -5,7 +5,7 @@ cff-version: 1.2.0
 
 title: "neurobagel query tool"
 
-version: 0.2.0
+version: 0.1.0
 
 abstract: "The query tool is a Vue application, developed in [JavaScript](https://www.javascript.com/) using a variety of tools including [Nuxt](https://nuxtjs.org/), [Cypress](https://www.cypress.io/), and [BootstrapVue](https://bootstrap-vue.org/docs)."
 
