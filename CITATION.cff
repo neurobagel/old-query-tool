@@ -3,15 +3,15 @@
 
 cff-version: 1.2.0
 
-title: "neurobagel_api"
+title: "neurobagel query tool"
 
 version: 0.2.0
 
-abstract: "The Neurobagel API is a REST API, developed in [Python](https://www.python.org/) using [FastAPI](https://fastapi.tiangolo.com/) and [pydantic](https://docs.pydantic.dev/)."
+abstract: "The query tool is a Vue application, developed in [JavaScript](https://www.javascript.com/) using a variety of tools including [Nuxt](https://nuxtjs.org/), [Cypress](https://www.cypress.io/), and [BootstrapVue](https://bootstrap-vue.org/docs)."
 
 message: "If you use this software, please cite it as below."
 
-repository-code: "https://github.com/neurobagel/api.git"
+repository-code: "https://github.com/neurobagel/query-tool.git"
 
 contact:
   - affiliation: "ORIGAMI lab, McGill University, Montréal, Canada"
