@@ -1,6 +1,6 @@
 const response = [
   {
-    dataset_portal_uri: 'https://someportal.org/datasets/ds0001',
+    dataset_uuid: 'https://someportal.org/datasets/ds0001',
     dataset_file_path: 'https://github.com/somethingDatasets/ds0001.git',
     dataset_name: 'some\nname',
     num_matching_subjects: 3,
