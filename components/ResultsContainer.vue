@@ -71,11 +71,11 @@
       <b-list-group id="results-list-group">
         <result-card
           v-for="res in results"
-          :key="res.id"
+          :key="res.dataset_uuid"
           :dataset-name="res.dataset_name"
           :num-matching-subjects="res.num_matching_subjects"
           :image-modals="res.image_modals"
-          :select-all="selectAll"
+          :is-checked="selectAll"
           :data-cy="res.dataset_name"
           @update-downloads="updateDownloads"
         />
