@@ -112,6 +112,12 @@ export default {
       return !Object.is(this.results, null) && this.results.length !== 0;
     },
   },
+  watch: {
+    results() {
+      this.downloads = [];
+    },
+
+  },
   methods: {
     summarizeStats() {
       let datasets = 0;
