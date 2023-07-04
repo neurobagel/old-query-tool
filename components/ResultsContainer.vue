@@ -75,7 +75,7 @@
           :dataset-name="res.dataset_name"
           :num-matching-subjects="res.num_matching_subjects"
           :image-modals="res.image_modals"
-          :is-checked="selectAll"
+          :is-checked="selectAll || downloads.includes(res.dataset_name)"
           :data-cy="res.dataset_name"
           @update-downloads="updateDownloads"
         />
