@@ -4,7 +4,7 @@ const props = {
   datasetName: 'cool-dataset',
   numMatchingSubjects: 4,
   imageModals: ['http://purl.org/nidash/nidm#T1Weighted', 'http://purl.org/nidash/nidm#T2Weighted'],
-  selectAll: true,
+  isChecked: true,
 };
 
 describe('Result card', () => {
