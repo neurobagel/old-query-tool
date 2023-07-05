@@ -114,6 +114,7 @@ export default {
   },
   watch: {
     results() {
+      this.selectAll = false;
       this.downloads = [];
     },
 
