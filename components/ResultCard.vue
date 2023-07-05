@@ -14,7 +14,7 @@
                   class="form-check-input dataset-checkbox"
                   type="checkbox"
                   value=""
-                  :checked="selectAll"
+                  :checked="isChecked"
                   :data-cy="`card-${datasetName}-checkbox`"
                   @change="updateDownloads"
                 >
@@ -86,7 +86,7 @@ export default {
       type: Array,
       default: null,
     },
-    selectAll: {
+    isChecked: {
       type: Boolean,
       default: false,
     },
@@ -125,8 +125,8 @@ export default {
     };
   },
   methods: {
-    updateDownloads() {
-      this.$emit('update-downloads', this.datasetName, this.$refs.checkbox.checked);
+    updateDownloads(event) {
+      this.$emit('update-downloads', this.datasetName, event.target.checked);
     },
   },
 };
