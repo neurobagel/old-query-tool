@@ -30,6 +30,8 @@ const response2 = [
 
 describe('Checkbox', () => {
   it('Unchecks checked checkboxes after a second query is run.', () => {
+    // Since the defualt viewport results in partial occlusion of the checkbox
+    // Set the viewport to 2000x1000 to ensure the checkbox is not covered and is cliclable
     cy.viewport(2000, 1000);
 
     let isFirstClick = true;
