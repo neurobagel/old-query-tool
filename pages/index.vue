@@ -1,12 +1,6 @@
 <template>
   <b-container fluid>
-    <b-row class="mx-4">
-      <h1 class="mt-2">
-        Query Tool
-      </h1>
-      <hr class="mt-0 mb-4">
-    </b-row>
-    <b-row class="mx-4">
+    <b-row class="mx-auto">
       <query-form
         :categorical-options="categoricalOptions"
         @update-response="updateResponse"
@@ -105,87 +99,125 @@ export default {
 };
 </script>
 <style>
+
+/* Navbar */
+.brand-styling {
+    font-size: 2em;
+    font-family: -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        "Helvetica Neue",
+        Arial,
+        "Noto Sans",
+        "Liberation Sans",
+        sans-serif,
+        "Apple Color Emoji",
+        "Segoe UI Emoji",
+        "Segoe UI Symbol",
+        "Noto Color Emoji";
+    font-weight: bold;
+    padding-left: 1em;
+
+}
+
+.navbar {
+    background-color: white !important;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #470A68;
+}
+
+#nav-text {
+  font-size: 16px;
+  text-decoration: none;
+  font-weight: normal;
+  color: #470A68;
+}
+
+#right-nav {
+    padding-right: 1em;
+    margin-left: auto !important;
+}
+
 /* Card */
-
 .btn-group {
-
-    padding-right: 0.5em;
+  padding-right: 0.5em;
 }
+
 .btn-toolbar {
-    padding-right: 0;
+  padding-right: 0;
 }
+
 .card {
-
-    background-color: rgb(242, 242, 242);
-    border-radius: 10px;
-    color: black;
+  background-color: rgb(242, 242, 242);
+  border-radius: 10px;
+  color: black;
 }
+
 .card-checkbox {
-
-    padding-right: 0;
+  padding-right: 0;
 }
+
 .card-content {
-
-    padding-left: 0;
+  padding-left: 0;
 }
+
 .card-modality {
-
-    font-size: 1em;
+  font-size: 1em;
 }
+
 .card-text {
-
-    font-size: 1.25em;
+  font-size: 1.25em;
 }
+
 .card-title {
+  font-size: 1.75em;
 
-    font-size: 1.75em;
-
-    /* Ellipsis length truncation */
-    max-width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+  /* Ellipsis length truncation */
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 /* Card list */
-
 #card-listbox {
-
-    border: 1em;
-    border-color: gray;
-    border-bottom-left-radius:  10px;
-    border-bottom-right-radius: 10px;
-    height: 65vh;
-    overflow-y: auto;
+  border: 1em;
+  border-color: gray;
+  border-bottom-left-radius:  10px;
+  border-bottom-right-radius: 10px;
+  height: 65vh;
+  overflow-y: auto;
 }
 
-#download-results-button {
+.nb-button {
+  background-color: #470A68;
+}
 
-    background-color: #0d6efd;
-    color: white;
+.nb-button:hover {
+  background-color: #2d0644;
 }
 
 #query-controls {
-
-    padding-top: 1em;
-    padding-bottom: 1em;
+  padding-top: 1em;
+  padding-bottom: 1em;
 }
 
 #results-list-group {
-
-    padding-right: 0;
+  padding-right: 0;
 }
 
 #summary-stats {
-
-    float: right;
+  float: right;
 }
 
 .toast:not(.show) {
-   display: block;
+  display: block;
 }
 
-/** Vue select */
+/* Vue select */
 .vs__clear {
   display: flex;
   align-items: center;
