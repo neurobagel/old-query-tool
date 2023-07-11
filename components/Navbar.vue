@@ -1,0 +1,48 @@
+<template>
+  <div>
+    <b-navbar
+      toggleable="lg"
+      type="light"
+      variant="light"
+    >
+      <b-navbar-brand
+        class="brand-styling"
+        href="https://www.neurobagel.org/"
+      >
+        <b-row>
+          Neurobagel Query
+        </b-row>
+        <b-row id="nav-text">
+          define and find cohorts at the sample level
+        </b-row>
+      </b-navbar-brand>
+      <b-navbar-toggle target="nav-collapse" />
+      <b-collapse
+        id="nav-collapse"
+        is-nav
+      >
+        <b-navbar-nav
+          id="right-nav"
+          class="ml-auto"
+        >
+          <b-nav-item href="https://github.com/neurobagel/query-tool/tree/v0.1.0">
+            v0.1.0
+          </b-nav-item>
+          <b-nav-item href="https://www.neurobagel.org/documentation/">
+            Documentation
+          </b-nav-item>
+          <b-nav-item href="https://github.com/neurobagel/query-tool/issues">
+            Feedback
+          </b-nav-item>
+          <b-nav-item href="https://github.com/neurobagel/query-tool">
+            <b-icon
+              icon="github"
+              font-scale="1"
+            />
+          </b-nav-item>
+          <b-navbar-nav />
+        </b-navbar-nav>
+      </b-collapse>
+    </b-navbar>
+  </div>
+</template>
