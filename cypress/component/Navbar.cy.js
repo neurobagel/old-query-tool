@@ -5,6 +5,7 @@ describe('Navbar', () => {
     cy.mount(Navbar);
     cy.get('[data-cy="brand"]').should('be.visible');
     cy.get('[data-cy="brand"]').contains('Neurobagel Query');
+    cy.get('[data-cy="brand"]').contains('Define and find cohorts at the sample level');
     cy.get('[data-cy="brand"]').should('have.attr', 'href', 'https://www.neurobagel.org/');
     cy.get('[data-cy="version"]').should('be.visible');
     cy.get('[data-cy="version"]').contains('v0.1.0');
