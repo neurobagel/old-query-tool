@@ -8,13 +8,14 @@
       <b-navbar-brand
         class="brand-styling"
         href="https://www.neurobagel.org/"
+        target="_blank"
         data-cy="brand"
       >
         <b-row>
           Neurobagel Query
         </b-row>
         <b-row id="nav-text">
-          define and find cohorts at the sample level
+          Define and find cohorts at the sample level
         </b-row>
       </b-navbar-brand>
       <b-navbar-toggle target="nav-collapse" />
@@ -28,24 +29,28 @@
         >
           <b-nav-item
             href="https://github.com/neurobagel/query-tool/tree/v0.1.0/"
+            target="_blank"
             data-cy="version"
           >
             v0.1.0
           </b-nav-item>
           <b-nav-item
             href="https://www.neurobagel.org/documentation/"
+            target="_blank"
             data-cy="docs"
           >
             Documentation
           </b-nav-item>
           <b-nav-item
             href="https://github.com/neurobagel/query-tool/issues/"
+            target="_blank"
             data-cy="feedback"
           >
             Feedback
           </b-nav-item>
           <b-nav-item
             href="https://github.com/neurobagel/query-tool/"
+            target="_blank"
             data-cy="github"
           >
             <b-icon
