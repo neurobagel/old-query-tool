@@ -5,34 +5,34 @@
     xl="10"
   >
     <b-row>
-      <h2>Results</h2>
+      <h5>Results</h5>
     </b-row>
     <b-row
       v-if="!displayResults"
       class="d-flex justify-content-center"
     >
       <div class="d-flex align-items-center">
-        <h3
+        <h5
           v-if="!Object.is(error, null)"
           style="color: gray"
           data-cy="error-view"
         >
           {{ error }}
-        </h3>
-        <h3
+        </h5>
+        <h5
           v-else-if="Object.is(results, null)"
           style="color: gray"
           data-cy="default-view"
         >
           Click 'Submit Query' for results
-        </h3>
-        <h3
+        </h5>
+        <h5
           v-else-if="results.length === 0"
           style="color: gray;"
           data-cy="no-results-view"
         >
           No results
-        </h3>
+        </h5>
       </div>
     </b-row>
     <b-row
