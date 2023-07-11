@@ -8,6 +8,7 @@
       <b-navbar-brand
         class="brand-styling"
         href="https://www.neurobagel.org/"
+        data-cy="brand"
       >
         <b-row>
           Neurobagel Query
@@ -25,16 +26,28 @@
           id="right-nav"
           class="ml-auto"
         >
-          <b-nav-item href="https://github.com/neurobagel/query-tool/tree/v0.1.0">
+          <b-nav-item
+            href="https://github.com/neurobagel/query-tool/tree/v0.1.0/"
+            data-cy="version"
+          >
             v0.1.0
           </b-nav-item>
-          <b-nav-item href="https://www.neurobagel.org/documentation/">
+          <b-nav-item
+            href="https://www.neurobagel.org/documentation/"
+            data-cy="docs"
+          >
             Documentation
           </b-nav-item>
-          <b-nav-item href="https://github.com/neurobagel/query-tool/issues">
+          <b-nav-item
+            href="https://github.com/neurobagel/query-tool/issues/"
+            data-cy="feedback"
+          >
             Feedback
           </b-nav-item>
-          <b-nav-item href="https://github.com/neurobagel/query-tool">
+          <b-nav-item
+            href="https://github.com/neurobagel/query-tool/"
+            data-cy="github"
+          >
             <b-icon
               icon="github"
               font-scale="1"
