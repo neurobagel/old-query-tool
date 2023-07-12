@@ -20,7 +20,7 @@
       </b-col>
 
       <b-button
-        id="download-results-button"
+        class="nb-button"
         :disabled="downloads.length === 0"
         data-cy="download-results-button"
         @click="downloadResults"

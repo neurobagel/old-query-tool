@@ -5,7 +5,7 @@
     xl="2"
   >
     <b-row>
-      <h2>Query fields</h2>
+      <h5>Query fields</h5>
     </b-row>
     <b-row>
       <b-form @submit.prevent="validateQueryForm">
@@ -76,7 +76,7 @@
           @update-categorical-field="updateField"
         />
         <b-button
-          variant="primary"
+          class="nb-button"
           type="submit"
           data-cy="submit-query"
         >

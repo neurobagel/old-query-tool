@@ -27,7 +27,7 @@ module.exports = {
       },
     },
     {
-      files: 'index.vue',
+      files: ['index.vue', 'default.vue', 'Navbar.vue'],
       rules: {
         'vue/multi-word-component-names': 'off',
       },
