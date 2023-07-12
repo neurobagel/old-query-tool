@@ -4,33 +4,34 @@
     class="d-flex flex-row-reverse"
     style="margin-top: 1em;"
   >
-    <b-row
-      class="flex-column"
-    >
-      <b-col>
-        <input
-          v-model="toggleResultsTSV"
-          data-cy="toggle-tsv-checkbox"
-          class="form-check-input"
-          type="checkbox"
+    <b-row>
+      <div class="d-flex">
+        <b-button
+          class="nb-button"
+          :disabled="downloads.length === 0"
+          data-cy="download-participant-level-results-button"
+          @click="downloadResults('participant-level')"
         >
-        <label
-          class="form-label"
-        >Toggle level of detail to download</label>
-      </b-col>
+          <b-icon
+            icon="download"
+            font-scale="1"
+          />
+          Download Participant-level Results
+        </b-button>
 
-      <b-button
-        class="nb-button"
-        :disabled="downloads.length === 0"
-        data-cy="download-results-button"
-        @click="downloadResults"
-      >
-        <b-icon
-          icon="download"
-          font-scale="1"
-        />
-        {{ toggleDownloadResultsButtonText }}
-      </b-button>
+        <b-button
+          class="nb-button download-dataset-level-results-button"
+          :disabled="downloads.length === 0"
+          data-cy="download-dataset-level-results-button"
+          @click="downloadResults('dataset-level')"
+        >
+          <b-icon
+            icon="download"
+            font-scale="1"
+          />
+          Download Dataset-level Results
+        </b-button>
+      </div>
     </b-row>
   </b-col>
 </template>
@@ -47,25 +48,17 @@ export default {
       default: () => [],
     },
   },
-  data() {
-    return {
-      toggleResultsTSV: false,
-    };
-  },
   computed: {
     displayDownloadResultsButton() {
       return !Object.is(this.results, null) && this.results.length !== 0;
     },
-    toggleDownloadResultsButtonText() {
-      return this.toggleResultsTSV ? 'Download Participant-level Results' : 'Download Dataset-level Results';
-    },
   },
   methods: {
-    generateTSVString() {
+    generateTSVString(buttonIdentifier) {
       const tsvRows = [];
       const datasets = this.results.filter((res) => this.downloads.includes(res.dataset_name));
 
-      if (this.toggleResultsTSV) {
+      if (buttonIdentifier === 'participant-level') {
         const headers = ['DatasetID', 'SubjectID', 'Age', 'Sex', 'Diagnosis', 'Assessment', 'SessionID', 'SessionPath', 'NumSessions', 'Modality'].join('\t');
         tsvRows.push(headers);
 
@@ -103,11 +96,11 @@ export default {
       return tsvRows.join('\n');
     },
 
-    downloadResults() {
+    downloadResults(buttonIdentifier) {
       const element = document.createElement('a');
       element.setAttribute('href', `data:text/tab-separated-values;charset=utf-8,
-      ${encodeURIComponent(this.generateTSVString())}`);
-      if (this.toggleResultsTSV) {
+      ${encodeURIComponent(this.generateTSVString(buttonIdentifier))}`);
+      if (buttonIdentifier === 'participant-level') {
         element.setAttribute('download', 'participant-results.tsv');
       } else {
         element.setAttribute('download', 'dataset-results.tsv');
