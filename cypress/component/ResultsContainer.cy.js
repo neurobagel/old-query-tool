@@ -78,17 +78,22 @@ describe('Results', () => {
     cy.get('[data-cy="not-so-cool-dataset"]').should('be.visible');
   });
   it('Displays download results button (and its component) and enables/disables it by checking/unchecking checkboxes', () => {
+    cy.viewport(2000, 1000);
     cy.mount(ResultsContainer, {
       stubs,
       propsData: props,
     });
     cy.get('[data-cy="download-results"]').should('be.visible');
-    cy.get('[data-cy="download-results-button"]').should('be.disabled');
+    cy.get('[data-cy="download-participant-level-results-button"]').should('be.disabled');
+    cy.get('[data-cy="download-dataset-level-results-button"]').should('be.disabled');
     cy.get('[data-cy="select-all"]').check();
-    cy.get('[data-cy="download-results-button"]').should('not.be.disabled');
+    cy.get('[data-cy="download-participant-level-results-button"]').should('not.be.disabled');
+    cy.get('[data-cy="download-dataset-level-results-button"]').should('not.be.disabled');
     cy.get('[data-cy="card-cool-dataset-checkbox"]').uncheck();
-    cy.get('[data-cy="download-results-button"]').should('not.be.disabled');
+    cy.get('[data-cy="download-participant-level-results-button"]').should('not.be.disabled');
+    cy.get('[data-cy="download-dataset-level-results-button"]').should('not.be.disabled');
     cy.get('[data-cy="card-not-so-cool-dataset-checkbox"]').uncheck();
-    cy.get('[data-cy="download-results-button"]').should('be.disabled');
+    cy.get('[data-cy="download-participant-level-results-button"]').should('be.disabled');
+    cy.get('[data-cy="download-dataset-level-results-button"]').should('be.disabled');
   });
 });

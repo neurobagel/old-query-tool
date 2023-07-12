@@ -22,32 +22,19 @@ const props = {
 };
 
 describe('Download results button', () => {
-  it('Displays the disabled download results button', () => {
+  it('Displays the disabled download results buttons', () => {
     cy.mount(DownloadResultsButton, {
       propsData: props,
     });
-    cy.get('[data-cy="download-results-button"]').should('be.visible').should('be.disabled');
+    cy.get('[data-cy="download-participant-level-results-button"]').should('be.visible').should('be.disabled');
+    cy.get('[data-cy="download-dataset-level-results-button"]').should('be.visible').should('be.disabled');
   });
-  it('Displays the enabled download results button', () => {
+  it('Displays the enabled download results buttons', () => {
     props.downloads = ['cool-dataset'];
     cy.mount(DownloadResultsButton, {
       propsData: props,
     });
-    cy.get('[data-cy="download-results-button"]').should('be.visible').should('not.be.disabled');
-  });
-  it('Displays the toggle results tsv checkbox', () => {
-    cy.mount(DownloadResultsButton, {
-      propsData: props,
-    });
-    cy.get('[data-cy="toggle-tsv-checkbox"]').should('be.visible');
-  });
-  it("Changes the download results button's text when the box is checked and unchecked", () => {
-    cy.mount(DownloadResultsButton, {
-      propsData: props,
-    });
-    cy.get('[data-cy="toggle-tsv-checkbox"]').check();
-    cy.get('[data-cy="download-results-button"]').contains('Download Participant-level Results');
-    cy.get('[data-cy="toggle-tsv-checkbox"]').uncheck();
-    cy.get('[data-cy="download-results-button"]').contains('Download Dataset-level Results');
+    cy.get('[data-cy="download-participant-level-results-button"]').should('be.visible').should('not.be.disabled');
+    cy.get('[data-cy="download-dataset-level-results-button"]').should('be.visible').should('not.be.disabled');
   });
 });
