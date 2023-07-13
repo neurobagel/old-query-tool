@@ -99,6 +99,14 @@
   background-color: #2d0644;
 }
 
+.download-dataset-level-results-button {
+  margin-left: 0.25em;
+}
+
+input[type="checkbox"]:checked {
+  background-color: #470A68;
+}
+
 #query-controls {
   padding-top: 1em;
   padding-bottom: 1em;
@@ -121,4 +129,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.vs__dropdown-option.vs__dropdown-option--highlight {
+  background-color: #470A68;
 }

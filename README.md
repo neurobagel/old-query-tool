@@ -116,7 +116,6 @@ The query tool offers two different TSV files for results:
 - Participant-level results TSV contains: dataset id, subject id, age, sex, diagnosis, assessment, session id, session file path, number of sessions, and imaging modality
 
 The output files can be joined using `DatasetID` as key.\
-You can choose which file to download by checking and uncehcking the `Toggle Results TSV` checkbox above the `Download Results` button.
 
 ## Testing
 

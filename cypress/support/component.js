@@ -21,6 +21,9 @@ import './commands';
 import '../../plugins/bootstrap-vue';
 import '../../plugins/vue-select';
 
+// Import styles
+import '../../assets/css/main.css';
+
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
 
