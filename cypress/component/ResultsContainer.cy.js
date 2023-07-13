@@ -77,7 +77,7 @@ describe('Results', () => {
     cy.get('[data-cy="cool-dataset"]').should('be.visible');
     cy.get('[data-cy="not-so-cool-dataset"]').should('be.visible');
   });
-  it('Displays download results button (and its component) and enables/disables it by checking/unchecking checkboxes', () => {
+  it('Displays download results buttons (and its component) and enables/disables it by checking/unchecking checkboxes', () => {
     cy.viewport(2000, 1000);
     cy.mount(ResultsContainer, {
       stubs,
