@@ -10,7 +10,7 @@ describe('Navbar', () => {
     cy.get('[data-cy="version"]').should('be.visible');
     cy.get('[data-cy="version"]').contains('v0.1.0');
     cy.get('[data-cy="version"]').within(() => {
-      cy.get('a').should('have.attr', 'href', 'https://github.com/neurobagel/query-tool/tree/v0.1.0/');
+      cy.get('a').should('have.attr', 'href', 'https://github.com/neurobagel/query-tool/releases/tag/v0.1.0/');
     });
     cy.get('[data-cy="docs"]').should('be.visible');
     cy.get('[data-cy="docs"]').contains('Documentation');

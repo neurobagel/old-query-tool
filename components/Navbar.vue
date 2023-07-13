@@ -28,7 +28,7 @@
           class="ml-auto"
         >
           <b-nav-item
-            href="https://github.com/neurobagel/query-tool/tree/v0.1.0/"
+            href="https://github.com/neurobagel/query-tool/releases/tag/v0.1.0/"
             target="_blank"
             data-cy="version"
           >
