@@ -2,6 +2,11 @@ export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'Query Tool',
+    script: [
+      {
+        src: 'https://w.appzi.io/w.js?token=YVTHd',
+      },
+    ],
     htmlAttrs: {
       lang: 'en',
     },
