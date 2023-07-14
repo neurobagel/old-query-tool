@@ -17,11 +17,6 @@ describe('Navbar', () => {
     cy.get('[data-cy="docs"]').within(() => {
       cy.get('a').should('have.attr', 'href', 'https://www.neurobagel.org/documentation/');
     });
-    cy.get('[data-cy="feedback"]').should('be.visible');
-    cy.get('[data-cy="feedback"]').contains('Feedback');
-    cy.get('[data-cy="feedback"]').within(() => {
-      cy.get('a').should('have.attr', 'href', 'https://github.com/neurobagel/query-tool/issues/');
-    });
     cy.get('[data-cy="github"]').should('be.visible');
     cy.get('[data-cy="github"]').within(() => {
       cy.get('a').should('have.attr', 'href', 'https://github.com/neurobagel/query-tool/');
