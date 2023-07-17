@@ -15,7 +15,7 @@
                   type="checkbox"
                   value=""
                   :checked="isChecked"
-                  :data-cy="`card-${datasetId}-checkbox`"
+                  :data-cy="`card-${datasetUuid}-checkbox`"
                   @change="updateDownloads"
                 >
               </b-col>
@@ -26,7 +26,7 @@
                 <b-row>
                   <h5
                     class="card-title"
-                    :data-cy="`card-${datasetId}-dataset`"
+                    :data-cy="`card-${datasetUuid}-dataset`"
                   >
                     {{ datasetName }}
                   </h5>
@@ -35,7 +35,7 @@
                   <b-col cols="6">
                     <p
                       class="card-text"
-                      :data-cy="`card-${datasetId}-subjects`"
+                      :data-cy="`card-${datasetUuid}-subjects`"
                     >
                       {{ `${numMatchingSubjects} subjects` }}
                     </p>
@@ -58,7 +58,7 @@
                     type="button"
                     class="btn card-modality"
                     :style="modalities[modality].style"
-                    :data-cy="`card-${datasetId}-${modalities[modality].name}`"
+                    :data-cy="`card-${datasetUuid}-${modalities[modality].name}`"
                   >
                     {{ modalities[modality].name }}
                   </b-button>
@@ -74,7 +74,7 @@
 <script>
 export default {
   props: {
-    datasetId: {
+    datasetUuid: {
       type: String,
       required: true,
     },
@@ -130,7 +130,7 @@ export default {
   },
   methods: {
     updateDownloads(event) {
-      this.$emit('update-downloads', this.datasetId, event.target.checked);
+      this.$emit('update-downloads', this.datasetUuid, event.target.checked);
     },
   },
 };

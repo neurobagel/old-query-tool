@@ -1,7 +1,7 @@
 import ResultCard from '../../components/ResultCard.vue';
 
 const props = {
-  datasetId: 'http://neurobagel.org/vocab/cool-dataset',
+  datasetUuid: 'http://neurobagel.org/vocab/cool-dataset',
   datasetName: 'cool-dataset',
   numMatchingSubjects: 4,
   imageModals: ['http://purl.org/nidash/nidm#T1Weighted', 'http://purl.org/nidash/nidm#T2Weighted'],

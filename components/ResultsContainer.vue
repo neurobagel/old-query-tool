@@ -72,7 +72,7 @@
         <result-card
           v-for="res in results"
           :key="res.dataset_uuid"
-          :dataset-id="res.dataset_uuid"
+          :dataset-uuid="res.dataset_uuid"
           :dataset-name="res.dataset_name"
           :num-matching-subjects="res.num_matching_subjects"
           :image-modals="res.image_modals"
@@ -141,11 +141,11 @@ export default {
         this.downloads = [];
       }
     },
-    updateDownloads(datasetId, checked) {
+    updateDownloads(datasetUuid, checked) {
       if (checked) {
-        this.downloads.push(datasetId);
+        this.downloads.push(datasetUuid);
       } else {
-        this.downloads = this.downloads.filter((item) => item !== datasetId);
+        this.downloads = this.downloads.filter((item) => item !== datasetUuid);
       }
     },
   },
