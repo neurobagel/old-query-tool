@@ -46,7 +46,7 @@
           type="checkbox"
           value=""
           data-cy="select-all"
-          @change="UpdateDownloadsSelectAll"
+          @change="updateDownloadsSelectAll"
         >
         <label
           for="dataset-checkall"
@@ -72,11 +72,12 @@
         <result-card
           v-for="res in results"
           :key="res.dataset_uuid"
+          :dataset-uuid="res.dataset_uuid"
           :dataset-name="res.dataset_name"
           :num-matching-subjects="res.num_matching_subjects"
           :image-modals="res.image_modals"
-          :is-checked="selectAll || downloads.includes(res.dataset_name)"
-          :data-cy="res.dataset_name"
+          :is-checked="selectAll || downloads.includes(res.dataset_uuid)"
+          :data-cy="res.dataset_uuid"
           @update-downloads="updateDownloads"
         />
       </b-list-group>
@@ -129,22 +130,22 @@ export default {
       });
       return `Summary stats: ${datasets} datasets, ${subjects} subjects`;
     },
-    UpdateDownloadsSelectAll() {
+    updateDownloadsSelectAll() {
       if (this.selectAll) {
         this.results.forEach((res) => {
-          if (!this.downloads.includes(res.dataset_name)) {
-            this.downloads.push(res.dataset_name);
+          if (!this.downloads.includes(res.dataset_uuid)) {
+            this.downloads.push(res.dataset_uuid);
           }
         });
       } else {
         this.downloads = [];
       }
     },
-    updateDownloads(datasetName, checked) {
+    updateDownloads(datasetUuid, checked) {
       if (checked) {
-        this.downloads.push(datasetName);
+        this.downloads.push(datasetUuid);
       } else {
-        this.downloads = this.downloads.filter((item) => item !== datasetName);
+        this.downloads = this.downloads.filter((item) => item !== datasetUuid);
       }
     },
   },
