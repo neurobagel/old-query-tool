@@ -47,8 +47,8 @@ describe('Checkbox', () => {
 
     cy.visit('/');
     cy.get('[data-cy="submit-query"]').click();
-    cy.get('[data-cy="card-thoughtExperiment-checkbox"]').check();
+    cy.get('[data-cy="card-http://neurobagel.org/vocab/000d0851-c72e-462d-9457-9ab97ced7d45-checkbox"]').check();
     cy.get('[data-cy="submit-query"]').click();
-    cy.get('[data-cy="card-thoughtExperiment-checkbox"]').should('not.be.checked');
+    cy.get('[data-cy="card-http://neurobagel.org/vocab/000d0851-c72e-462d-9457-9ab97ced7d45-checkbox"]').should('not.be.checked');
   });
 });
