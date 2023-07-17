@@ -42,13 +42,6 @@
             Documentation
           </b-nav-item>
           <b-nav-item
-            href="https://github.com/neurobagel/query-tool/issues/"
-            target="_blank"
-            data-cy="feedback"
-          >
-            Feedback
-          </b-nav-item>
-          <b-nav-item
             href="https://github.com/neurobagel/query-tool/"
             target="_blank"
             data-cy="github"
