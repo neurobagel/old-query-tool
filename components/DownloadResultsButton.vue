@@ -56,7 +56,7 @@ export default {
   methods: {
     generateTSVString(buttonIdentifier) {
       const tsvRows = [];
-      const datasets = this.results.filter((res) => this.downloads.includes(res.dataset_name));
+      const datasets = this.results.filter((res) => this.downloads.includes(res.dataset_uuid));
 
       if (buttonIdentifier === 'participant-level') {
         const headers = ['DatasetID', 'SubjectID', 'Age', 'Sex', 'Diagnosis', 'Assessment', 'SessionID', 'SessionPath', 'NumSessions', 'Modality'].join('\t');
