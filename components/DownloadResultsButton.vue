@@ -111,8 +111,8 @@ export default {
 
     downloadResults(buttonIdentifier) {
       const element = document.createElement('a');
-      element.setAttribute('href', `data:text/tab-separated-values;charset=utf-8,
-      ${encodeURIComponent(this.generateTSVString(buttonIdentifier))}`);
+      const encodedTSV = encodeURIComponent(this.generateTSVString(buttonIdentifier));
+      element.setAttribute('href', `data:text/tab-separated-values;charset=utf-8,${encodedTSV}`);
       if (buttonIdentifier === 'participant-level') {
         element.setAttribute('download', 'participant-results.tsv');
       } else {
