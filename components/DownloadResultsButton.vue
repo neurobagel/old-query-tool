@@ -6,31 +6,35 @@
   >
     <b-row>
       <div class="d-flex">
-        <b-button
-          class="nb-button"
-          :disabled="downloads.length === 0"
-          data-cy="download-participant-level-results-button"
-          @click="downloadResults('participant-level')"
-        >
-          <b-icon
-            icon="download"
-            font-scale="1"
-          />
-          Download Participant-level Results
-        </b-button>
+        <span v-b-tooltip.hover.top="displayToolTip">
+          <b-button
+            class="nb-button"
+            :disabled="downloads.length === 0"
+            data-cy="download-participant-level-results-button"
+            @click="downloadResults('participant-level')"
+          >
+            <b-icon
+              icon="download"
+              font-scale="1"
+            />
+            Download Participant-level Results
+          </b-button>
+        </span>
 
-        <b-button
-          class="nb-button download-dataset-level-results-button"
-          :disabled="downloads.length === 0"
-          data-cy="download-dataset-level-results-button"
-          @click="downloadResults('dataset-level')"
-        >
-          <b-icon
-            icon="download"
-            font-scale="1"
-          />
-          Download Dataset-level Results
-        </b-button>
+        <span v-b-tooltip.hover.top="displayToolTip">
+          <b-button
+            class="nb-button download-dataset-level-results-button"
+            :disabled="downloads.length === 0"
+            data-cy="download-dataset-level-results-button"
+            @click="downloadResults('dataset-level')"
+          >
+            <b-icon
+              icon="download"
+              font-scale="1"
+            />
+            Download Dataset-level Results
+          </b-button>
+        </span>
       </div>
     </b-row>
   </b-col>
@@ -51,6 +55,9 @@ export default {
   computed: {
     displayDownloadResultsButton() {
       return !Object.is(this.results, null) && this.results.length !== 0;
+    },
+    displayToolTip() {
+      return this.downloads.length === 0 ? 'Select at least one dataset for download' : '';
     },
   },
   methods: {
