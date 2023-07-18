@@ -15,7 +15,7 @@
           Neurobagel Query
         </b-row>
         <b-row id="nav-text">
-          Define and find cohorts at the sample level
+          Define and find cohorts at the subject level
         </b-row>
       </b-navbar-brand>
       <b-navbar-toggle target="nav-collapse" />
