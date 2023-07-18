@@ -9,7 +9,7 @@ const response = [
   },
 ];
 
-describe('Dataset results TSV', () => {
+describe('Results TSV', () => {
   it('Removes a newline character from a dataset name in the downloaded dataset-level results file', () => {
     cy.viewport(2000, 1000);
     cy.intercept('query/?*', response).as('call');
