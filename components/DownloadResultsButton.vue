@@ -6,7 +6,10 @@
   >
     <b-row>
       <div class="d-flex">
-        <span v-b-tooltip.hover.top="displayToolTip">
+        <span
+          v-b-tooltip.hover.top="displayToolTip"
+          data-cy="download-participant-level-results-button-tooltip"
+        >
           <b-button
             class="nb-button"
             :disabled="downloads.length === 0"
@@ -21,7 +24,10 @@
           </b-button>
         </span>
 
-        <span v-b-tooltip.hover.top="displayToolTip">
+        <span
+          v-b-tooltip.hover.top="displayToolTip"
+          data-cy="download-dataset-level-results-button-tooltip"
+        >
           <b-button
             class="nb-button download-dataset-level-results-button"
             :disabled="downloads.length === 0"
