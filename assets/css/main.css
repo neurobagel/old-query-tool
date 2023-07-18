@@ -124,6 +124,10 @@ input[type="checkbox"]:checked {
   display: block;
 }
 
+.tooltip-inner {
+  background-color: #470A68;
+}
+
 /* Vue select */
 .vs__clear {
   display: flex;
