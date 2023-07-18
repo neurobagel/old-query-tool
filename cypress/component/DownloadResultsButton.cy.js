@@ -37,4 +37,24 @@ describe('Download results button', () => {
     cy.get('[data-cy="download-participant-level-results-button"]').should('be.visible').should('not.be.disabled');
     cy.get('[data-cy="download-dataset-level-results-button"]').should('be.visible').should('not.be.disabled');
   });
+  it('Displays the tooltips when the download results buttons are disabled', () => {
+    props.downloads = [];
+    cy.mount(DownloadResultsButton, {
+      propsData: props,
+    });
+    cy.get('[data-cy="download-participant-level-results-button"]')
+      .first()
+      .trigger('mouseenter', { force: true });
+
+    cy.get('[data-cy="download-participant-level-results-button-tooltip"]')
+      .should('be.visible')
+      .trigger('mouseleave');
+
+    cy.get('[data-cy="download-dataset-level-results-button"]')
+      .first()
+      .trigger('mouseenter', { force: true });
+
+    cy.get('[data-cy="download-dataset-level-results-button-tooltip"]')
+      .should('be.visible');
+  });
 });
