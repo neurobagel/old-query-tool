@@ -26,8 +26,12 @@ describe('Results TSV', () => {
     cy.get('[data-cy="submit-query"]').click();
     cy.get('[data-cy="select-all"]').check();
     cy.get('[data-cy="download-dataset-level-results-button"]').click();
-    cy.readFile('cypress/downloads/dataset-results.tsv').should('not.contain', '\n      DatasetID');
+    cy.readFile('cypress/downloads/dataset-results.tsv').then((fileContent) => {
+      expect(fileContent).to.match(/^DatasetID/);
+    });
     cy.get('[data-cy="download-participant-level-results-button"]').click();
-    cy.readFile('cypress/downloads/dataset-results.tsv').should('not.contain', '\n      DatasetID');
+    cy.readFile('cypress/downloads/participant-results.tsv').then((fileContent) => {
+      expect(fileContent).to.match(/^DatasetID/);
+    });
   });
 });
