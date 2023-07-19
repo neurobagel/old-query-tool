@@ -35,7 +35,7 @@
             v0.1.0
           </b-nav-item>
           <b-nav-item
-            href="https://www.neurobagel.org/documentation/"
+            href="https://www.neurobagel.org/query_tool/"
             target="_blank"
             data-cy="docs"
           >

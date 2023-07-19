@@ -15,7 +15,7 @@ describe('Navbar', () => {
     cy.get('[data-cy="docs"]').should('be.visible');
     cy.get('[data-cy="docs"]').contains('Documentation');
     cy.get('[data-cy="docs"]').within(() => {
-      cy.get('a').should('have.attr', 'href', 'https://www.neurobagel.org/documentation/');
+      cy.get('a').should('have.attr', 'href', 'https://www.neurobagel.org/query_tool/');
     });
     cy.get('[data-cy="github"]').should('be.visible');
     cy.get('[data-cy="github"]').within(() => {
