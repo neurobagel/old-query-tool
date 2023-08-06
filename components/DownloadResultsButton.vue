@@ -1,54 +1,30 @@
 <template>
-  <b-col
-    v-if="displayDownloadResultsButton"
-    class="d-flex flex-row-reverse"
-    style="margin-top: 1em;"
+  <span
+    v-b-tooltip.hover.top="displayToolTip"
+    :data-cy="`download-` + identifier + `-results-button-tooltip`"
   >
-    <b-row>
-      <div class="d-flex">
-        <span
-          v-b-tooltip.hover.top="displayToolTip"
-          data-cy="download-participant-level-results-button-tooltip"
-        >
-          <b-button
-            class="nb-button"
-            :disabled="downloads.length === 0"
-            data-cy="download-participant-level-results-button"
-            @click="downloadResults('participant-level')"
-          >
-            <b-icon
-              icon="download"
-              font-scale="1"
-            />
-            Download Participant-level Results
-          </b-button>
-        </span>
-
-        <span
-          v-b-tooltip.hover.top="displayToolTip"
-          data-cy="download-dataset-level-results-button-tooltip"
-        >
-          <b-button
-            class="nb-button download-dataset-level-results-button"
-            :disabled="downloads.length === 0"
-            data-cy="download-dataset-level-results-button"
-            @click="downloadResults('dataset-level')"
-          >
-            <b-icon
-              icon="download"
-              font-scale="1"
-            />
-            Download Dataset-level Results
-          </b-button>
-        </span>
-      </div>
-    </b-row>
-  </b-col>
+    <b-button
+      class="nb-button"
+      :disabled="downloads.length === 0"
+      :data-cy="`download-` + identifier + `-results-button`"
+      @click="downloadResults(identifier)"
+    >
+      <b-icon
+        icon="download"
+        font-scale="1"
+      />
+      {{ 'Download ' + identifier + ' results' }}
+    </b-button>
+  </span>
 </template>
 
 <script>
 export default {
   props: {
+    identifier: {
+      type: String,
+      default: 'participant-level',
+    },
     results: {
       type: Array,
       default: () => [],
@@ -59,9 +35,6 @@ export default {
     },
   },
   computed: {
-    displayDownloadResultsButton() {
-      return !Object.is(this.results, null) && this.results.length !== 0;
-    },
     displayToolTip() {
       return this.downloads.length === 0 ? 'Select at least one dataset for download' : '';
     },
@@ -113,11 +86,7 @@ export default {
       const element = document.createElement('a');
       const encodedTSV = encodeURIComponent(this.generateTSVString(buttonIdentifier));
       element.setAttribute('href', `data:text/tab-separated-values;charset=utf-8,${encodedTSV}`);
-      if (buttonIdentifier === 'participant-level') {
-        element.setAttribute('download', 'participant-results.tsv');
-      } else {
-        element.setAttribute('download', 'dataset-results.tsv');
-      }
+      element.setAttribute('download', `${buttonIdentifier}-results.tsv`);
 
       element.style.display = 'none';
       document.body.appendChild(element);
