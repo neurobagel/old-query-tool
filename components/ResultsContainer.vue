@@ -82,11 +82,28 @@
         />
       </b-list-group>
     </b-row>
-    <download-results-button
-      :results="results"
-      :downloads="downloads"
-      data-cy="download-results"
-    />
+    <b-col
+      v-if="displayResults"
+      class="d-flex flex-row-reverse"
+      style="margin-top: 1em;"
+    >
+      <b-row>
+        <div class="download-buttons-div d-flex">
+          <download-results-button
+            identifier="participant-level"
+            :results="results"
+            :downloads="downloads"
+            data-cy="download-participant-level-results"
+          />
+          <download-results-button
+            identifier="dataset-level"
+            :results="results"
+            :downloads="downloads"
+            data-cy="download-dataset-level-results"
+          />
+        </div>
+      </b-row>
+    </b-col>
   </b-col>
 </template>
 
