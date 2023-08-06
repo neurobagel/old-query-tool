@@ -1,6 +1,7 @@
 import DownloadResultsButton from '../../components/DownloadResultsButton.vue';
 
 const props = {
+  identifier: 'participant-level',
   results: [
     {
       dataset: 'http://neurobagel.org/vocab/cool-dataset',
@@ -22,23 +23,38 @@ const props = {
 };
 
 describe('Download results button', () => {
-  it('Displays the disabled download results buttons', () => {
+  it('Displays the disabled participant-level download results button', () => {
     cy.mount(DownloadResultsButton, {
       propsData: props,
     });
     cy.get('[data-cy="download-participant-level-results-button"]').should('be.visible').should('be.disabled');
+  });
+  it('Displays the disabled dataset-level download results button', () => {
+    props.identifier = 'dataset-level';
+    cy.mount(DownloadResultsButton, {
+      propsData: props,
+    });
     cy.get('[data-cy="download-dataset-level-results-button"]').should('be.visible').should('be.disabled');
   });
-  it('Displays the enabled download results buttons', () => {
+  it('Displays the enabled download participant-level results button', () => {
+    props.identifier = 'participant-level';
     props.downloads = ['cool-dataset'];
     cy.mount(DownloadResultsButton, {
       propsData: props,
     });
     cy.get('[data-cy="download-participant-level-results-button"]').should('be.visible').should('not.be.disabled');
+  });
+  it('Displays the enabled download dataset-level results button', () => {
+    props.identifier = 'dataset-level';
+    props.downloads = ['cool-dataset'];
+    cy.mount(DownloadResultsButton, {
+      propsData: props,
+    });
     cy.get('[data-cy="download-dataset-level-results-button"]').should('be.visible').should('not.be.disabled');
   });
-  it('Displays the tooltips when the download results buttons are disabled', () => {
+  it('Displays the tooltips when the download participant-level results button is disabled', () => {
     props.downloads = [];
+    props.identifier = 'participant-level';
     cy.mount(DownloadResultsButton, {
       propsData: props,
     });
@@ -49,7 +65,13 @@ describe('Download results button', () => {
     cy.get('[data-cy="download-participant-level-results-button-tooltip"]')
       .should('be.visible')
       .trigger('mouseleave');
-
+  });
+  it('Displays the tooltips when the download dataset-level results button is disabled', () => {
+    props.downloads = [];
+    props.identifier = 'dataset-level';
+    cy.mount(DownloadResultsButton, {
+      propsData: props,
+    });
     cy.get('[data-cy="download-dataset-level-results-button"]')
       .first()
       .trigger('mouseenter', { force: true });

@@ -83,7 +83,8 @@ describe('Results', () => {
       stubs,
       propsData: props,
     });
-    cy.get('[data-cy="download-results"]').should('be.visible');
+    cy.get('[data-cy="download-participant-level-results"]').should('be.visible');
+    cy.get('[data-cy="download-dataset-level-results"]').should('be.visible');
     cy.get('[data-cy="download-participant-level-results-button"]').should('be.disabled');
     cy.get('[data-cy="download-dataset-level-results-button"]').should('be.disabled');
     cy.get('[data-cy="select-all"]').check();
