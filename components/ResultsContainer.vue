@@ -82,13 +82,38 @@
         />
       </b-list-group>
     </b-row>
-    <b-col
+    <b-row
       v-if="displayResults"
-      class="d-flex flex-row-reverse"
-      style="margin-top: 1em;"
+      style="margin-top: 1em"
     >
-      <b-row>
-        <div class="download-buttons-div d-flex">
+      <b-col cols="5">
+        <div class="d-flex justify-content-start">
+          <b-button
+            class="nb-button"
+            @click="$bvModal.show('example-usage-modal')"
+          >
+            Example usage
+          </b-button>
+          <b-modal
+            id="example-usage-modal"
+            title="Example usage"
+            hide-header-close
+            hide-footer
+            size="xl"
+          >
+            <p>Please follow these steps</p>
+            <ol>
+              <li>Select at least one dataset</li>
+              <li>Download the participant-level and dataset-level results</li>
+              <li>Change directory to the location of the downloaded files</li>
+              <li>Copy and run the following command:</li>
+            </ol>
+            <code class="code">{{ code }}</code>
+          </b-modal>
+        </div>
+      </b-col>
+      <b-col cols="7">
+        <div class="d-flex justify-content-end download-buttons-div">
           <download-results-button
             identifier="participant-level"
             :downloads-is-empty="downloads.length === 0"
@@ -102,8 +127,8 @@
             @download-results="downloadResults"
           />
         </div>
-      </b-row>
-    </b-col>
+      </b-col>
+    </b-row>
   </b-col>
 </template>
 
@@ -123,6 +148,7 @@ export default {
     return {
       selectAll: false,
       downloads: [],
+      code: 'docker run -t -v $(pwd):/data neurobagel/dataget:latest /data/dataset-results.tsv /data/participant-results.tsv /data/output',
     };
   },
   computed: {
