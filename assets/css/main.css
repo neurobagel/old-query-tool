@@ -99,7 +99,7 @@
   background-color: #2d0644;
 }
 
-.download-dataset-level-results-button {
+.download-buttons-div > *:not(:first-child) {
   margin-left: 0.25em;
 }
 

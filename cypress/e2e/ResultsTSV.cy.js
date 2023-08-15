@@ -17,7 +17,7 @@ describe('Results TSV', () => {
     cy.get('[data-cy="submit-query"]').click();
     cy.get('[data-cy="select-all"]').check();
     cy.get('[data-cy="download-dataset-level-results-button"]').click();
-    cy.readFile('cypress/downloads/dataset-results.tsv').should('contain', 'some name');
+    cy.readFile('cypress/downloads/dataset-level-results.tsv').should('contain', 'some name');
   });
   it('Removes the unwanted whitespace from the downloaded results files', () => {
     cy.viewport(2000, 1000);
@@ -26,11 +26,11 @@ describe('Results TSV', () => {
     cy.get('[data-cy="submit-query"]').click();
     cy.get('[data-cy="select-all"]').check();
     cy.get('[data-cy="download-dataset-level-results-button"]').click();
-    cy.readFile('cypress/downloads/dataset-results.tsv').then((fileContent) => {
+    cy.readFile('cypress/downloads/dataset-level-results.tsv').then((fileContent) => {
       expect(fileContent).to.match(/^DatasetID/);
     });
     cy.get('[data-cy="download-participant-level-results-button"]').click();
-    cy.readFile('cypress/downloads/participant-results.tsv').then((fileContent) => {
+    cy.readFile('cypress/downloads/participant-level-results.tsv').then((fileContent) => {
       expect(fileContent).to.match(/^DatasetID/);
     });
   });
