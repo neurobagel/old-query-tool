@@ -90,6 +90,7 @@
         <div class="d-flex justify-content-start">
           <b-button
             class="nb-button"
+            data-cy="example-usage-button"
             @click="$bvModal.show('example-usage-modal')"
           >
             Example usage
@@ -99,7 +100,9 @@
             title="Example usage"
             hide-header-close
             hide-footer
+            centered
             size="xl"
+            data-cy="example-usage-modal"
           >
             <p>Please follow these steps</p>
             <ol>

@@ -78,7 +78,6 @@ describe('Results', () => {
     cy.get('[data-cy="http://neurobagel.org/vocab/not-so-cool-dataset"]').should('be.visible');
   });
   it('Displays download results buttons (and its component) and enables/disables it by checking/unchecking checkboxes', () => {
-    cy.viewport(2000, 1000);
     cy.mount(ResultsContainer, {
       stubs,
       propsData: props,
@@ -96,5 +95,19 @@ describe('Results', () => {
     cy.get('[data-cy="card-http://neurobagel.org/vocab/not-so-cool-dataset-checkbox"]').uncheck();
     cy.get('[data-cy="download-participant-level-results-button"]').should('be.disabled');
     cy.get('[data-cy="download-dataset-level-results-button"]').should('be.disabled');
+  });
+  it('Displays the example usage button and modal', () => {
+    cy.mount(ResultsContainer, {
+      stubs,
+      propsData: props,
+    });
+    cy.get('[data-cy="example-usage-button"]').should('be.visible').click();
+    cy.get('#example-usage-modal___BV_modal_outer_')
+      .find('#example-usage-modal')
+    // .find('.modal-dialog modal-xl modal-dialog-centered')
+      .children()
+      .find('#example-usage-modal___BV_modal_content_')
+      .find('#example-usage-modal___BV_modal_body_')
+      .should('contain', 'Please follow these steps');
   });
 });
