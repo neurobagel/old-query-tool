@@ -96,18 +96,18 @@ describe('Results', () => {
     cy.get('[data-cy="download-participant-level-results-button"]').should('be.disabled');
     cy.get('[data-cy="download-dataset-level-results-button"]').should('be.disabled');
   });
-  it('Displays the example usage button and modal', () => {
+  it('Displays the example usage button and modal and checks the modal content', () => {
     cy.mount(ResultsContainer, {
       stubs,
       propsData: props,
     });
     cy.get('[data-cy="example-usage-button"]').should('be.visible').click();
-    cy.get('#example-usage-modal___BV_modal_outer_')
-      .find('#example-usage-modal')
-    // .find('.modal-dialog modal-xl modal-dialog-centered')
-      .children()
-      .find('#example-usage-modal___BV_modal_content_')
-      .find('#example-usage-modal___BV_modal_body_')
-      .should('contain', 'Please follow these steps');
+    cy.get('[data-cy="example-usage-modal"]').should('be.visible');
+    cy.get('[data-cy="example-usage-modal"]').should('contain', 'Please follow the steps below');
+    cy.get('[data-cy="example-usage-modal"]').should('contain', 'Select at least one dataset');
+    cy.get('[data-cy="example-usage-modal"]').should('contain', 'Download the participant-level and dataset-level results files');
+    cy.get('[data-cy="example-usage-modal"]').should('contain', 'Change directory to the location of the downloaded files');
+    cy.get('[data-cy="example-usage-modal"]').should('contain', 'Copy and run the following command:');
+    cy.get('[data-cy="example-usage-modal"]').should('contain', 'docker run -t -v $(pwd):/data neurobagel/dataget:latest /data/dataset-results.tsv /data/participant-results.tsv /data/output');
   });
 });
