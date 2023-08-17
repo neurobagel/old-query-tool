@@ -20,7 +20,6 @@ describe('Result card', () => {
     cy.get('[data-cy="card-http://neurobagel.org/vocab/cool-dataset-checkbox"]').should('be.visible').should('be.checked');
   });
   it('Emits update-download when a checkbox is checked/unchecked', () => {
-    cy.viewport(2000, 1000);
     cy.mount(ResultCard, {
       listeners: {
         'update-downloads': cy.spy().as('spy'),
