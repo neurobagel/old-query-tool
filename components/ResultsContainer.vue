@@ -91,28 +91,30 @@
           <b-button
             class="nb-button"
             data-cy="example-usage-button"
-            @click="$bvModal.show('example-usage-modal')"
+            @click="$modal?.show('example-usage-modal')"
           >
             Example usage
           </b-button>
-          <b-modal
-            id="example-usage-modal"
-            title="Example usage"
-            hide-header-close
-            hide-footer
-            centered
-            size="xl"
+          <modal
+            name="example-usage-modal"
+            :height="auto"
+            :adaptive="true"
+            :resizable="true"
+            :reset="true"
             data-cy="example-usage-modal"
           >
-            <p>Please follow these steps</p>
-            <ol>
-              <li>Select at least one dataset</li>
-              <li>Download the participant-level and dataset-level results</li>
-              <li>Change directory to the location of the downloaded files</li>
-              <li>Copy and run the following command:</li>
-            </ol>
-            <code class="code">{{ code }}</code>
-          </b-modal>
+            <div style="padding: 1em">
+              <h4>Example usage</h4>
+              <p>Please follow the steps below</p>
+              <ol>
+                <li>Select at least one dataset</li>
+                <li>Download the participant-level and dataset-level results files</li>
+                <li>Change directory to the location of the downloaded files</li>
+                <li>Copy and run the following command:</li>
+              </ol>
+              <code class="code">{{ code }}</code>
+            </div>
+          </modal>
         </div>
       </b-col>
       <b-col cols="7">
