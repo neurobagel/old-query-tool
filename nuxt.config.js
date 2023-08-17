@@ -31,6 +31,7 @@ export default {
   plugins: [
     '@plugins/bootstrap-vue',
     '@plugins/vue-select',
+    { src: '@plugins/vue-js-modal', ssr: false },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
