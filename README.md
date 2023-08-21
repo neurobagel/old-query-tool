@@ -44,8 +44,21 @@ The query tool is hosted at https://query.neurobagel.org/ and interfaces with [N
 NOTE: Currently, to access the query tool, you must be connected to the McGill network.
 
 ## Local Installation
+To run the query tool locally, you have two options:
 
-### Install Dependencies
+1. Use our docker image (preferred)
+2. Do a manual install from the cloned git repo.
+### Install using Docker
+To obtain the query tool docker image, simply run 
+
+```bash
+docker pull neurobagel/query_tool:latest
+```
+
+in your terminal. The Docker image includes the most recent build of the 
+query tool and a minimal http server to serve the static tool.
+
+### Manual installation
 
 To run the query tool, you'll need [node package manager (npm)](https://www.npmjs.com/) and [Node.js](https://nodejs.org/en/).
 You can find the instructions on installing npm and node in the official [documentation](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
@@ -81,7 +94,20 @@ if you're using the remote api, your `.env` file would look something like this:
 API_QUERY_URL=https://api.neurobagel.org/
 ```
 
-### Launch the Query Tool
+
+### Launch the Query Tool as a Docker container
+To launch the query tool Docker container, simply run
+
+```bash
+docker run -p 8000:80 neurobagel/query_tool:latest
+```
+
+Then you can access the query tool at http://localhost:8000
+
+**Note**: the query tool is listening on port `80` inside the docker container,
+replace port `8000` by the port you would like to expose to the host.
+
+### Launch the Query Tool for a manual install
 
 To launch the tool in developer mode run the following command:
 
