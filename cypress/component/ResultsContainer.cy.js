@@ -96,6 +96,14 @@ describe('Results', () => {
     cy.get('[data-cy="download-participant-level-results-button"]').should('be.disabled');
     cy.get('[data-cy="download-dataset-level-results-button"]').should('be.disabled');
   });
+  it('When results do not exist, example usage button and modal are not visible', () => {
+    cy.mount(ResultsContainer, {
+      stubs,
+      propsData: { ...props, results: [] },
+    });
+    cy.get('[data-cy="example-usage-button"]').should('not.exist');
+    cy.get('[data-cy="example-usage-modal"]').should('not.exist');
+  });
   it('When results exist, displays example usage button and modal', () => {
     cy.mount(ResultsContainer, {
       stubs,
