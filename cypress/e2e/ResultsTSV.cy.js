@@ -11,7 +11,6 @@ const response = [
 
 describe('Results TSV', () => {
   it('Removes a newline character from a dataset name in the downloaded dataset-level results file', () => {
-    cy.viewport(2000, 1000);
     cy.intercept('query/?*', response).as('call');
     cy.visit('/');
     cy.get('[data-cy="submit-query"]').click();
@@ -20,7 +19,6 @@ describe('Results TSV', () => {
     cy.readFile('cypress/downloads/dataset-level-results.tsv').should('contain', 'some name');
   });
   it('Removes the unwanted whitespace from the downloaded results files', () => {
-    cy.viewport(2000, 1000);
     cy.intercept('query/?*', response).as('call');
     cy.visit('/');
     cy.get('[data-cy="submit-query"]').click();

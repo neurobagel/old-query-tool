@@ -2,6 +2,8 @@ const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({
   component: {
+    viewportWidth: 1280,
+    viewportHeight: 1024,
     devServer: {
       framework: "nuxt",
       bundler: "webpack",
@@ -9,6 +11,8 @@ module.exports = defineConfig({
   },
 
   e2e: {
+    viewportWidth: 1280,
+    viewportHeight: 1024,
     baseUrl: "http://localhost:3000",
     
     setupNodeEvents(on, config) {

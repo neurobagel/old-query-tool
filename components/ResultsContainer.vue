@@ -82,13 +82,43 @@
         />
       </b-list-group>
     </b-row>
-    <b-col
+    <b-row
       v-if="displayResults"
-      class="d-flex flex-row-reverse"
-      style="margin-top: 1em;"
+      style="margin-top: 1em"
     >
-      <b-row>
-        <div class="download-buttons-div d-flex">
+      <b-col cols="5">
+        <div class="d-flex justify-content-start">
+          <b-button
+            class="nb-button"
+            data-cy="example-usage-button"
+            @click="$modal?.show('example-usage-modal')"
+          >
+            How to get the data
+          </b-button>
+          <modal
+            name="example-usage-modal"
+            :height="auto"
+            :adaptive="true"
+            :resizable="true"
+            :reset="true"
+            data-cy="example-usage-modal"
+          >
+            <div style="padding: 1em">
+              <h4>Example usage</h4>
+              <p>Please follow the steps below</p>
+              <ol>
+                <li>Select at least one dataset</li>
+                <li>Download the participant-level and dataset-level results files</li>
+                <li>Change directory to the location of the downloaded files</li>
+                <li>Copy and run the following command:</li>
+              </ol>
+              <code class="code">{{ code }}</code>
+            </div>
+          </modal>
+        </div>
+      </b-col>
+      <b-col cols="7">
+        <div class="d-flex justify-content-end download-buttons-div">
           <download-results-button
             identifier="participant-level"
             :downloads-is-empty="downloads.length === 0"
@@ -102,8 +132,8 @@
             @download-results="downloadResults"
           />
         </div>
-      </b-row>
-    </b-col>
+      </b-col>
+    </b-row>
   </b-col>
 </template>
 
@@ -123,6 +153,7 @@ export default {
     return {
       selectAll: false,
       downloads: [],
+      code: 'docker run -t -v $(pwd):/data neurobagel/dataget:latest /data/dataset-results.tsv /data/participant-results.tsv /data/output',
     };
   },
   computed: {
