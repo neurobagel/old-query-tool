@@ -93,7 +93,7 @@
             data-cy="example-usage-button"
             @click="$modal?.show('example-usage-modal')"
           >
-            Example usage
+            How to get the data
           </b-button>
           <modal
             name="example-usage-modal"
