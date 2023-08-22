@@ -1,0 +1,12 @@
+# Ignore development specific files
+node_modules
+.nuxt
+.build
+
+# Ignore build artifacts
+dist
+
+# Ignore Docker specific files
+.dockerignore
+Dockerfile
+docker-compose.yml
