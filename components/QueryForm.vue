@@ -160,7 +160,7 @@ export default {
     },
     async submitQuery() {
       this.isFetching = true;
-      let url = `${process.env.API_QUERY_URL}query/?`;
+      let url = `${this.$config.apiQueryURL}query/?`;
       if (this.minAge) {
         url += `min_age=${this.minAge}`;
       }

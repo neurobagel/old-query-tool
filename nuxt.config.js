@@ -40,8 +40,6 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
-    // https://www.npmjs.com/package/@nuxtjs/dotenv
-    '@nuxtjs/dotenv',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -50,9 +48,12 @@ export default {
     'bootstrap-vue/nuxt',
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    // https://www.npmjs.com/package/@nuxtjs/dotenv
-    '@nuxtjs/dotenv',
   ],
+
+  // Needed for environment variable to be visible in client-side code: https://v2.nuxt.com/tutorials/moving-from-nuxtjs-dotenv-to-runtime-config/#migrating-to-the-nuxt-runtime-config-from-nuxtjsdotenv
+  publicRuntimeConfig: {
+    apiQueryURL: process.env.API_QUERY_URL,
+  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
