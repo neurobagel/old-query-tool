@@ -6,6 +6,10 @@ updates:
     directory: '/'
     schedule:
       interval: 'weekly'
+    labels:
+      - "@ bot"
+      - "maint:dependency"
+      - "type:maintenance"
  
   - package-ecosystem: 'gitsubmodule'
     directory: '/'
@@ -21,3 +25,7 @@ updates:
         update-types: ["version-update:semver-major"]
       - dependency-name: 'vue'
         update-types: ["version-update:semver-major"]
+    labels:
+      - "@ bot"
+      - "maint:dependency"
+      - "type:maintenance"
