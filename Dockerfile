@@ -7,8 +7,9 @@ COPY package*.json .
 # see: https://docs.npmjs.com/cli/v9/commands/npm-ci
 RUN npm ci
 COPY . .
-RUN npm run generate
 
-FROM httpd:2.4-alpine
+ENV NUXT_HOST=0.0.0.0
+ENV NUXT_PORT=3000
 
-COPY --from=build /app/dist /usr/local/apache2/htdocs
+# NOTE: exec form of command does not work, possibly due to && 
+ENTRYPOINT npm run build && npm run start
