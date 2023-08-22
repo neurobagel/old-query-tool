@@ -19,7 +19,7 @@ jobs:
           echo "API_QUERY_URL=" > .env
 
       - name: Run end to end tests
-        uses: cypress-io/github-action@v5
+        uses: cypress-io/github-action@v6
         with:
           build: npm run build
           start: npm start
