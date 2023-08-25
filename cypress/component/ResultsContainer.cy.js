@@ -112,5 +112,7 @@ describe('Results', () => {
     cy.get('[data-cy="example-usage-button"]').should('be.visible').click();
     cy.get('[data-cy="example-usage-modal"]').should('be.visible');
     cy.get('[data-cy="example-usage-modal"]').should('contain', 'Please follow the steps below');
+    cy.get('[data-cy="example-usage-modal"]').should('contain', 'dataset-level-results.tsv');
+    cy.get('[data-cy="example-usage-modal"]').should('contain', 'participant-level-results.tsv');
   });
 });

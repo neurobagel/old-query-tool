@@ -113,6 +113,7 @@
                 <li>Copy and run the following command:</li>
               </ol>
               <code class="code">{{ code }}</code>
+              <p>Note that the output directory will be created if it does not exist already.</p>
             </div>
           </modal>
         </div>
@@ -153,7 +154,7 @@ export default {
     return {
       selectAll: false,
       downloads: [],
-      code: 'docker run -t -v $(pwd):/data neurobagel/dataget:latest /data/dataset-results.tsv /data/participant-results.tsv /data/output',
+      code: 'docker run -t -v $(pwd):/data neurobagel/dataget:latest /data/dataset-level-results.tsv /data/participant-level-results.tsv /data/output',
     };
   },
   computed: {
