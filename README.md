@@ -99,13 +99,13 @@ API_QUERY_URL=https://api.neurobagel.org/
 To launch the query tool Docker container and pass in the `.env` file you have created, simply run
 
 ```bash
-docker run -p 8000:3000 --env-file=.env neurobagel/query_tool:latest
+docker run -p 3000:3000 --env-file=.env neurobagel/query_tool:latest
 ```
 
-Then you can access the query tool at http://localhost:8000
+Then you can access the query tool at http://localhost:3000
 
-**Note**: the query tool is listening on port `80` inside the docker container,
-replace port `8000` by the port you would like to expose to the host.
+**Note**: the query tool is listening on port `3000` inside the docker container,
+replace port `3000` by the port you would like to expose to the host.
 
 ### Launch the Query Tool for a manual install
 
