@@ -113,7 +113,12 @@
                 <li>Copy and run the following command:</li>
               </ol>
               <code class="code">{{ code }}</code>
-              <p>The downloaded data will be saved in a directory called <code>output</code> in the current directory. Note that the output directory will be created if it does not exist already.</p>
+              <p>
+                The downloaded data will be saved in a directory called
+                <code>output</code> in the current directory.
+                Note that the output directory will be created
+                if it does not exist already.
+              </p>
             </div>
           </modal>
         </div>
