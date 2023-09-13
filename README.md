@@ -94,6 +94,8 @@ if you're using the remote api, your `.env` file would look something like this:
 API_QUERY_URL=https://api.neurobagel.org/
 ```
 
+:warning: The protocol matters here. 
+If you wish to use the Neurobagel remote API, ensure your `API_QUERY_URL` uses `https` instead of `http`.
 
 ### Launch the Query Tool as a Docker container
 To launch the query tool Docker container and pass in the `.env` file you have created, simply run
