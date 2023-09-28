@@ -214,15 +214,15 @@ export default {
           res.subject_data.forEach((subject) => {
             tsvRows.push([
               res.dataset_uuid,
-              subject.sub_id,
-              subject.age,
-              subject.sex,
-              subject.diagnosis?.join(', '),
-              subject.assessment?.join(', '),
-              subject.session_id,
+              res.records_protected ? 'protected' : subject.sub_id,
+              res.records_protected ? 'protected' : subject.age,
+              res.records_protected ? 'protected' : subject.sex,
+              res.records_protected ? 'protected' : subject.diagnosis?.join(', '),
+              res.records_protected ? 'protected' : subject.assessment?.join(', '),
+              res.records_protected ? 'protected' : subject.session_id,
               subject.session_file_path,
-              subject.num_sessions,
-              subject.image_modal?.join(', '),
+              res.records_protected ? 'protected' : subject.num_sessions,
+              res.records_protected ? 'protected' : subject.image_modal?.join(', '),
             ].join('\t'));
           });
         });
