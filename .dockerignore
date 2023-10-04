@@ -10,3 +10,6 @@ dist
 .dockerignore
 Dockerfile
 docker-compose.yml
+
+# Ignore environment specific files
+.env
