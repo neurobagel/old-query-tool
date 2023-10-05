@@ -143,7 +143,9 @@ The query tool offers two different TSV files for results:
 - Dataset-level results TSV contains: dataset id, dataset name, dataset portal uri, number of matching subjects, and available imaging modalities
 - Participant-level results TSV contains: dataset id, subject id, age, sex, diagnosis, assessment, session id, session file path, number of sessions, and imaging modality
 
-The output files can be joined using `DatasetID` as key.\
+The output files can be joined using `DatasetID` as key.
+
+You can refer to [this](https://neurobagel.org/query_tool/#downloading-query-results) part of the neurobagel documentation to see what the outputs of the query tool look like. You can also download the example output files [here](https://github.com/neurobagel/neurobagel_examples/tree/main/query-tool-results).
 
 ## Testing
 
