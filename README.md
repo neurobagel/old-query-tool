@@ -145,7 +145,7 @@ The query tool offers two different TSV files for results:
 
 The output files can be joined using `DatasetID` as key.
 
-You can refer to [this](https://neurobagel.org/query_tool/#downloading-query-results) part of the neurobagel documentation to see what the outputs of the query tool look like. You can also download the example output files [here](https://github.com/neurobagel/neurobagel_examples/tree/main/query-tool-results).
+You can refer to [the neurobagel documentation](https://neurobagel.org/query_tool/#downloading-query-results) to see what the outputs of the query tool look like and how they are structured. You can also download the raw example output files [here](https://github.com/neurobagel/neurobagel_examples/tree/main/query-tool-results).
 
 ## Testing
 
