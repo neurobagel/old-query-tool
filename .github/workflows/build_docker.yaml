@@ -1,4 +1,4 @@
-name: docker hub image push
+name: build docker
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  docker hub image push:
+  build docker:
    runs-on: ubuntu-latest
    steps:
     - name: Checkout
