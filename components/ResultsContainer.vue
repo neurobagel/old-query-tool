@@ -75,7 +75,7 @@
           :dataset-uuid="res.dataset_uuid"
           :dataset-name="res.dataset_name"
           :num-matching-subjects="res.num_matching_subjects"
-          :image-modals="res.image_modals.sort()"
+          :image-modals="res.image_modals"
           :is-checked="selectAll || downloads.includes(res.dataset_uuid)"
           :data-cy="res.dataset_uuid"
           @update-downloads="updateDownloads"

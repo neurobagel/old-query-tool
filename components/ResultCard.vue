@@ -50,7 +50,7 @@
                 class="d-flex justify-content-end"
               >
                 <b-button-group
-                  v-for="modality in imageModals"
+                  v-for="modality in sortedModalities"
                   :key="modality"
                   class="mr-2"
                 >
@@ -127,6 +127,13 @@ export default {
         },
       },
     };
+  },
+  computed: {
+    sortedModalities() {
+      // We have to do this as the linter screams at us for mutating the prop
+      const sortedModalities = this.imageModals;
+      return sortedModalities.sort();
+    },
   },
   methods: {
     updateDownloads(event) {
