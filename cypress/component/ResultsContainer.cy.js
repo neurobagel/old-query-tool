@@ -21,7 +21,7 @@ const props = {
       dataset_name: 'not-so-cool-dataset',
       num_matching_subjects: 2,
       subject_file_paths: ['not-so-cool-path', 'some-not-so-cool-path'],
-      image_modals: ['http://purl.org/nidash/nidm#FlowWeighted', 'http://purl.org/nidash/nidm#T1Weighted'],
+      image_modals: ['http://purl.org/nidash/nidm#T2Weighted', 'http://purl.org/nidash/nidm#FlowWeighted', 'http://purl.org/nidash/nidm#T1Weighted'],
     },
 
   ],
@@ -114,5 +114,24 @@ describe('Results', () => {
     cy.get('[data-cy="example-usage-modal"]').should('contain', 'Please follow the steps below');
     cy.get('[data-cy="example-usage-modal"]').should('contain', 'dataset-level-results.tsv');
     cy.get('[data-cy="example-usage-modal"]').should('contain', 'participant-level-results.tsv');
+  });
+  it.only('Displays the modality buttons in correct order', () => {
+    cy.mount(ResultsContainer, {
+      stubs,
+      propsData: props,
+    });
+    cy.get('[data-cy="http://neurobagel.org/vocab/not-so-cool-dataset"] > .card > :nth-child(1) > .card-body > :nth-child(1) > .col-4 > .row > .btn-toolbar')
+      .children()
+      .each((childElement, index) => {
+        if (index === 0) {
+          cy.wrap(childElement).contains('Flow');
+        }
+        if (index === 1) {
+          cy.wrap(childElement).contains('T1');
+        }
+        if (index === 2) {
+          cy.wrap(childElement).contains('T2');
+        }
+      });
   });
 });
