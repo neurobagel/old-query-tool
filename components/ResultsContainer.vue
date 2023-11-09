@@ -97,7 +97,8 @@
           </b-button>
           <modal
             name="example-usage-modal"
-            :height="auto"
+            :height="400"
+            :width="650"
             :adaptive="true"
             :resizable="true"
             :reset="true"
@@ -119,6 +120,8 @@
                 Note that the output directory will be created
                 if it does not exist already.
               </p>
+              <span>⚠️ The command for automatically getting the data currently only
+                applies to datasets available through datalad.</span>
             </div>
           </modal>
         </div>
