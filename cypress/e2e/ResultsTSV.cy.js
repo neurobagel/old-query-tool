@@ -5,11 +5,7 @@ const response = [
     dataset_file_path: 'https://github.com/somethingDatasets/ds0001.git',
     dataset_name: 'some\nname',
     num_matching_subjects: 3,
-    subject_data: [
-      {
-        session_file_path: '/ds000011/sub-01',
-      },
-    ],
+    subject_data: 'protected',
     image_modals: ['http://purl.org/nidash/nidm#FlowWeighted', 'http://purl.org/nidash/nidm#T1Weighted'],
   },
   {
@@ -83,8 +79,8 @@ describe('Results TSV', () => {
       const datasetProtected = rows[1];
       const datasetNotProtected = rows[2];
 
-      expect(datasetProtected.split('\t')[3]).to.equal('protected');
-      expect(datasetNotProtected.split('\t')[3]).to.equal('http://purl.bioontology.org/ontology/SNOMEDCT/248153007');
+      expect(datasetProtected.split('\t')[7]).to.equal('protected');
+      expect(datasetNotProtected.split('\t')[7]).to.equal('/ds000011/sub-04');
     });
   });
 });

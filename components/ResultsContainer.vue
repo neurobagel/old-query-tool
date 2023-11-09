@@ -211,20 +211,35 @@ export default {
         tsvRows.push(headers);
 
         datasets.forEach((res) => {
-          res.subject_data.forEach((subject) => {
+          if (res.records_protected) {
             tsvRows.push([
               res.dataset_uuid,
-              res.records_protected ? 'protected' : subject.sub_id,
-              res.records_protected ? 'protected' : subject.age,
-              res.records_protected ? 'protected' : subject.sex,
-              res.records_protected ? 'protected' : subject.diagnosis?.join(', '),
-              res.records_protected ? 'protected' : subject.assessment?.join(', '),
-              res.records_protected ? 'protected' : subject.session_id,
-              subject.session_file_path,
-              res.records_protected ? 'protected' : subject.num_sessions,
-              res.records_protected ? 'protected' : subject.image_modal?.join(', '),
+              'protected', // subject_id
+              'protected', // age
+              'protected', // sex
+              'protected', // diagnosis
+              'protected', // assessment
+              'protected', // session_id
+              'protected', // session_file_path
+              'protected', // num_sessions
+              'protected', // image_modal
             ].join('\t'));
-          });
+          } else {
+            res.subject_data.forEach((subject) => {
+              tsvRows.push([
+                res.dataset_uuid,
+                subject.sub_id,
+                subject.age,
+                subject.sex,
+                subject.diagnosis?.join(', '),
+                subject.assessment?.join(', '),
+                subject.session_id,
+                subject.session_file_path,
+                subject.num_sessions,
+                subject.image_modal?.join(', '),
+              ].join('\t'));
+            });
+          }
         });
       } else {
         const headers = ['DatasetID', 'DatasetName', 'PortalURI', 'NumMatchingSubjects', 'AvailableImageModalities'].join('\t');
