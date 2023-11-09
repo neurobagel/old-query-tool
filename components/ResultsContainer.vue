@@ -214,15 +214,15 @@ export default {
           if (res.records_protected) {
             tsvRows.push([
               res.dataset_uuid,
-              'protected',
-              'protected',
-              'protected',
-              'protected',
-              'protected',
-              'protected',
-              'protected',
-              'protected',
-              'protected',
+              'protected', // subject_id
+              'protected', // age
+              'protected', // sex
+              'protected', // diagnosis
+              'protected', // assessment
+              'protected', // session_id
+              'protected', // session_file_path
+              'protected', // num_sessions
+              'protected', // image_modal
             ].join('\t'));
           } else {
             res.subject_data.forEach((subject) => {
