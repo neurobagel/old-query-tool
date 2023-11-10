@@ -37,6 +37,8 @@ The query tool is a Vue application, developed in [JavaScript](https://www.javas
 
 </div>
 
+Please refer to our [**official documentation**](https://neurobagel.org/query_tool/) for more detailed information on how to use the query tool.
+
 ## Quickstart
 
 The query tool is hosted at https://query.neurobagel.org/ and interfaces with [Neurobagel API](https://api.neurobagel.org/docs).
