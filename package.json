@@ -21,7 +21,7 @@
     "vue": "^2.7.15",
     "vue-js-modal": "^2.0.1",
     "vue-select": "^3.20.2",
-    "vue-server-renderer": "^2.7.10",
+    "vue-server-renderer": "^2.7.15",
     "vue-template-compiler": "^2.7.15"
   },
   "devDependencies": {
