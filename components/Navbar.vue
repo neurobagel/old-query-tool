@@ -11,12 +11,17 @@
         target="_blank"
         data-cy="brand"
       >
-        <b-row>
+        <img
+          src="https://raw.githubusercontent.com/neurobagel/documentation/main/docs/imgs/logo/neurobagel_logo.png"
+          alt="Neurobagel Logo"
+          class="nav-logo"
+        >
+        <div class="nav-title-and-subtitle">
           Neurobagel Query
-        </b-row>
-        <b-row id="nav-text">
-          Define and find cohorts at the subject level
-        </b-row>
+          <p class="nav-subtitle">
+            Define and find cohorts at the subject level
+          </p>
+        </div>
       </b-navbar-brand>
       <b-navbar-toggle target="nav-collapse" />
       <b-collapse
@@ -24,8 +29,7 @@
         is-nav
       >
         <b-navbar-nav
-          id="right-nav"
-          class="ml-auto"
+          class="ml-auto right-nav"
         >
           <b-nav-item
             href="https://github.com/neurobagel/query-tool/releases/tag/v0.1.0/"
@@ -57,3 +61,57 @@
     </b-navbar>
   </div>
 </template>
+
+<style>
+  .brand-styling {
+    font-family: -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      Roboto,
+      "Helvetica Neue",
+      Arial,
+      "Noto Sans",
+      "Liberation Sans",
+      sans-serif,
+      "Apple Color Emoji",
+      "Segoe UI Emoji",
+      "Segoe UI Symbol",
+      "Noto Color Emoji";
+    font-size: 2em;
+    font-weight: 700;
+    padding-left: 1em;
+  }
+
+  .navbar {
+      background-color: white !important;
+      margin-bottom: 0.5rem;
+  }
+
+  .navbar-nav .nav-link:hover {
+    color: #470A68;
+  }
+
+  .nav-subtitle {
+    color: grey;
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .nav-title-and-subtitle {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 10px;
+    margin-top: 10px;
+  }
+
+  .right-nav {
+    padding-right: 1em;
+    margin-left: auto !important;
+  }
+
+  .nav-logo {
+    height: 60px;
+    width: auto;
+  }
+</style>
