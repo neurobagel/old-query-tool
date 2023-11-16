@@ -32,6 +32,7 @@
                     <span
                       v-if="datasetName.length > 60"
                       class="expander"
+                      :data-cy="`card-${datasetUuid}-expander`"
                       @click="expandText"
                     >{{ titleExpanded ? '...less' : "...more" }}</span>
                   </h5>
