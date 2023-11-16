@@ -13,32 +13,6 @@
   color: black;
 }
 
-.card-checkbox {
-  padding-right: 0;
-}
-
-.card-content {
-  padding-left: 0;
-}
-
-.card-modality {
-  font-size: 1em;
-}
-
-.card-text {
-  font-size: 1.25em;
-}
-
-.card-title {
-  font-size: 1.75em;
-
-  /* Ellipsis length truncation */
-  max-width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
 /* Card list */
 #card-listbox {
   border: 1em;
