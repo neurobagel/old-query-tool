@@ -43,7 +43,7 @@
                       class="card-text"
                       :data-cy="`card-${datasetUuid}-subjects`"
                     >
-                      {{ `${numMatchingSubjects} subjects` }}
+                      {{`${numMatchingSubjects} subjects / ${datasetTotalSubjects} total subjects`}}
                     </p>
                   </b-col>
                 </b-row>
@@ -86,6 +86,10 @@ export default {
     },
     datasetName: {
       type: String,
+      required: true,
+    },
+    datasetTotalSubjects: {
+      type: Number,
       required: true,
     },
     numMatchingSubjects: {

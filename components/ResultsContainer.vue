@@ -74,6 +74,7 @@
           :key="res.dataset_uuid"
           :dataset-uuid="res.dataset_uuid"
           :dataset-name="res.dataset_name"
+          :dataset-total-subjects="res.dataset_total_subjects"
           :num-matching-subjects="res.num_matching_subjects"
           :image-modals="res.image_modals"
           :is-checked="selectAll || downloads.includes(res.dataset_uuid)"

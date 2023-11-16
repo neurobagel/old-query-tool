@@ -3,6 +3,7 @@ import ResultCard from '../../components/ResultCard.vue';
 const props = {
   datasetUuid: 'http://neurobagel.org/vocab/cool-dataset',
   datasetName: 'cool-dataset',
+  datasetTotalSubjects: 10,
   numMatchingSubjects: 4,
   imageModals: ['http://purl.org/nidash/nidm#T1Weighted', 'http://purl.org/nidash/nidm#T2Weighted'],
   isChecked: true,
@@ -14,6 +15,7 @@ describe('Result card', () => {
       propsData: props,
     });
     cy.get('[data-cy="card-http://neurobagel.org/vocab/cool-dataset-dataset"]').should('be.visible').contains('cool-dataset');
+    cy.get('[data-cy="card-http://neurobagel.org/vocab/cool-dataset-subjects"]').should('be.visible').contains('10 total subjects');
     cy.get('[data-cy="card-http://neurobagel.org/vocab/cool-dataset-subjects"]').should('be.visible').contains('4 subjects');
     cy.get('[data-cy="card-http://neurobagel.org/vocab/cool-dataset-T1"]').should('be.visible').contains('T1');
     cy.get('[data-cy="card-http://neurobagel.org/vocab/cool-dataset-T2"]').should('be.visible').contains('T2');

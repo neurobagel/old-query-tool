@@ -4,6 +4,7 @@ const response = [
     dataset_uuid: 'https://someportal.org/datasets/ds0001',
     dataset_file_path: 'https://github.com/somethingDatasets/ds0001.git',
     dataset_name: 'some\nname',
+    dataset_total_subjects: 10,
     num_matching_subjects: 3,
     subject_data: 'protected',
     image_modals: ['http://purl.org/nidash/nidm#FlowWeighted', 'http://purl.org/nidash/nidm#T1Weighted'],
@@ -13,6 +14,7 @@ const response = [
     dataset_uuid: 'https://someportal.org/datasets/ds0002',
     dataset_file_path: 'https://github.com/somethingDatasets/ds0002.git',
     dataset_name: 'some\ncoolname',
+    dataset_total_subjects: 11,
     num_matching_subjects: 5,
     subject_data: [
       {
