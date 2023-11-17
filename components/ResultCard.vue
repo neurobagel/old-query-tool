@@ -28,7 +28,13 @@
                     class="card-title"
                     :data-cy="`card-${datasetUuid}-dataset`"
                   >
-                    {{ datasetName }}
+                    {{ titleExpanded ? datasetName : datasetName.slice(0, 60) }}
+                    <span
+                      v-if="datasetName.length > 60"
+                      class="expander"
+                      :data-cy="`card-${datasetUuid}-expander`"
+                      @click="expandText"
+                    >{{ titleExpanded ? '...less' : "...more" }}</span>
                   </h5>
                 </b-row>
                 <b-row>
@@ -102,6 +108,7 @@ export default {
   emits: ['update-downloads'],
   data() {
     return {
+      titleExpanded: false,
       modalities: {
         'http://purl.org/nidash/nidm#ArterialSpinLabeling': {
           name: 'ASL',
@@ -143,6 +150,43 @@ export default {
     updateDownloads(event) {
       this.$emit('update-downloads', this.datasetUuid, event.target.checked);
     },
+    expandText() {
+      this.titleExpanded = !this.titleExpanded;
+    },
   },
 };
 </script>
+<style>
+.card-checkbox {
+  padding-right: 0;
+}
+
+.card-content {
+  padding-left: 0;
+}
+
+.card-modality {
+  font-size: 1em;
+}
+
+.card-text {
+  font-size: 1.25em;
+}
+
+.card-title {
+  font-size: 1.75em;
+  max-width: 100%;
+  white-space: normal;
+}
+
+.expanded {
+  white-space: normal;
+}
+
+.expander {
+  font-size: 15px !important;
+  font-style: italic;
+  color: #470A68;
+  cursor: pointer;
+}
+</style>

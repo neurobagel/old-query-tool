@@ -33,4 +33,15 @@ describe('Result card', () => {
     cy.get('[data-cy="card-http://neurobagel.org/vocab/cool-dataset-checkbox"]').check();
     cy.get('@spy').should('have.been.calledWith', 'http://neurobagel.org/vocab/cool-dataset', true);
   });
+  it('Expands a long title and collapses it when clicked', () => {
+    props.datasetName = 'This is a veeeeeeeeeeeeeeeeeeeery long title that should be truncated';
+    cy.mount(ResultCard, {
+      propsData: props,
+    });
+    cy.get('[data-cy="card-http://neurobagel.org/vocab/cool-dataset-dataset"]').should('not.contain', 'truncated');
+    cy.get('[data-cy="card-http://neurobagel.org/vocab/cool-dataset-expander"]').contains('...more').click();
+    cy.get('[data-cy="card-http://neurobagel.org/vocab/cool-dataset-dataset"]').should('be.visible').contains('This is a veeeeeeeeeeeeeeeeeeeery long title that should be truncated');
+    cy.get('[data-cy="card-http://neurobagel.org/vocab/cool-dataset-expander"]').contains('...less').click();
+    cy.get('[data-cy="card-http://neurobagel.org/vocab/cool-dataset-dataset"]').should('not.contain', 'truncated');
+  });
 });
