@@ -1,6 +1,7 @@
 import ResultsContainer from '../../components/ResultsContainer.vue';
 import ResultCard from '../../components/ResultCard.vue';
 import DownloadResultsButton from '../../components/DownloadResultsButton.vue';
+import { protectedResponse2 } from '../fixtures/example-responses';
 
 const stubs = {
   'result-card': ResultCard,
@@ -8,23 +9,7 @@ const stubs = {
 };
 
 const props = {
-  results: [
-    {
-      dataset_uuid: 'http://neurobagel.org/vocab/cool-dataset',
-      dataset_name: 'cool-dataset',
-      num_matching_subjects: 2,
-      subject_file_paths: ['cool-path', 'some-cool-path'],
-      image_modals: ['http://purl.org/nidash/nidm#T1Weighted', 'http://purl.org/nidash/nidm#T2Weighted'],
-    },
-    {
-      dataset_uuid: 'http://neurobagel.org/vocab/not-so-cool-dataset',
-      dataset_name: 'not-so-cool-dataset',
-      num_matching_subjects: 2,
-      subject_file_paths: ['not-so-cool-path', 'some-not-so-cool-path'],
-      image_modals: ['http://purl.org/nidash/nidm#T2Weighted', 'http://purl.org/nidash/nidm#FlowWeighted', 'http://purl.org/nidash/nidm#T1Weighted'],
-    },
-
-  ],
+  results: protectedResponse2,
 };
 
 describe('Results', () => {
@@ -115,12 +100,12 @@ describe('Results', () => {
     cy.get('[data-cy="example-usage-modal"]').should('contain', 'dataset-level-results.tsv');
     cy.get('[data-cy="example-usage-modal"]').should('contain', 'participant-level-results.tsv');
   });
-  it.only('Displays the modality buttons in correct order', () => {
+  it('Displays the modality buttons in correct order', () => {
     cy.mount(ResultsContainer, {
       stubs,
       propsData: props,
     });
-    cy.get('[data-cy="http://neurobagel.org/vocab/not-so-cool-dataset"] > .card > :nth-child(1) > .card-body > :nth-child(1) > .col-4 > .row > .btn-toolbar')
+    cy.get('[data-cy="http://neurobagel.org/vocab/not-so-cool-dataset"] > .card > :nth-child(1) > .card-body > :nth-child(1) > .col-4 > .row > .btn-toolbar > .float-right')
       .children()
       .each((childElement, index) => {
         if (index === 0) {
