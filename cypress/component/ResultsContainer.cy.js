@@ -115,12 +115,12 @@ describe('Results', () => {
     cy.get('[data-cy="example-usage-modal"]').should('contain', 'dataset-level-results.tsv');
     cy.get('[data-cy="example-usage-modal"]').should('contain', 'participant-level-results.tsv');
   });
-  it.only('Displays the modality buttons in correct order', () => {
+  it('Displays the modality buttons in correct order', () => {
     cy.mount(ResultsContainer, {
       stubs,
       propsData: props,
     });
-    cy.get('[data-cy="http://neurobagel.org/vocab/not-so-cool-dataset"] > .card > :nth-child(1) > .card-body > :nth-child(1) > .col-4 > .row > .btn-toolbar')
+    cy.get('[data-cy="http://neurobagel.org/vocab/not-so-cool-dataset"] > .card > :nth-child(1) > .card-body > :nth-child(1) > .col-4 > .row > .btn-toolbar > .float-right')
       .children()
       .each((childElement, index) => {
         if (index === 0) {
