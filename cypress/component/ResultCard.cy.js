@@ -1,6 +1,7 @@
 import ResultCard from '../../components/ResultCard.vue';
 
 const props = {
+  nodeName: 'some-node-name',
   datasetUuid: 'http://neurobagel.org/vocab/cool-dataset',
   datasetName: 'cool-dataset',
   datasetTotalSubjects: 10,
@@ -10,15 +11,16 @@ const props = {
 };
 
 describe('Result card', () => {
-  it('Displays a card with title, number of subjects, modalities, and checkbox', () => {
+  it('Displays a card with node name, dataset title, number of subjects, modalities, and checkbox', () => {
     cy.mount(ResultCard, {
       propsData: props,
     });
+    cy.get('[data-cy="card-http://neurobagel.org/vocab/cool-dataset-node-name"]').should('be.visible').contains('some-node-name');
     cy.get('[data-cy="card-http://neurobagel.org/vocab/cool-dataset-dataset"]').should('be.visible').contains('cool-dataset');
     cy.get('[data-cy="card-http://neurobagel.org/vocab/cool-dataset-subjects"]').should('be.visible').contains('10 total subjects');
     cy.get('[data-cy="card-http://neurobagel.org/vocab/cool-dataset-subjects"]').should('be.visible').contains('4 subjects');
-    cy.get('[data-cy="card-http://neurobagel.org/vocab/cool-dataset-T1"]').should('be.visible').contains('T1');
-    cy.get('[data-cy="card-http://neurobagel.org/vocab/cool-dataset-T2"]').should('be.visible').contains('T2');
+    cy.get('[data-cy="card-http://neurobagel.org/vocab/cool-dataset-modality-T1"]').should('be.visible').contains('T1');
+    cy.get('[data-cy="card-http://neurobagel.org/vocab/cool-dataset-modality-T2"]').should('be.visible').contains('T2');
     cy.get('[data-cy="card-http://neurobagel.org/vocab/cool-dataset-checkbox"]').should('be.visible').should('be.checked');
   });
   it('Emits update-download when a checkbox is checked/unchecked', () => {
