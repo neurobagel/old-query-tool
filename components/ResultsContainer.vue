@@ -72,6 +72,7 @@
         <result-card
           v-for="res in results"
           :key="res.dataset_uuid"
+          :node-name="res.node_name"
           :dataset-uuid="res.dataset_uuid"
           :dataset-name="res.dataset_name"
           :dataset-total-subjects="res.dataset_total_subjects"

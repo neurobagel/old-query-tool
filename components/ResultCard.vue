@@ -43,7 +43,8 @@
                       class="card-text"
                       :data-cy="`card-${datasetUuid}-subjects`"
                     >
-                      {{`${numMatchingSubjects} subjects / ${datasetTotalSubjects} total subjects`}}
+                      {{ `${numMatchingSubjects} subjects /
+                    ${datasetTotalSubjects} total subjects` }}
                     </p>
                   </b-col>
                 </b-row>
@@ -53,18 +54,22 @@
           <b-col cols="4">
             <b-row>
               <b-button-toolbar
-                class="d-flex justify-content-end"
+                class="d-flex flex-column align-items-end"
               >
+                <span
+                  class="text-right mb-2"
+                  :data-cy="`card-${datasetUuid}-node-name`"
+                >{{ `from ${nodeName}` }}</span>
                 <b-button-group
-                  v-for="modality in sortedModalities"
-                  :key="modality"
-                  class="mr-2"
+                  class="float-right"
                 >
                   <b-button
+                    v-for="modality in sortedModalities"
+                    :key="modality"
                     type="button"
                     class="btn card-modality"
                     :style="modalities[modality].style"
-                    :data-cy="`card-${datasetUuid}-${modalities[modality].name}`"
+                    :data-cy="`card-${datasetUuid}-modality-${modalities[modality].name}`"
                   >
                     {{ modalities[modality].name }}
                   </b-button>
@@ -80,6 +85,10 @@
 <script>
 export default {
   props: {
+    nodeName: {
+      type: String,
+      required: true,
+    },
     datasetUuid: {
       type: String,
       required: true,
