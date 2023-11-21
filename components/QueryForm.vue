@@ -10,6 +10,15 @@
     <b-row>
       <b-form @submit.prevent="validateQueryForm">
         <b-form-row class="row">
+          <categorical-field
+            v-if="isFederationAPI"
+            name="Neurobagel graph database"
+            data-cy="nodes-field"
+            :options="['All', ...Object.keys(nodes)]"
+            multiple="true"
+            default-selected="All"
+            @update-categorical-field="updateField"
+          />
           <b-form-group class="col-md-6">
             <continuous-field
               name="Min Age"
@@ -102,6 +111,8 @@ export default {
   emits: ['update-response'],
   data() {
     return {
+      nodes: {},
+      selectedNodes: [],
       minAge: null,
       maxAge: null,
       sex: null,
@@ -111,7 +122,18 @@ export default {
       assessment: null,
       modality: null,
       isFetching: false,
+      isFederationAPI: true,
     };
+  },
+  async mounted() {
+    this.isFederationAPI = this.$config.isFederationAPI;
+    if (this.isFederationAPI) {
+      const response = await this.$axios.get(`${this.$config.apiQueryURL}nodes/`);
+      this.nodes = response.data.reduce((acc, node) => ({
+        ...acc,
+        [node.NodeName]: node.ApiURL,
+      }), {});
+    }
   },
   methods: {
     updateField(name, input) {
@@ -137,6 +159,11 @@ export default {
         case 'Imaging modality':
           this.modality = this.categoricalOptions[name][input];
           break;
+        case 'Neurobagel graph database':
+          if (!input.includes('All')) {
+            this.selectedNodes = input.map((el) => this.nodes[el]);
+          }
+          break;
         default:
           break;
       }
@@ -161,6 +188,11 @@ export default {
     async submitQuery() {
       this.isFetching = true;
       let url = `${this.$config.apiQueryURL}query/?`;
+      if (this.selectedNodes.length > 0) {
+        this.selectedNodes.forEach((node) => {
+          url += `&node_url=${node}`;
+        });
+      }
       if (this.minAge) {
         url += `min_age=${this.minAge}`;
       }
