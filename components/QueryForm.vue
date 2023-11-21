@@ -184,8 +184,8 @@ export default {
     async submitQuery() {
       this.isFetching = true;
       let url = `${this.$config.apiQueryURL}query/?`;
-      if (this.selectedNodes.length > 0) {
-        this.selectedNodes.forEach((node) => {
+      if (this.selectedNodeURLs.length > 0) {
+        this.selectedNodeURLs.forEach((node) => {
           url += `&node_url=${node}`;
         });
       }
