@@ -3,6 +3,8 @@
     <b-row class="mx-auto">
       <query-form
         :categorical-options="categoricalOptions"
+        :is-federation-api="isFederationAPI"
+        :nodes="nodes"
         @update-response="updateResponse"
       />
       <results-container
@@ -17,6 +19,8 @@
 export default {
   data() {
     return {
+      nodes: {},
+      isFederationAPI: true,
       results: null,
       error: null,
       categoricalOptions: {
@@ -105,6 +109,17 @@ export default {
         },
       },
     };
+  },
+  async mounted() {
+    if (this.$config.isFederationAPI) {
+      this.isFederationAPI = this.$config.isFederationAPI;
+
+      const response = await this.$axios.get(`${this.$config.apiQueryURL}nodes/`);
+      this.nodes = response.data.reduce((acc, node) => ({
+        ...acc,
+        [node.NodeName]: node.ApiURL,
+      }), {});
+    }
   },
   methods: {
     updateResponse(results, error) {
