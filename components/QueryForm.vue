@@ -10,6 +10,15 @@
     <b-row>
       <b-form @submit.prevent="validateQueryForm">
         <b-form-row class="row">
+          <categorical-field
+            v-if="isFederationAPI"
+            name="Neurobagel graph"
+            data-cy="node-field"
+            :options="['All', ...Object.keys(nodes)]"
+            multiple="true"
+            default-selected="All"
+            @update-categorical-field="updateField"
+          />
           <b-form-group class="col-md-6">
             <continuous-field
               name="Min Age"
@@ -98,10 +107,19 @@ export default {
       type: Object,
       required: true,
     },
+    isFederationAPI: {
+      type: Boolean,
+      default: true,
+    },
+    nodes: {
+      type: Object,
+      default: () => ({}),
+    },
   },
   emits: ['update-response'],
   data() {
     return {
+      selectedNodeURLs: [],
       minAge: null,
       maxAge: null,
       sex: null,
@@ -137,6 +155,11 @@ export default {
         case 'Imaging modality':
           this.modality = this.categoricalOptions[name][input];
           break;
+        case 'Neurobagel graph':
+          if (!input.includes('All')) {
+            this.selectedNodeURLs = input.map((nodeName) => this.nodes[nodeName]);
+          }
+          break;
         default:
           break;
       }
@@ -161,6 +184,11 @@ export default {
     async submitQuery() {
       this.isFetching = true;
       let url = `${this.$config.apiQueryURL}query/?`;
+      if (this.selectedNodeURLs.length > 0) {
+        this.selectedNodeURLs.forEach((node) => {
+          url += `&node_url=${node}`;
+        });
+      }
       if (this.minAge) {
         url += `min_age=${this.minAge}`;
       }

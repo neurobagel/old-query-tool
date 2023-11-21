@@ -8,6 +8,10 @@ const stubs = {
 };
 
 const props = {
+  nodes: {
+    someNode: 'https://someNode.org',
+    anotherNode: 'https://anotherNode.org',
+  },
   categoricalOptions: {
     Sex: {
       All: null,
@@ -39,6 +43,7 @@ describe('Query form', () => {
       stubs,
       propsData: props,
     });
+    cy.get('[data-cy="node-field"]').should('be.visible');
     cy.get('[data-cy="min-age-field"]').should('be.visible');
     cy.get('[data-cy="max-age-field"]').should('be.visible');
     cy.get('[data-cy="diagnosis-field"]').should('be.visible');

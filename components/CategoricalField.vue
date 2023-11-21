@@ -13,6 +13,7 @@
       v-model="selected"
       :data-cy="`${name}-select`"
       :options="options"
+      :multiple="multiple"
       :disabled="disabled"
       @input="updateField"
     />
@@ -27,12 +28,16 @@ export default {
       required: true,
     },
     defaultSelected: {
-      type: String,
+      type: [String, Array],
       default: null,
     },
     options: {
       type: Array,
       default: () => [],
+    },
+    multiple: {
+      type: Boolean,
+      default: false,
     },
     disabled: {
       type: Boolean,
