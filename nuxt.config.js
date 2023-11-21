@@ -54,6 +54,7 @@ export default {
   // Needed for environment variable to be visible in client-side code: https://v2.nuxt.com/tutorials/moving-from-nuxtjs-dotenv-to-runtime-config/#migrating-to-the-nuxt-runtime-config-from-nuxtjsdotenv
   publicRuntimeConfig: {
     apiQueryURL: process.env.API_QUERY_URL,
+    isFederationAPI: process.env.IS_FEDERATION_API,
   },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
