@@ -72,12 +72,12 @@ describe('Query form', () => {
     // See https://stackoverflow.com/questions/71295432/unable-to-see-toast-in-cypress/71301155#71301155
     cy.contains('#b-toaster-top-right', 'The value of maximum age field must be greater than or equal to the value of minimum age field');
   });
-  it('Checks the options in the `node fields`', () => {
+  it('Checks the options in the `node field`', () => {
     cy.mount(QueryForm, {
       stubs,
       propsData: props,
     });
-    cy.get('[data-cy="node-field"]').should('be.visible').click();
+    cy.get('[data-cy="node-field"]').click();
     cy.get('[data-cy="node-field"]').contains('All');
     cy.get('[data-cy="node-field"]').contains('someNode');
     cy.get('[data-cy="node-field"]').contains('anotherNode');
