@@ -119,7 +119,7 @@ export default {
   emits: ['update-response'],
   data() {
     return {
-      selectedNodes: [],
+      selectedNodeURLs: [],
       minAge: null,
       maxAge: null,
       sex: null,
@@ -157,7 +157,7 @@ export default {
           break;
         case 'Neurobagel graph database':
           if (!input.includes('All')) {
-            this.selectedNodes = input.map((el) => this.nodes[el]);
+            this.selectedNodeURLs = input.map((nodeName) => this.nodes[nodeName]);
           }
           break;
         default:

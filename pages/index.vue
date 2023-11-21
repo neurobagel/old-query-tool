@@ -115,8 +115,8 @@ export default {
       this.isFederationAPI = this.$config.isFederationAPI;
 
       const response = await this.$axios.get(`${this.$config.apiQueryURL}nodes/`);
-      this.nodes = response.data.reduce((acc, node) => ({
-        ...acc,
+      this.nodes = response.data.reduce((tempNodeArray, node) => ({
+        ...tempNodeArray,
         [node.NodeName]: node.ApiURL,
       }), {});
     }
