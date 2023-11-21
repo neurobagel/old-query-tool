@@ -12,7 +12,7 @@
         <b-form-row class="row">
           <categorical-field
             v-if="isFederationAPI"
-            name="Neurobagel graph database"
+            name="Neurobagel graph"
             data-cy="node-field"
             :options="['All', ...Object.keys(nodes)]"
             multiple="true"
@@ -155,7 +155,7 @@ export default {
         case 'Imaging modality':
           this.modality = this.categoricalOptions[name][input];
           break;
-        case 'Neurobagel graph database':
+        case 'Neurobagel graph':
           if (!input.includes('All')) {
             this.selectedNodeURLs = input.map((nodeName) => this.nodes[nodeName]);
           }
