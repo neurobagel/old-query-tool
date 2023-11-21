@@ -8,6 +8,10 @@ const stubs = {
 };
 
 const props = {
+  nodes: {
+    someNode: 'https://someNode.org',
+    anotherNode: 'https://anotherNode.org',
+  },
   categoricalOptions: {
     Sex: {
       All: null,
@@ -39,6 +43,7 @@ describe('Query form', () => {
       stubs,
       propsData: props,
     });
+    cy.get('[data-cy="node-field"]').should('be.visible');
     cy.get('[data-cy="min-age-field"]').should('be.visible');
     cy.get('[data-cy="max-age-field"]').should('be.visible');
     cy.get('[data-cy="diagnosis-field"]').should('be.visible');
@@ -66,5 +71,15 @@ describe('Query form', () => {
     cy.get('[data-cy="submit-query"]').click();
     // See https://stackoverflow.com/questions/71295432/unable-to-see-toast-in-cypress/71301155#71301155
     cy.contains('#b-toaster-top-right', 'The value of maximum age field must be greater than or equal to the value of minimum age field');
+  });
+  it('Checks the options in the `node fields`', () => {
+    cy.mount(QueryForm, {
+      stubs,
+      propsData: props,
+    });
+    cy.get('[data-cy="node-field"]').should('be.visible').click();
+    cy.get('[data-cy="node-field"]').contains('All');
+    cy.get('[data-cy="node-field"]').contains('someNode');
+    cy.get('[data-cy="node-field"]').contains('anotherNode');
   });
 });
