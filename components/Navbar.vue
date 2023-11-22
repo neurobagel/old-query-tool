@@ -17,7 +17,7 @@
           class="nav-logo"
         >
         <div class="nav-title-and-subtitle">
-          Neurobagel Query
+          Neurobagel Query <b-badge class="badge">beta</b-badge>
           <p class="nav-subtitle">
             Define and find cohorts at the subject level
           </p>
@@ -113,5 +113,10 @@
   .nav-logo {
     height: 60px;
     width: auto;
+  }
+
+  .badge {
+    font-size: 12px;
+    background-color: #545b62;
   }
 </style>
