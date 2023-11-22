@@ -55,7 +55,6 @@
               font-scale="1"
             />
           </b-nav-item>
-          <b-navbar-nav />
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
@@ -83,8 +82,8 @@
   }
 
   .navbar {
-      background-color: white !important;
-      margin-bottom: 0.5rem;
+    background-color: white !important;
+    margin-bottom: 0.5rem;
   }
 
   .navbar-nav .nav-link:hover {
@@ -116,7 +115,8 @@
   }
 
   .badge {
-    font-size: 12px;
-    background-color: #545b62;
+    font-size: 13px;
+    background-color: #6c757d;
+    vertical-align: middle;
   }
 </style>
