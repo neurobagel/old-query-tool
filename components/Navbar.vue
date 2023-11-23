@@ -17,7 +17,13 @@
           class="nav-logo"
         >
         <div class="nav-title-and-subtitle">
-          Neurobagel Query <b-badge class="badge">beta</b-badge>
+          Neurobagel Query <b-badge
+            v-b-tooltip.hover.right="'This tool is under active development. \
+            Please report any requests or issues on GitHub.'"
+            class="badge"
+          >
+            beta
+          </b-badge>
           <p class="nav-subtitle">
             Define and find cohorts at the subject level
           </p>
