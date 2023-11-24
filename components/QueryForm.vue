@@ -130,25 +130,24 @@ export default {
     };
   },
   async fetch() {
-    console.log('fetching stuff');
     const response = await this.$axios.get(`${this.$config.apiQueryURL}nodes/`);
     this.neurobagel_nodes = response.data.reduce((tempNodeArray, node) => ({
       ...tempNodeArray,
       [node.NodeName]: node.ApiURL,
     }), {});
-    console.log('Done fetching sites:', this.neurobagel_nodes);
+
     // Now handle the URL provided by the user
     const { node } = this.$route.query;
     if (node) {
       if (typeof node === 'string') {
         // There is only one node in the URL query parameters
-        this.selected_nodes = [node];
+        this.selected_nodes = Object.keys(this.neurobagel_nodes).includes(node) ? [node] : [];
       } else if (typeof node === 'object') {
         // There are multiple nodes in the URL query parameters
-        this.selected_nodes = node;
+        this.selected_nodes = node.filter((nodeName) => Object.keys(this.neurobagel_nodes)
+          .includes(nodeName));
       }
     }
-    console.log('now the selected nodes are', this.selected_nodes);
   },
   watch: {
     selected_nodes(newNodeName) {
