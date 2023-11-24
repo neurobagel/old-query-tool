@@ -10,12 +10,19 @@
     <b-row>
       <b-form @submit.prevent="validateQueryForm">
         <b-form-row class="row">
-          <v-select
-            v-model="selectedNodeNames"
-            data-cy="node-field"
-            :options="['All', ...Object.keys(availableNodes)]"
-            :multiple=true
-          />
+          <div
+            v-if="isFederationAPI"
+          >
+            <label class="form-label">
+              Neurobagel Graph
+            </label>
+            <v-select
+              v-model="selectedNodeNames"
+              data-cy="node-field"
+              :options="['All', ...Object.keys(availableNodes)]"
+              :multiple=true
+            />
+          </div>
           <b-form-group class="col-md-6">
             <continuous-field
               name="Min Age"
@@ -104,14 +111,6 @@ export default {
       type: Object,
       required: true,
     },
-    isFederationAPI: {
-      type: Boolean,
-      default: true,
-    },
-    nodes: {
-      type: Object,
-      default: () => ({}),
-    },
   },
   emits: ['update-response'],
   data() {
@@ -130,43 +129,50 @@ export default {
     };
   },
   async fetch() {
-    const response = await this.$axios.get(`${this.$config.apiQueryURL}nodes/`);
-    this.availableNodes = response.data.reduce((tempNodeArray, node) => ({
-      ...tempNodeArray,
-      [node.NodeName]: node.ApiURL,
-    }), {});
+    if (this.isFederationAPI) {
+      const response = await this.$axios.get(`${this.$config.apiQueryURL}nodes/`);
+      this.availableNodes = response.data.reduce((tempNodeArray, node) => ({
+        ...tempNodeArray,
+        [node.NodeName]: node.ApiURL,
+      }), {});
 
-    // Now handle the URL provided by the user
-    const { node } = this.$route.query;
-    if (node) {
-      if (typeof node === 'string') {
-        // There is only one node in the URL query parameters
-        if (node === 'All') {
-          this.selectedNodeNames = [node];
-        } else {
-          this.selectedNodeNames = Object.keys(this.availableNodes)
-            .includes(node) ? [node] : [];
+      // Now handle the URL provided by the user
+      const { node } = this.$route.query;
+      if (node) {
+        if (typeof node === 'string') {
+          // There is only one node in the URL query parameters
+          if (node === 'All') {
+            this.selectedNodeNames = [node];
+          } else {
+            this.selectedNodeNames = Object.keys(this.availableNodes)
+              .includes(node) ? [node] : [];
+          }
+        } else if (typeof node === 'object') {
+          // There are multiple nodes in the URL query parameters
+          this.selectedNodeNames = node.filter((nodeName) => Object.keys(this.availableNodes)
+            .includes(nodeName) || nodeName === 'All');
         }
-      } else if (typeof node === 'object') {
-        // There are multiple nodes in the URL query parameters
-        this.selectedNodeNames = node.filter((nodeName) => Object.keys(this.availableNodes)
-          .includes(nodeName) || nodeName === 'All');
+      } else {
+        this.selectedNodeNames = ['All'];
       }
-    } else {
-      this.selectedNodeNames = ['All'];
     }
   },
   computed: {
     selectedNodeURLs() {
       return this.selectedNodeNames.map((nodeName) => this.availableNodes[nodeName]);
     },
+    isFederationAPI() {
+      return this.$config.isFederationAPI || false;
+    },
   },
   watch: {
     selectedNodeNames(newNodeName) {
-      this.$router.push({
-        path: this.$route.path,
-        query: { ...this.$route.query, node: newNodeName },
-      });
+      if (this.isFederationAPI) {
+        this.$router.push({
+          path: this.$route.path,
+          query: { ...this.$route.query, node: newNodeName },
+        });
+      }
     },
   },
   methods: {
@@ -217,7 +223,7 @@ export default {
     async submitQuery() {
       this.isFetching = true;
       let url = `${this.$config.apiQueryURL}query/?`;
-      if (this.selectedNodeURLs.length > 0) {
+      if (this.isFederationAPI && this.selectedNodeURLs.length > 0) {
         this.selectedNodeURLs.forEach((node) => {
           url += `&node_url=${node}`;
         });
