@@ -189,8 +189,10 @@ export default {
       this.isFetching = true;
       let url = `${this.$config.apiQueryURL}query/?`;
       if (this.isFederationAPI && this.selectedNodes.length > 0) {
-        this.selectedNodeURLs.forEach((node) => {
-          url += `&node_url=${node.ApiURL}`;
+        this.selectedNodes.forEach((node) => {
+          if (node.NodeName !== 'All') {
+            url += `&node_url=${node.ApiURL}`;
+          }
         });
       }
       if (this.minAge) {

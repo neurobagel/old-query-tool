@@ -123,6 +123,7 @@ export default {
         NodeName: 'All',
         ApiURL: undefined,
       });
+      console.log('now we have nodes', this.availableNodes);
 
       // The first time we load the app, we will also check the URL
       // for valid query parameters that refer to selected nodes.
@@ -139,7 +140,10 @@ export default {
             this.selectedNodes = [{ NodeName: 'All', ApiURL: undefined }];
           } else {
             this.selectedNodes = availableNodeNames.includes(nodeName)
-              ? [{ NodeName: nodeName, ApiURL: this.availableNodes[nodeName] }]
+              ? [{
+                NodeName: nodeName,
+                ApiURL: this.availableNodes[availableNodeNames.indexOf(nodeName)].ApiURL,
+              }]
               : [];
           }
         } else if (typeof nodeName === 'object') {
@@ -148,11 +152,16 @@ export default {
           // a node that we no longer know about, so we need to filter.
           this.selectedNodes = nodeName
             .filter((name) => availableNodeNames.includes(name))
-            .map((name) => ({ NodeName: name, ApiURL: this.availableNodes[name] }));
+            .map((name) => (
+              {
+                NodeName: name,
+                ApiURL: this.availableNodes[availableNodeNames.indexOf(name)].ApiURL,
+              }
+            ));
         }
+      } else {
+        this.selectedNodes = [{ NodeName: 'All', ApiURL: undefined }];
       }
-    } else {
-      this.selectedNodes = [{ NodeName: 'All', ApiURL: undefined }];
     }
   },
   computed: {
