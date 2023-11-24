@@ -4,8 +4,10 @@
       <query-form
         :categorical-options="categoricalOptions"
         :is-federation-api="isFederationAPI"
-        :nodes="nodes"
+        :selected-nodes="selectedNodes"
+        :available-nodes="availableNodes"
         @update-response="updateResponse"
+        @select-nodes="selectNodes"
       />
       <results-container
         :results="results"
@@ -19,8 +21,8 @@
 export default {
   data() {
     return {
-      nodes: {},
-      isFederationAPI: true,
+      availableNodes: {},
+      selectedNodes: {},
       results: null,
       error: null,
       categoricalOptions: {
@@ -110,21 +112,63 @@ export default {
       },
     };
   },
-  async mounted() {
-    if (this.$config.isFederationAPI) {
-      this.isFederationAPI = this.$config.isFederationAPI;
-
+  async fetch() {
+    if (this.isFederationAPI) {
       const response = await this.$axios.get(`${this.$config.apiQueryURL}nodes/`);
-      this.nodes = response.data.reduce((tempNodeArray, node) => ({
+      this.availableNodes = response.data.reduce((tempNodeArray, node) => ({
         ...tempNodeArray,
         [node.NodeName]: node.ApiURL,
-      }), {});
+      }), { All: undefined });
+      console.log('I just read in', this.availableNodes);
+
+      // The first time we load the app, we will also check the URL
+      // for valid query parameters that refer to selected nodes.
+      // If we find any valid query parameters in the URL, then we
+      // initialize the apps with these nodes selected!
+      const { node: nodeName } = this.$route.query;
+      console.log('I found query node:', nodeName);
+      if (nodeName !== undefined) {
+        if (typeof nodeName === 'string') {
+          // There is only one node in the URL query parameters
+          if (nodeName === 'All') {
+            // "All" is a special node name and just means
+            // that we select all known nodes
+            this.selectedNodes = { All: undefined };
+          } else {
+            this.selectedNodes = Object.keys(this.availableNodes).includes(nodeName)
+              ? { [nodeName]: this.availableNodes[nodeName] }
+              : {};
+          }
+        } else if (typeof nodeName === 'object') {
+          // There are multiple nodes in the URL query parameters
+          // We don't know if the user provided something silly or
+          // a node that we no longer know about, so we need to filter.
+          this.selectedNodes = Object.keys(this.availableNodes)
+            .filter((availableNodeName) => nodeName.includes(availableNodeName))
+            .reduce((newObject, availableNodeName) => Object.assign(
+              newObject,
+              { [availableNodeName]: this.availableNodes[availableNodeName] },
+            ), {});
+        }
+      }
+    } else {
+      this.selectedNodes = { All: undefined };
     }
+    console.log('after all this, we now have', this.selectedNodes);
+  },
+  computed: {
+    isFederationAPI() {
+      return this.$config.isFederationAPI === undefined ? true : this.$config.isFederationAPI;
+    },
   },
   methods: {
     updateResponse(results, error) {
       this.results = results;
       this.error = error;
+    },
+    selectNodes(nodes) {
+      console.log('here are the nodes we now have:', nodes);
+      this.selectedNodes = nodes;
     },
   },
 

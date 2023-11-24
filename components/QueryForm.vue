@@ -17,10 +17,12 @@
               Neurobagel Graph
             </label>
             <v-select
-              v-model="selectedNodeNames"
+              :value="selectedNodesArray"
               data-cy="node-field"
-              :options="['All', ...Object.keys(availableNodes)]"
+              :options="availableNodesArray"
               :multiple=true
+              label="name"
+              @input="$emit('selectNodes')"
             />
           </div>
           <b-form-group class="col-md-6">
@@ -111,11 +113,22 @@ export default {
       type: Object,
       required: true,
     },
+    isFederationAPI: {
+      type: Boolean,
+      default: true,
+    },
+    availableNodes: {
+      type: Object,
+      default: () => {},
+    },
+    selectedNodes: {
+      type: Object,
+      default: () => {},
+    },
   },
-  emits: ['update-response'],
+  emits: ['update-response', 'select-nodes'],
   data() {
     return {
-      availableNodes: [],
       selectedNodeNames: [],
       minAge: null,
       maxAge: null,
@@ -128,41 +141,19 @@ export default {
       isFetching: false,
     };
   },
-  async fetch() {
-    if (this.isFederationAPI) {
-      const response = await this.$axios.get(`${this.$config.apiQueryURL}nodes/`);
-      this.availableNodes = response.data.reduce((tempNodeArray, node) => ({
-        ...tempNodeArray,
-        [node.NodeName]: node.ApiURL,
-      }), {});
-
-      // Now handle the URL provided by the user
-      const { node } = this.$route.query;
-      if (node) {
-        if (typeof node === 'string') {
-          // There is only one node in the URL query parameters
-          if (node === 'All') {
-            this.selectedNodeNames = [node];
-          } else {
-            this.selectedNodeNames = Object.keys(this.availableNodes)
-              .includes(node) ? [node] : [];
-          }
-        } else if (typeof node === 'object') {
-          // There are multiple nodes in the URL query parameters
-          this.selectedNodeNames = node.filter((nodeName) => Object.keys(this.availableNodes)
-            .includes(nodeName) || nodeName === 'All');
-        }
-      } else {
-        this.selectedNodeNames = ['All'];
-      }
-    }
-  },
   computed: {
     selectedNodeURLs() {
       return this.selectedNodeNames.map((nodeName) => this.availableNodes[nodeName]);
     },
-    isFederationAPI() {
-      return this.$config.isFederationAPI || false;
+    selectedNodesArray() {
+      return Object.keys(this.selectedNodes).map((nodeName) => ({
+        name: nodeName, url: this.selectedNodes[nodeName],
+      }));
+    },
+    availableNodesArray() {
+      return Object.keys(this.availableNodes).map((nodeName) => ({
+        name: nodeName, url: this.availableNodes[nodeName],
+      }));
     },
   },
   watch: {
