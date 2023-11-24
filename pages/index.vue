@@ -116,7 +116,7 @@ export default {
     if (this.isFederationAPI) {
       const response = await this.$axios.get(`${this.$config.apiQueryURL}nodes/`);
       this.availableNodes = response.data;
-      // We need to also add out special "All" node
+      // We need to also add our special "All" node
       // that we use to select all nodes.
       this.availableNodes.push({
         NodeName: 'All',
@@ -130,31 +130,29 @@ export default {
       const { node: nodeName } = this.$route.query;
       console.log('I found query node:', nodeName);
       if (nodeName !== undefined) {
+        const availableNodeNames = this.availableNodes.map((node) => node.NodeName);
         if (typeof nodeName === 'string') {
           // There is only one node in the URL query parameters
           if (nodeName === 'All') {
             // "All" is a special node name and just means
             // that we select all known nodes
-            this.selectedNodes = { All: undefined };
+            this.selectedNodes = [{ NodeName: 'All', ApiURL: undefined }];
           } else {
-            this.selectedNodes = Object.keys(this.availableNodes).includes(nodeName)
-              ? { [nodeName]: this.availableNodes[nodeName] }
-              : {};
+            this.selectedNodes = availableNodeNames.includes(nodeName)
+              ? [{ NodeName: nodeName, ApiURL: this.availableNodes[nodeName] }]
+              : [];
           }
         } else if (typeof nodeName === 'object') {
           // There are multiple nodes in the URL query parameters
           // We don't know if the user provided something silly or
           // a node that we no longer know about, so we need to filter.
-          this.selectedNodes = Object.keys(this.availableNodes)
-            .filter((availableNodeName) => nodeName.includes(availableNodeName))
-            .reduce((newObject, availableNodeName) => Object.assign(
-              newObject,
-              { [availableNodeName]: this.availableNodes[availableNodeName] },
-            ), {});
+          this.selectedNodes = nodeName
+            .filter((name) => availableNodeNames.includes(name))
+            .map((name) => ({ NodeName: name, ApiURL: this.availableNodes[name] }));
         }
       }
     } else {
-      this.selectedNodes = { All: undefined };
+      this.selectedNodes = [{ NodeName: 'All', ApiURL: undefined }];
     }
     console.log('after all this, we now have', this.selectedNodes);
   },
