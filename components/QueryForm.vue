@@ -141,11 +141,15 @@ export default {
     if (node) {
       if (typeof node === 'string') {
         // There is only one node in the URL query parameters
-        this.selected_nodes = Object.keys(this.neurobagel_nodes).includes(node) ? [node] : [];
+        if (node === 'All') {
+          this.selected_nodes = [node];
+        } else {
+          this.selected_nodes = Object.keys(this.neurobagel_nodes).includes(node) ? [node] : [];
+        }
       } else if (typeof node === 'object') {
         // There are multiple nodes in the URL query parameters
         this.selected_nodes = node.filter((nodeName) => Object.keys(this.neurobagel_nodes)
-          .includes(nodeName));
+          .includes(nodeName) || nodeName === 'All');
       }
     }
   },
