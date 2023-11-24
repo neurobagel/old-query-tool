@@ -114,6 +114,7 @@ export default {
   },
   async fetch() {
     if (this.isFederationAPI) {
+      // TODO: write a test for all these fancy things
       const response = await this.$axios.get(`${this.$config.apiQueryURL}nodes/`);
       this.availableNodes = response.data;
       // We need to also add our special "All" node
@@ -176,7 +177,6 @@ export default {
     },
     selectNodes(nodes) {
       this.selectedNodes = nodes;
-      console.log('now selected nodes are', this.selectedNodes);
     },
   },
 };

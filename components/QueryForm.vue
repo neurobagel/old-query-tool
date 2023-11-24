@@ -129,7 +129,6 @@ export default {
   emits: ['update-response', 'select-nodes'],
   data() {
     return {
-      selectedNodeNames: [],
       minAge: null,
       maxAge: null,
       sex: null,
@@ -141,15 +140,7 @@ export default {
       isFetching: false,
     };
   },
-  computed: {
-    selectedNodeURLs() {
-      return this.selectedNodeNames.map((nodeName) => this.availableNodes[nodeName]);
-    },
-  },
   methods: {
-    nodeWasSelected(event) {
-      this.$emit('selectNodes', event);
-    },
     updateField(name, input) {
       switch (name) {
         case 'Min Age':
@@ -197,9 +188,9 @@ export default {
     async submitQuery() {
       this.isFetching = true;
       let url = `${this.$config.apiQueryURL}query/?`;
-      if (this.isFederationAPI && this.selectedNodeURLs.length > 0) {
+      if (this.isFederationAPI && this.selectedNodes.length > 0) {
         this.selectedNodeURLs.forEach((node) => {
-          url += `&node_url=${node}`;
+          url += `&node_url=${node.ApiURL}`;
         });
       }
       if (this.minAge) {
