@@ -128,7 +128,6 @@ export default {
       // If we find any valid query parameters in the URL, then we
       // initialize the apps with these nodes selected!
       const { node: nodeName } = this.$route.query;
-      console.log('I found query node:', nodeName);
       if (nodeName !== undefined) {
         const availableNodeNames = this.availableNodes.map((node) => node.NodeName);
         if (typeof nodeName === 'string') {
@@ -154,7 +153,6 @@ export default {
     } else {
       this.selectedNodes = [{ NodeName: 'All', ApiURL: undefined }];
     }
-    console.log('after all this, we now have', this.selectedNodes);
   },
   computed: {
     isFederationAPI() {
@@ -167,8 +165,7 @@ export default {
       this.error = error;
     },
     selectNodes(nodes) {
-      console.log('here are the nodes we now have:', nodes);
-      // this.selectedNodes = nodes;
+      this.selectedNodes = nodes;
     },
   },
 

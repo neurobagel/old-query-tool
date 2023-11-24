@@ -17,12 +17,12 @@
               Neurobagel Graph
             </label>
             <v-select
-              :value="selectedNodesArray"
+              :value="selectedNodes"
               data-cy="node-field"
-              :options="availableNodesArray"
+              :options="availableNodes"
               :multiple=true
-              label="name"
-              @input="$emit('selectNodes')"
+              label="NodeName"
+              @input="$emit('selectNodes', $event)"
             />
           </div>
           <b-form-group class="col-md-6">
@@ -118,12 +118,12 @@ export default {
       default: true,
     },
     availableNodes: {
-      type: Object,
-      default: () => {},
+      type: Array,
+      default: () => [],
     },
     selectedNodes: {
-      type: Object,
-      default: () => {},
+      type: Array,
+      default: () => [],
     },
   },
   emits: ['update-response', 'select-nodes'],
@@ -145,16 +145,6 @@ export default {
     selectedNodeURLs() {
       return this.selectedNodeNames.map((nodeName) => this.availableNodes[nodeName]);
     },
-    selectedNodesArray() {
-      return Object.keys(this.selectedNodes).map((nodeName) => ({
-        name: nodeName, url: this.selectedNodes[nodeName],
-      }));
-    },
-    availableNodesArray() {
-      return Object.keys(this.availableNodes).map((nodeName) => ({
-        name: nodeName, url: this.availableNodes[nodeName],
-      }));
-    },
   },
   watch: {
     selectedNodeNames(newNodeName) {
@@ -167,6 +157,9 @@ export default {
     },
   },
   methods: {
+    nodeWasSelected(event) {
+      this.$emit('selectNodes', event);
+    },
     updateField(name, input) {
       switch (name) {
         case 'Min Age':
