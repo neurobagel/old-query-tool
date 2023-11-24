@@ -10,14 +10,11 @@
     <b-row>
       <b-form @submit.prevent="validateQueryForm">
         <b-form-row class="row">
-          <categorical-field
-            v-if="isFederationAPI"
-            name="Neurobagel graph"
+          <v-select
+            v-model="selected_nodes"
             data-cy="node-field"
-            :options="['All', ...Object.keys(nodes)]"
-            multiple="true"
-            default-selected="All"
-            @update-categorical-field="updateField"
+            :options="['All', ...Object.keys(neurobagel_nodes)]"
+            :multiple=true
           />
           <b-form-group class="col-md-6">
             <continuous-field
@@ -119,7 +116,8 @@ export default {
   emits: ['update-response'],
   data() {
     return {
-      selectedNodeURLs: [],
+      neurobagel_nodes: [],
+      selected_nodes: [],
       minAge: null,
       maxAge: null,
       sex: null,
@@ -130,6 +128,35 @@ export default {
       modality: null,
       isFetching: false,
     };
+  },
+  async fetch() {
+    console.log('fetching stuff');
+    const response = await this.$axios.get(`${this.$config.apiQueryURL}nodes/`);
+    this.neurobagel_nodes = response.data.reduce((tempNodeArray, node) => ({
+      ...tempNodeArray,
+      [node.NodeName]: node.ApiURL,
+    }), {});
+    console.log('Done fetching sites:', this.neurobagel_nodes);
+    // Now handle the URL provided by the user
+    const { node } = this.$route.query;
+    if (node) {
+      if (typeof node === 'string') {
+        // There is only one node in the URL query parameters
+        this.selected_nodes = [node];
+      } else if (typeof node === 'object') {
+        // There are multiple nodes in the URL query parameters
+        this.selected_nodes = node;
+      }
+    }
+    console.log('now the selected nodes are', this.selected_nodes);
+  },
+  watch: {
+    selected_nodes(newNodeName) {
+      this.$router.push({
+        path: this.$route.path,
+        query: { ...this.$route.query, node: newNodeName },
+      });
+    },
   },
   methods: {
     updateField(name, input) {
