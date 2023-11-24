@@ -15,7 +15,7 @@
             name="Neurobagel graph"
             data-cy="node-field"
             :options="['All', ...Object.keys(nodes)]"
-            multiple="true"
+            multiple=true
             default-selected="All"
             @update-categorical-field="updateField"
           />
