@@ -7,7 +7,7 @@
         :selected-nodes="selectedNodes"
         :available-nodes="availableNodes"
         @update-response="updateResponse"
-        @select-nodes="selectNodes"
+        @selectNodes="selectNodes"
       />
       <results-container
         :results="results"
@@ -21,8 +21,8 @@
 export default {
   data() {
     return {
-      availableNodes: {},
-      selectedNodes: {},
+      availableNodes: [],
+      selectedNodes: [],
       results: null,
       error: null,
       categoricalOptions: {
@@ -115,11 +115,13 @@ export default {
   async fetch() {
     if (this.isFederationAPI) {
       const response = await this.$axios.get(`${this.$config.apiQueryURL}nodes/`);
-      this.availableNodes = response.data.reduce((tempNodeArray, node) => ({
-        ...tempNodeArray,
-        [node.NodeName]: node.ApiURL,
-      }), { All: undefined });
-      console.log('I just read in', this.availableNodes);
+      this.availableNodes = response.data;
+      // We need to also add out special "All" node
+      // that we use to select all nodes.
+      this.availableNodes.push({
+        NodeName: 'All',
+        ApiURL: undefined,
+      });
 
       // The first time we load the app, we will also check the URL
       // for valid query parameters that refer to selected nodes.
@@ -168,7 +170,7 @@ export default {
     },
     selectNodes(nodes) {
       console.log('here are the nodes we now have:', nodes);
-      this.selectedNodes = nodes;
+      // this.selectedNodes = nodes;
     },
   },
 
