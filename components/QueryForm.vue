@@ -146,16 +146,6 @@ export default {
       return this.selectedNodeNames.map((nodeName) => this.availableNodes[nodeName]);
     },
   },
-  watch: {
-    selectedNodeNames(newNodeName) {
-      if (this.isFederationAPI) {
-        this.$router.push({
-          path: this.$route.path,
-          query: { ...this.$route.query, node: newNodeName },
-        });
-      }
-    },
-  },
   methods: {
     nodeWasSelected(event) {
       this.$emit('selectNodes', event);

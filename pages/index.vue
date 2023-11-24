@@ -159,6 +159,16 @@ export default {
       return this.$config.isFederationAPI === undefined ? true : this.$config.isFederationAPI;
     },
   },
+  watch: {
+    selectedNodes(newNode) {
+      if (this.isFederationAPI && newNode.length > 0) {
+        this.$router.push({
+          path: this.$route.path,
+          query: { ...this.$route.query, node: newNode.map((node) => node.NodeName) },
+        });
+      }
+    },
+  },
   methods: {
     updateResponse(results, error) {
       this.results = results;
@@ -166,8 +176,8 @@ export default {
     },
     selectNodes(nodes) {
       this.selectedNodes = nodes;
+      console.log('now selected nodes are', this.selectedNodes);
     },
   },
-
 };
 </script>
