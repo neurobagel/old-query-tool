@@ -123,7 +123,6 @@ export default {
         NodeName: 'All',
         ApiURL: undefined,
       });
-      console.log('now we have nodes', this.availableNodes);
 
       // The first time we load the app, we will also check the URL
       // for valid query parameters that refer to selected nodes.
@@ -159,7 +158,9 @@ export default {
               }
             ));
         }
-      } else {
+      }
+
+      if (this.selectedNodes.length === 0) {
         this.selectedNodes = [{ NodeName: 'All', ApiURL: undefined }];
       }
     }
