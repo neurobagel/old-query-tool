@@ -11,9 +11,9 @@
       <b-form @submit.prevent="validateQueryForm">
         <b-form-row class="row">
           <v-select
-            v-model="selected_nodes"
+            v-model="selectedNodeNames"
             data-cy="node-field"
-            :options="['All', ...Object.keys(neurobagel_nodes)]"
+            :options="['All', ...Object.keys(availableNodes)]"
             :multiple=true
           />
           <b-form-group class="col-md-6">
@@ -116,8 +116,8 @@ export default {
   emits: ['update-response'],
   data() {
     return {
-      neurobagel_nodes: [],
-      selected_nodes: [],
+      availableNodes: [],
+      selectedNodeNames: [],
       minAge: null,
       maxAge: null,
       sex: null,
@@ -131,7 +131,7 @@ export default {
   },
   async fetch() {
     const response = await this.$axios.get(`${this.$config.apiQueryURL}nodes/`);
-    this.neurobagel_nodes = response.data.reduce((tempNodeArray, node) => ({
+    this.availableNodes = response.data.reduce((tempNodeArray, node) => ({
       ...tempNodeArray,
       [node.NodeName]: node.ApiURL,
     }), {});
@@ -142,19 +142,27 @@ export default {
       if (typeof node === 'string') {
         // There is only one node in the URL query parameters
         if (node === 'All') {
-          this.selected_nodes = [node];
+          this.selectedNodeNames = [node];
         } else {
-          this.selected_nodes = Object.keys(this.neurobagel_nodes).includes(node) ? [node] : [];
+          this.selectedNodeNames = Object.keys(this.availableNodes)
+            .includes(node) ? [node] : [];
         }
       } else if (typeof node === 'object') {
         // There are multiple nodes in the URL query parameters
-        this.selected_nodes = node.filter((nodeName) => Object.keys(this.neurobagel_nodes)
+        this.selectedNodeNames = node.filter((nodeName) => Object.keys(this.availableNodes)
           .includes(nodeName) || nodeName === 'All');
       }
+    } else {
+      this.selectedNodeNames = ['All'];
     }
   },
+  computed: {
+    selectedNodeURLs() {
+      return this.selectedNodeNames.map((nodeName) => this.availableNodes[nodeName]);
+    },
+  },
   watch: {
-    selected_nodes(newNodeName) {
+    selectedNodeNames(newNodeName) {
       this.$router.push({
         path: this.$route.path,
         query: { ...this.$route.query, node: newNodeName },
@@ -184,11 +192,6 @@ export default {
           break;
         case 'Imaging modality':
           this.modality = this.categoricalOptions[name][input];
-          break;
-        case 'Neurobagel graph':
-          if (!input.includes('All')) {
-            this.selectedNodeURLs = input.map((nodeName) => this.nodes[nodeName]);
-          }
           break;
         default:
           break;
