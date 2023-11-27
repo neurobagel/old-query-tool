@@ -172,12 +172,12 @@ export default {
   },
   watch: {
     selectedNodes(newNode) {
-      if (this.isFederationAPI && newNode.length > 0) {
+      if (newNode.length > 0) {
         this.$router.push({
           path: this.$route.path,
           query: { ...this.$route.query, node: newNode.map((node) => node.NodeName) },
         });
-      } else if (this.isFederationAPI && newNode.length === 0) {
+      } else if (newNode.length === 0) {
         // If all nodes are removed, we default to the "All" node
         this.selectTheAllNode();
       }
