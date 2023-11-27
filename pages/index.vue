@@ -136,7 +136,7 @@ export default {
           if (nodeName === 'All') {
             // "All" is a special node name and just means
             // that we select all known nodes
-            this.selectedNodes = [{ NodeName: 'All', ApiURL: undefined }];
+            this.selectTheAllNode();
           } else {
             this.selectedNodes = availableNodeNames.includes(nodeName)
               ? [{
@@ -161,7 +161,7 @@ export default {
       }
 
       if (this.selectedNodes.length === 0) {
-        this.selectedNodes = [{ NodeName: 'All', ApiURL: undefined }];
+        this.selectTheAllNode();
       }
     }
   },
@@ -177,6 +177,9 @@ export default {
           path: this.$route.path,
           query: { ...this.$route.query, node: newNode.map((node) => node.NodeName) },
         });
+      } else if (this.isFederationAPI && newNode.length === 0) {
+        // If all nodes are removed, we default to the "All" node
+        this.selectTheAllNode();
       }
     },
   },
@@ -187,6 +190,9 @@ export default {
     },
     selectNodes(nodes) {
       this.selectedNodes = nodes;
+    },
+    selectTheAllNode() {
+      this.selectedNodes = [{ NodeName: 'All', ApiURL: undefined }];
     },
   },
 };
