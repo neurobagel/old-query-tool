@@ -3,7 +3,7 @@
     <b-row class="mx-auto">
       <query-form
         :categorical-options="categoricalOptions"
-        :is-federation-api="isFederationAPI"
+        :is-federation-api="isFederationApi"
         :selected-nodes="selectedNodes"
         :available-nodes="availableNodes"
         @update-response="updateResponse"
@@ -113,7 +113,7 @@ export default {
     };
   },
   async fetch() {
-    if (this.isFederationAPI) {
+    if (this.isFederationApi) {
       // TODO: write a test for all these fancy things
       const response = await this.$axios.get(`${this.$config.apiQueryURL}nodes/`);
       this.availableNodes = response.data;
@@ -166,7 +166,11 @@ export default {
     }
   },
   computed: {
-    isFederationAPI() {
+    isFederationApi() {
+      // We're naming the computed property isFederationApi (smallcaps API)
+      // because vue-linting rules require props to not be capitalized but
+      // hyphenated: is-federation-api. This gets converted to isFederationApi.
+      // So to keep things consistent, we call it isFederationApi here as well.
       return this.$config.isFederationAPI === undefined ? true : this.$config.isFederationAPI;
     },
   },
