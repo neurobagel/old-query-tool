@@ -11,7 +11,7 @@
       <b-form @submit.prevent="validateQueryForm">
         <b-form-row class="row">
           <div
-            v-if="isFederationAPI"
+            v-if="isFederationApi"
           >
             <label class="form-label">
               Neurobagel Graph
@@ -113,7 +113,7 @@ export default {
       type: Object,
       required: true,
     },
-    isFederationAPI: {
+    isFederationApi: {
       type: Boolean,
       default: true,
     },
@@ -188,7 +188,7 @@ export default {
     async submitQuery() {
       this.isFetching = true;
       let url = `${this.$config.apiQueryURL}query/?`;
-      if (this.isFederationAPI && this.selectedNodes.length > 0) {
+      if (this.isFederationApi && this.selectedNodes.length > 0) {
         this.selectedNodes.forEach((node) => {
           if (node.NodeName !== 'All') {
             url += `&node_url=${node.ApiURL}`;
