@@ -8,10 +8,16 @@ const stubs = {
 };
 
 const props = {
-  nodes: {
-    someNode: 'https://someNode.org',
-    anotherNode: 'https://anotherNode.org',
-  },
+  availableNodes: [
+    {
+      NodeName: 'someNode',
+      NodeURL: 'https://someNode.org',
+    },
+    {
+      NodeName: 'anotherNode',
+      NodeURL: 'https://anotherNode.org',
+    },
+  ],
   categoricalOptions: {
     Sex: {
       All: null,
@@ -35,10 +41,11 @@ const props = {
       'T2 weighted': 'nidm:T2Weighted',
     },
   },
+  isFederationApi: true,
 };
 
 describe('Query form', () => {
-  it('Displays query fields, healthy control checkbox, and submit query button', () => {
+  it('Displays node-select, query fields, healthy control checkbox, and submit query button', () => {
     cy.mount(QueryForm, {
       stubs,
       propsData: props,
@@ -53,6 +60,18 @@ describe('Query form', () => {
     cy.get('[data-cy="modality-field"]').should('be.visible');
     cy.get('[data-cy="submit-query"]').should('be.visible');
   });
+
+  it('Hides the node-select field when isFederationApi is false', () => {
+    cy.mount(QueryForm, {
+      stubs,
+      propsData: {
+        ...props,
+        isFederationApi: false,
+      },
+    });
+    cy.get('[data-cy="node-field"]').should('not.exist');
+  });
+
   it('Checks the healthy control checkbox and disables diagnosis field', () => {
     cy.mount(QueryForm, {
       stubs,
@@ -61,6 +80,7 @@ describe('Query form', () => {
     cy.get('[data-cy="healthy-control-checkbox"]').check();
     cy.get('[data-cy="Diagnosis-select"]').should('have.class', 'vs--disabled');
   });
+
   it('Calls displayToast method', () => {
     cy.mount(QueryForm, {
       stubs,
@@ -71,5 +91,54 @@ describe('Query form', () => {
     cy.get('[data-cy="submit-query"]').click();
     // See https://stackoverflow.com/questions/71295432/unable-to-see-toast-in-cypress/71301155#71301155
     cy.contains('#b-toaster-top-right', 'The value of maximum age field must be greater than or equal to the value of minimum age field');
+  });
+
+  it('Populates the node-select field with nodes that can be selected', () => {
+    cy.mount(QueryForm, {
+      stubs,
+      propsData: props,
+    });
+    cy.get('[data-cy="node-field"]').click();
+    cy.get('[data-cy="node-field"]').should('contain', 'someNode');
+    cy.get('[data-cy="node-field"]').should('contain', 'anotherNode');
+  });
+
+  it('Emits new-selection event when a new node is selected', () => {
+    const emitSpy = cy.spy().as('emitSpy');
+    cy.mount(QueryForm, {
+      stubs,
+      propsData: props,
+      listeners: {
+        selectNodes: emitSpy,
+      },
+    });
+    cy.get('[data-cy="node-field"]').type('someNode');
+    cy.get('[data-cy="node-field"]').type('{enter}');
+    cy.get('@emitSpy').should(
+      'have.been.calledWith',
+      [
+        {
+          NodeName: 'someNode',
+          NodeURL: 'https://someNode.org',
+        },
+      ],
+    );
+  });
+
+  it('Renders selected nodes', () => {
+    cy.mount(QueryForm, {
+      stubs,
+      propsData: {
+        selectedNodes: [
+          {
+            NodeName: 'anotherNode',
+            NodeURL: 'https://anotherNode.org',
+          },
+        ],
+        ...props,
+      },
+    });
+
+    cy.get('[data-cy="node-field"]').should('contain', 'anotherNode');
   });
 });

@@ -10,15 +10,21 @@
     <b-row>
       <b-form @submit.prevent="validateQueryForm">
         <b-form-row class="row">
-          <categorical-field
-            v-if="isFederationAPI"
-            name="Neurobagel graph"
-            data-cy="node-field"
-            :options="['All', ...Object.keys(nodes)]"
-            multiple="true"
-            default-selected="All"
-            @update-categorical-field="updateField"
-          />
+          <div
+            v-if="isFederationApi"
+          >
+            <label class="form-label">
+              Neurobagel Graph
+            </label>
+            <v-select
+              :value="selectedNodes"
+              data-cy="node-field"
+              :options="availableNodes"
+              :multiple=true
+              label="NodeName"
+              @input="$emit('selectNodes', $event)"
+            />
+          </div>
           <b-form-group class="col-md-6">
             <continuous-field
               name="Min Age"
@@ -107,19 +113,22 @@ export default {
       type: Object,
       required: true,
     },
-    isFederationAPI: {
+    isFederationApi: {
       type: Boolean,
       default: true,
     },
-    nodes: {
-      type: Object,
-      default: () => ({}),
+    availableNodes: {
+      type: Array,
+      default: () => [],
+    },
+    selectedNodes: {
+      type: Array,
+      default: () => [],
     },
   },
-  emits: ['update-response'],
+  emits: ['update-response', 'select-nodes'],
   data() {
     return {
-      selectedNodeURLs: [],
       minAge: null,
       maxAge: null,
       sex: null,
@@ -155,11 +164,6 @@ export default {
         case 'Imaging modality':
           this.modality = this.categoricalOptions[name][input];
           break;
-        case 'Neurobagel graph':
-          if (!input.includes('All')) {
-            this.selectedNodeURLs = input.map((nodeName) => this.nodes[nodeName]);
-          }
-          break;
         default:
           break;
       }
@@ -184,9 +188,11 @@ export default {
     async submitQuery() {
       this.isFetching = true;
       let url = `${this.$config.apiQueryURL}query/?`;
-      if (this.selectedNodeURLs.length > 0) {
-        this.selectedNodeURLs.forEach((node) => {
-          url += `&node_url=${node}`;
+      if (this.isFederationApi && this.selectedNodes.length > 0) {
+        this.selectedNodes.forEach((node) => {
+          if (node.NodeName !== 'All') {
+            url += `&node_url=${node.ApiURL}`;
+          }
         });
       }
       if (this.minAge) {
