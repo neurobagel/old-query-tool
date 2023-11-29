@@ -64,7 +64,7 @@
                   class="float-right"
                 >
                   <b-button
-                    v-for="modality in sortedModalities"
+                    v-for="modality in sortedFilteredModalities"
                     :key="modality"
                     type="button"
                     class="btn card-modality"
@@ -149,10 +149,10 @@ export default {
     };
   },
   computed: {
-    sortedModalities() {
+    sortedFilteredModalities() {
       // We have to do this as the linter screams at us for mutating the prop
-      const sortedModalities = this.imageModals;
-      return sortedModalities.sort();
+      const modalities = this.imageModals;
+      return modalities.filter(Boolean).sort();
     },
   },
   methods: {

@@ -46,4 +46,10 @@ describe('Result card', () => {
     cy.get('[data-cy="card-http://neurobagel.org/vocab/cool-dataset-expander"]').contains('...less').click();
     cy.get('[data-cy="card-http://neurobagel.org/vocab/cool-dataset-dataset"]').should('not.contain', 'truncated');
   });
+  it('Filters falsy modalities', () => {
+    props.imageModals = [null, undefined];
+    cy.mount(ResultCard, {
+      propsData: props,
+    });
+  });
 });
