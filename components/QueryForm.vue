@@ -20,7 +20,7 @@
               :value="selectedNodes"
               data-cy="node-field"
               :options="availableNodes"
-              :multiple=true
+              :multiple="true"
               label="NodeName"
               @input="$emit('selectNodes', $event)"
             />
@@ -139,6 +139,14 @@ export default {
       modality: null,
       isFetching: false,
     };
+  },
+  mounted() {
+    if (Object.keys(this.categoricalOptions.Diagnosis).length <= 1) {
+      this.displayToast('Failed to retrieve diagnosis options');
+    }
+    if (Object.keys(this.categoricalOptions['Assessment tool']).length <= 1) {
+      this.displayToast('Failed to retrieve assessment tool options');
+    }
   },
   methods: {
     updateField(name, input) {
