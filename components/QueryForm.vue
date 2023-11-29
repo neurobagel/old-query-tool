@@ -52,7 +52,7 @@
         <categorical-field
           name="Diagnosis"
           data-cy="diagnosis-field"
-          :default-selected="Object.keys(categoricalOptions.Diagnosis)[0]"
+          default-selected="All"
           :options="Object.keys(categoricalOptions.Diagnosis)"
           :disabled="is_control"
           @update-categorical-field="updateField"
@@ -79,7 +79,7 @@
         <categorical-field
           name="Assessment tool"
           data-cy="assessment-tool-field"
-          :default-selected="Object.keys(categoricalOptions['Assessment tool'])[0]"
+          default-selected="All"
           :options="Object.keys(categoricalOptions['Assessment tool'])"
           @update-categorical-field="updateField"
         />
