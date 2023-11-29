@@ -152,7 +152,8 @@ export default {
     sortedFilteredModalities() {
       // We have to do this as the linter screams at us for mutating the prop
       const modalities = this.imageModals;
-      return modalities.filter(Boolean).sort();
+      // Filter out null modalities as the API may return null for some modalities
+      return modalities.filter((modality) => modality !== null).sort();
     },
   },
   methods: {
