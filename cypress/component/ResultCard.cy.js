@@ -47,9 +47,11 @@ describe('Result card', () => {
     cy.get('[data-cy="card-http://neurobagel.org/vocab/cool-dataset-dataset"]').should('not.contain', 'truncated');
   });
   it('Filters falsy modalities', () => {
-    props.imageModals = [null, undefined];
+    props.imageModals.push(null);
     cy.mount(ResultCard, {
       propsData: props,
     });
+    cy.get('[data-cy="card-http://neurobagel.org/vocab/cool-dataset-modality-T1"]').should('be.visible').contains('T1');
+    cy.get('[data-cy="card-http://neurobagel.org/vocab/cool-dataset-modality-T2"]').should('be.visible').contains('T2');
   });
 });
