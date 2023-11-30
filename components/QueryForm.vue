@@ -140,6 +140,12 @@ export default {
       isFetching: false,
     };
   },
+  computed: {
+    apiQueryURL() {
+      const url = this.$config.apiQueryURL;
+      return url.endsWith('/') ? `${url}query/?` : `${url}/query/?`;
+    },
+  },
   methods: {
     updateField(name, input) {
       switch (name) {
@@ -187,7 +193,7 @@ export default {
     },
     async submitQuery() {
       this.isFetching = true;
-      let url = `${this.$config.apiQueryURL}query/?`;
+      let url = this.apiQueryURL;
       if (this.isFederationApi && this.selectedNodes.length > 0) {
         this.selectedNodes.forEach((node) => {
           if (node.NodeName !== 'All') {
