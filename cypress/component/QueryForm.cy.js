@@ -141,4 +141,12 @@ describe('Query form', () => {
 
     cy.get('[data-cy="node-field"]').should('contain', 'anotherNode');
   });
+  it.only('Displays the healthy control tooltip', () => {
+    cy.mount(QueryForm, {
+      stubs,
+      propsData: props,
+    });
+    cy.get('[data-cy="healthy-control-checkbox"]').check();
+    cy.get('.tooltip-inner').contains('Checking the healthy control checkbox');
+  });
 });
