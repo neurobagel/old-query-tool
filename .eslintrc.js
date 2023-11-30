@@ -33,5 +33,5 @@ module.exports = {
       },
     },
   ],
-  ignorePatterns: 'cypress.config.js',
+  ignorePatterns: ['cypress.config.js', 'dist/**', 'node_modules/**', '.nuxt/**'],
 };
