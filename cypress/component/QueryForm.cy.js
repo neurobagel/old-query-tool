@@ -141,4 +141,58 @@ describe('Query form', () => {
 
     cy.get('[data-cy="node-field"]').should('contain', 'anotherNode');
   });
+
+  it('Appends a slash to the apiQueryURL if it does not end with a slash', () => {
+    const getStub = cy.stub().resolves({ data: 'mock response' });
+
+    cy.mount(QueryForm, {
+      stubs,
+      propsData: {
+        selectedNodes: [
+          {
+            NodeName: 'anotherNode',
+            NodeURL: 'https://anotherNode.org',
+          },
+        ],
+        ...props,
+      },
+      mocks: {
+        $config: {
+          apiQueryURL: 'http://my.site.org',
+        },
+        $axios: {
+          get: getStub,
+        },
+      },
+    });
+    cy.get('[data-cy=submit-query]').click();
+    cy.wrap(getStub).should('have.been.calledWith', 'http://my.site.org/query/?&node_url=undefined');
+  });
+
+  it('Does not append extra slash to the apiQueryURL if it ends with a slash', () => {
+    const getStub = cy.stub().resolves({ data: 'mock response' });
+
+    cy.mount(QueryForm, {
+      stubs,
+      propsData: {
+        selectedNodes: [
+          {
+            NodeName: 'anotherNode',
+            NodeURL: 'https://anotherNode.org/',
+          },
+        ],
+        ...props,
+      },
+      mocks: {
+        $config: {
+          apiQueryURL: 'http://my.site.org',
+        },
+        $axios: {
+          get: getStub,
+        },
+      },
+    });
+    cy.get('[data-cy=submit-query]').click();
+    cy.wrap(getStub).should('have.been.calledWith', 'http://my.site.org/query/?&node_url=undefined');
+  });
 });
