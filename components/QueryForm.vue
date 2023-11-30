@@ -20,7 +20,7 @@
               :value="selectedNodes"
               data-cy="node-field"
               :options="availableNodes"
-              :multiple=true
+              :multiple="true"
               label="NodeName"
               @input="$emit('selectNodes', $event)"
             />
@@ -59,13 +59,23 @@
         >
           <template #control>
             <b-form-group class="col-md-7">
-              <input
-                v-model="is_control"
-                data-cy="healthy-control-checkbox"
-                class="form-check-input"
-                type="checkbox"
+              <div
+                v-b-tooltip.hover.right="'Checking the healthy control checkbox \
+              disables the diagnosis field as it is assumed participants \
+              can either be healthy or have diagnosis'"
               >
-              <label class="form-label">Healthy control</label>
+                <input
+                  id="healthy-control-checkbox"
+                  v-model="is_control"
+                  data-cy="healthy-control-checkbox"
+                  class="form-check-input"
+                  type="checkbox"
+                >
+                <label
+                  for="healthy-control-checkbox"
+                  class="form-label"
+                >Healthy control</label>
+              </div>
             </b-form-group>
           </template>
         </categorical-field>
