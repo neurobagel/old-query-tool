@@ -20,7 +20,7 @@
               :value="selectedNodes"
               data-cy="node-field"
               :options="availableNodes"
-              :multiple=true
+              multiple
               label="NodeName"
               @input="$emit('selectNodes', $event)"
             />
@@ -52,7 +52,7 @@
         <categorical-field
           name="Diagnosis"
           data-cy="diagnosis-field"
-          :default-selected="Object.keys(categoricalOptions.Diagnosis)[0]"
+          default-selected="All"
           :options="Object.keys(categoricalOptions.Diagnosis)"
           :disabled="is_control"
           @update-categorical-field="updateField"
@@ -79,7 +79,7 @@
         <categorical-field
           name="Assessment tool"
           data-cy="assessment-tool-field"
-          :default-selected="Object.keys(categoricalOptions['Assessment tool'])[0]"
+          default-selected="All"
           :options="Object.keys(categoricalOptions['Assessment tool'])"
           @update-categorical-field="updateField"
         />
@@ -145,6 +145,14 @@ export default {
       const url = this.$config.apiQueryURL;
       return url.endsWith('/') ? `${url}query/?` : `${url}/query/?`;
     },
+  },
+  mounted() {
+    if (Object.keys(this.categoricalOptions.Diagnosis).length <= 1) {
+      this.displayToast('Failed to retrieve diagnosis options');
+    }
+    if (Object.keys(this.categoricalOptions['Assessment tool']).length <= 1) {
+      this.displayToast('Failed to retrieve assessment tool options');
+    }
   },
   methods: {
     updateField(name, input) {
