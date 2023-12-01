@@ -52,6 +52,7 @@ export default {
   },
   computed: {
     sortedOptions() {
+      // We have to do this to avoid mutating the prop
       const { options } = this;
       return options.sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
     },
