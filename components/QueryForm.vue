@@ -20,7 +20,7 @@
               :value="selectedNodes"
               data-cy="node-field"
               :options="availableNodes"
-              :multiple="true"
+              multiple
               label="NodeName"
               @input="$emit('selectNodes', $event)"
             />
