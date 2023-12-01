@@ -47,7 +47,7 @@ export default {
       },
     };
   },
-  async fetch() {
+  async mounted() {
     const diagnosisResponse = await this.$axios.get(`${this.$config.apiQueryURL}attributes/nb:Diagnosis`);
     const diagnosisOptions = diagnosisResponse.data['nb:Diagnosis'].reduce((tempArray, diagnosis) => ({
       ...tempArray,
