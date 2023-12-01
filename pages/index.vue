@@ -47,7 +47,7 @@ export default {
       },
     };
   },
-  async mounted() {
+  async fetch() {
     const diagnosisResponse = await this.$axios.get(`${this.$config.apiQueryURL}attributes/nb:Diagnosis`);
     const diagnosisOptions = diagnosisResponse.data['nb:Diagnosis'].reduce((tempArray, diagnosis) => ({
       ...tempArray,
@@ -74,46 +74,6 @@ export default {
         NodeName: 'All',
         ApiURL: undefined,
       });
-
-      // The first time we load the app, we will also check the URL
-      // for valid query parameters that refer to selected nodes.
-      // If we find any valid query parameters in the URL, then we
-      // initialize the apps with these nodes selected!
-      const { node: nodeName } = this.$route.query;
-      if (nodeName !== undefined) {
-        const availableNodeNames = this.availableNodes.map((node) => node.NodeName);
-        if (typeof nodeName === 'string') {
-          // There is only one node in the URL query parameters
-          if (nodeName === 'All') {
-            // "All" is a special node name and just means
-            // that we select all known nodes
-            this.selectTheAllNode();
-          } else {
-            this.selectedNodes = availableNodeNames.includes(nodeName)
-              ? [{
-                NodeName: nodeName,
-                ApiURL: this.availableNodes[availableNodeNames.indexOf(nodeName)].ApiURL,
-              }]
-              : [];
-          }
-        } else if (typeof nodeName === 'object') {
-          // There are multiple nodes in the URL query parameters
-          // We don't know if the user provided something silly or
-          // a node that we no longer know about, so we need to filter.
-          this.selectedNodes = nodeName
-            .filter((name) => availableNodeNames.includes(name))
-            .map((name) => (
-              {
-                NodeName: name,
-                ApiURL: this.availableNodes[availableNodeNames.indexOf(name)].ApiURL,
-              }
-            ));
-        }
-      }
-
-      if (this.selectedNodes.length === 0) {
-        this.selectTheAllNode();
-      }
     }
   },
   computed: {
@@ -137,6 +97,47 @@ export default {
         this.selectTheAllNode();
       }
     },
+  },
+  mounted() {
+    // The first time we load the app, we will also check the URL
+    // for valid query parameters that refer to selected nodes.
+    // If we find any valid query parameters in the URL, then we
+    // initialize the apps with these nodes selected!
+    const { node: nodeName } = this.$route.query;
+    if (nodeName !== undefined) {
+      const availableNodeNames = this.availableNodes.map((node) => node.NodeName);
+      if (typeof nodeName === 'string') {
+        // There is only one node in the URL query parameters
+        if (nodeName === 'All') {
+          // "All" is a special node name and just means
+          // that we select all known nodes
+          this.selectTheAllNode();
+        } else {
+          this.selectedNodes = availableNodeNames.includes(nodeName)
+            ? [{
+              NodeName: nodeName,
+              ApiURL: this.availableNodes[availableNodeNames.indexOf(nodeName)].ApiURL,
+            }]
+            : [];
+        }
+      } else if (typeof nodeName === 'object') {
+        // There are multiple nodes in the URL query parameters
+        // We don't know if the user provided something silly or
+        // a node that we no longer know about, so we need to filter.
+        this.selectedNodes = nodeName
+          .filter((name) => availableNodeNames.includes(name))
+          .map((name) => (
+            {
+              NodeName: name,
+              ApiURL: this.availableNodes[availableNodeNames.indexOf(name)].ApiURL,
+            }
+          ));
+      }
+    }
+
+    if (this.selectedNodes.length === 0) {
+      this.selectTheAllNode();
+    }
   },
   methods: {
     updateResponse(results, error) {
