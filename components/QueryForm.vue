@@ -61,8 +61,8 @@
             <b-form-group class="col-md-7">
               <div
                 v-b-tooltip.hover.right="'Checking the healthy control checkbox \
-              disables the diagnosis field as it is assumed participants \
-              can either be healthy or have diagnosis'"
+              disables the diagnosis field because we do not support queries \
+              for healthy controls with secondary diagnoses'"
               >
                 <input
                   id="healthy-control-checkbox"

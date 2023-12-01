@@ -211,6 +211,6 @@ describe('Query form', () => {
       propsData: props,
     });
     cy.get('[data-cy="healthy-control-checkbox"]').check();
-    cy.get('.tooltip-inner').contains('Checking the healthy control checkbox');
+    cy.contains('.tooltip-inner', 'Checking the healthy control checkbox');
   });
 });
