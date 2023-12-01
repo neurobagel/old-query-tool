@@ -12,7 +12,7 @@
     <v-select
       v-model="selected"
       :data-cy="`${name}-select`"
-      :options="options"
+      :options="sortedOptions"
       :multiple="multiple"
       :disabled="disabled"
       @input="updateField"
@@ -49,6 +49,13 @@ export default {
     return {
       selected: this.defaultSelected,
     };
+  },
+  computed: {
+    sortedOptions() {
+      // We have to do this to avoid mutating the prop
+      const { options } = this;
+      return options.sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
+    },
   },
   methods: {
     updateField() {

@@ -141,7 +141,71 @@ describe('Query form', () => {
 
     cy.get('[data-cy="node-field"]').should('contain', 'anotherNode');
   });
-  it.only('Displays the healthy control tooltip', () => {
+
+  it('Appends a slash to the apiQueryURL if it does not end with a slash', () => {
+    const getStub = cy.stub().resolves({ data: 'mock response' });
+
+    cy.mount(QueryForm, {
+      stubs,
+      propsData: {
+        selectedNodes: [
+          {
+            NodeName: 'anotherNode',
+            NodeURL: 'https://anotherNode.org',
+          },
+        ],
+        ...props,
+      },
+      mocks: {
+        $config: {
+          apiQueryURL: 'http://my.site.org',
+        },
+        $axios: {
+          get: getStub,
+        },
+      },
+    });
+    cy.get('[data-cy=submit-query]').click();
+    cy.wrap(getStub).should('have.been.calledWith', 'http://my.site.org/query/?&node_url=undefined');
+  });
+
+  it('Does not append extra slash to the apiQueryURL if it ends with a slash', () => {
+    const getStub = cy.stub().resolves({ data: 'mock response' });
+
+    cy.mount(QueryForm, {
+      stubs,
+      propsData: {
+        selectedNodes: [
+          {
+            NodeName: 'anotherNode',
+            NodeURL: 'https://anotherNode.org/',
+          },
+        ],
+        ...props,
+      },
+      mocks: {
+        $config: {
+          apiQueryURL: 'http://my.site.org',
+        },
+        $axios: {
+          get: getStub,
+        },
+      },
+    });
+    cy.get('[data-cy=submit-query]').click();
+    cy.wrap(getStub).should('have.been.calledWith', 'http://my.site.org/query/?&node_url=undefined');
+  });
+  it('Displays a toast when diagnosis and assessment tool options are not retrieved', () => {
+    props.categoricalOptions.Diagnosis = { All: null };
+    props.categoricalOptions['Assessment tool'] = { All: null };
+    cy.mount(QueryForm, {
+      stubs,
+      propsData: props,
+    });
+    cy.contains('#b-toaster-top-right', 'Failed to retrieve diagnosis options');
+    cy.contains('#b-toaster-top-right', 'Failed to retrieve assessment tool options');
+  });
+  it('Displays the healthy control tooltip', () => {
     cy.mount(QueryForm, {
       stubs,
       propsData: props,
