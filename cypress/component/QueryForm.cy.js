@@ -205,4 +205,12 @@ describe('Query form', () => {
     cy.contains('#b-toaster-top-right', 'Failed to retrieve diagnosis options');
     cy.contains('#b-toaster-top-right', 'Failed to retrieve assessment tool options');
   });
+  it('Displays the healthy control tooltip', () => {
+    cy.mount(QueryForm, {
+      stubs,
+      propsData: props,
+    });
+    cy.get('[data-cy="healthy-control-checkbox"]').check();
+    cy.contains('.tooltip-inner', 'Checking the healthy control checkbox');
+  });
 });
