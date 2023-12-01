@@ -59,13 +59,23 @@
         >
           <template #control>
             <b-form-group class="col-md-7">
-              <input
-                v-model="is_control"
-                data-cy="healthy-control-checkbox"
-                class="form-check-input"
-                type="checkbox"
+              <div
+                v-b-tooltip.hover.right="'Checking the healthy control checkbox \
+              disables the diagnosis field because we do not support queries \
+              for healthy controls with secondary diagnoses'"
               >
-              <label class="form-label">Healthy control</label>
+                <input
+                  id="healthy-control-checkbox"
+                  v-model="is_control"
+                  data-cy="healthy-control-checkbox"
+                  class="form-check-input"
+                  type="checkbox"
+                >
+                <label
+                  for="healthy-control-checkbox"
+                  class="form-label"
+                >Healthy control</label>
+              </div>
             </b-form-group>
           </template>
         </categorical-field>
