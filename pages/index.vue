@@ -47,6 +47,12 @@ export default {
       },
     };
   },
+  // According to Nuxt 2 docs https://v2.nuxt.com/docs/components-glossary/fetch/#nuxt--212,
+  // fetch hook can be used to get asynchronous data therefore we'll keep all logic related
+  // to fetching asynchronous data in this hook
+  // As we are currently deploying the app on Github Pages and using static site generation,
+  // fetch hook is only called during generation phase i.e., npm run generate and thus
+  // any logic related to updating the route would need to be moved to mounted hook
   async fetch() {
     const diagnosisResponse = await this.$axios.get(`${this.$config.apiQueryURL}attributes/nb:Diagnosis`);
     const diagnosisOptions = diagnosisResponse.data['nb:Diagnosis'].reduce((tempArray, diagnosis) => ({
@@ -99,10 +105,10 @@ export default {
     },
   },
   mounted() {
-    // The first time we load the app, we will also check the URL
+    // Once the component is mounted to DOM, check the URL
     // for valid query parameters that refer to selected nodes.
     // If we find any valid query parameters in the URL, then we
-    // initialize the apps with these nodes selected!
+    // update the app with these nodes selected!
     const { node: nodeName } = this.$route.query;
     if (nodeName !== undefined) {
       const availableNodeNames = this.availableNodes.map((node) => node.NodeName);
