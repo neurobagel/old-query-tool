@@ -49,10 +49,10 @@ export default {
   },
   // According to Nuxt 2 docs https://v2.nuxt.com/docs/components-glossary/fetch/#nuxt--212,
   // fetch hook can be used to get asynchronous data therefore we'll keep all logic related
-  // to fetching asynchronous data in this hook
-  // As we are currently deploying the app on Github Pages and using static site generation,
-  // fetch hook is only called during generation phase i.e., npm run generate and thus
-  // any logic related to updating the route would need to be moved to mounted hook
+  // to fetching asynchronous data in this hook.
+  // Since we are currently deploying the app on Github Pages and using static site generation,
+  // fetch hook is only called during the generation phase thus any logic related to
+  // updating the route would need to be moved to mounted hook
   async fetch() {
     const diagnosisResponse = await this.$axios.get(`${this.$config.apiQueryURL}attributes/nb:Diagnosis`);
     const diagnosisOptions = diagnosisResponse.data['nb:Diagnosis'].reduce((tempArray, diagnosis) => ({
