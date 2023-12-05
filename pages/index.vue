@@ -1,6 +1,29 @@
 <template>
   <b-container fluid>
     <b-row class="mx-auto">
+      <b-alert
+        :show="queryingOpenNeuro"
+        variant="dark"
+        class="d-flex align-items-center"
+        data-cy="alert"
+      >
+        <p>
+          The OpenNeuro node is being actively annotated at the participant level and does
+          not include all datasets yet. Check back soon to find more data. If you would like
+          to contribute annotations for existing OpenNeuro datasets, please get in touch through
+          <a
+            href="https://github.com/OpenNeuroDatasets-JSONLD/.github/issues"
+            target="_blank"
+          >GitHub</a>.
+        </p>
+        <span
+          class="dismiss"
+          data-cy="dismiss-alert"
+          @click="dismissAlert"
+        >dismiss</span>
+      </b-alert>
+    </b-row>
+    <b-row class="mx-auto">
       <query-form
         :categorical-options="categoricalOptions"
         :is-federation-api="isFederationApi"
@@ -23,6 +46,7 @@ export default {
     return {
       availableNodes: [],
       selectedNodes: [],
+      alertDismissed: false,
       results: null,
       error: null,
       categoricalOptions: {
@@ -90,6 +114,9 @@ export default {
       // So to keep things consistent, we call it isFederationApi here as well.
       return this.$config.isFederationAPI === undefined ? true : this.$config.isFederationAPI;
     },
+    queryingOpenNeuro() {
+      return this.selectedNodes.some((node) => node.NodeName === 'OpenNeuro' || node.NodeName === 'All') && !this.alertDismissed;
+    },
   },
   watch: {
     selectedNodes(newNode) {
@@ -156,6 +183,17 @@ export default {
     selectTheAllNode() {
       this.selectedNodes = [{ NodeName: 'All', ApiURL: undefined }];
     },
+    dismissAlert() {
+      this.alertDismissed = true;
+    },
   },
 };
 </script>
+<style>
+.dismiss {
+  cursor: pointer;
+  float: right;
+  margin-right: 4px;
+}
+
+</style>
