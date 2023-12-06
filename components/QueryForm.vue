@@ -209,40 +209,34 @@ export default {
         this.submitQuery();
       }
     },
-    async submitQuery() {
-      this.isFetching = true;
-      let url = this.apiQueryURL;
+    constructQueryURL() {
+      const queryParams = {};
       if (this.isFederationApi && this.selectedNodes.length > 0) {
         this.selectedNodes.forEach((node) => {
           if (node.NodeName !== 'All') {
-            url += `&node_url=${node.ApiURL}`;
+            queryParams.node_url = node.ApiURL;
           }
         });
       }
-      if (this.minAge) {
-        url += `min_age=${this.minAge}`;
-      }
-      if (this.maxAge) {
-        url += `&max_age=${this.maxAge}`;
-      }
-      if (this.sex) {
-        url += `&sex=${this.sex}`;
-      }
-      if (this.diagnosis && !this.is_control) {
-        url += `&diagnosis=${this.diagnosis}`;
-      }
-      if (this.is_control) {
-        url += `&is_control=${this.is_control}`;
-      }
-      if (this.min_num_sessions) {
-        url += `&min_num_sessions=${this.min_num_sessions}`;
-      }
-      if (this.assessment) {
-        url += `&assessment=${this.assessment}`;
-      }
-      if (this.modality) {
-        url += `&image_modal=${this.modality}`;
-      }
+      queryParams.min_age = this.minAge;
+      queryParams.max_age = this.maxAge;
+      queryParams.sex = this.sex;
+      queryParams.diagnosis = this.diagnosis && !this.is_control ? this.diagnosis : null;
+      queryParams.is_control = this.is_control || null;
+      queryParams.min_num_sessions = this.min_num_sessions;
+      queryParams.assessment = this.assessment;
+      queryParams.image_modal = this.modality;
+
+      Object.keys(queryParams).forEach((key) => queryParams[key] == null
+      && delete queryParams[key]);
+      const searchParams = new URLSearchParams(queryParams).toString();
+      return `${this.apiQueryURL}${searchParams}`;
+    },
+    async submitQuery() {
+      this.isFetching = true;
+
+      const url = this.constructQueryURL();
+
       try {
         const resp = await this.$axios.get(url);
         this.$emit('update-response', resp.data, null);
