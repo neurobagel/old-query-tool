@@ -5,7 +5,7 @@
         :show="queryingOpenNeuro"
         variant="dark"
         class="d-flex align-items-center"
-        data-cy="alert"
+        data-cy="openneuro-alert"
       >
         <p>
           The OpenNeuro node is being actively annotated at the participant level and does
@@ -18,7 +18,7 @@
         </p>
         <span
           class="dismiss"
-          data-cy="dismiss-alert"
+          data-cy="dismiss-openenuro-alert"
           @click="dismissAlert"
         >dismiss</span>
       </b-alert>
