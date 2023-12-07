@@ -1,4 +1,4 @@
-name: Auto Release
+name: auto release
 
 on:
   push:
@@ -17,7 +17,7 @@ jobs:
           fetch-depth: 0
 
     - name: Install Auto
-      run: npm install auto
+      run: npm install -g auto
 
     - name: Release
       env:
