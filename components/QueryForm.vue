@@ -227,8 +227,11 @@ export default {
       queryParams.assessment = this.assessment;
       queryParams.image_modal = this.modality;
 
-      Object.keys(queryParams).forEach((key) => queryParams[key] == null
-      && delete queryParams[key]);
+      Object.keys(queryParams).forEach((key) => {
+        if (queryParams[key] == null || queryParams[key] === undefined) {
+          delete queryParams[key];
+        }
+      });
       const searchParams = new URLSearchParams(queryParams).toString();
       return `${this.apiQueryURL}${searchParams}`;
     },
