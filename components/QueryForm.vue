@@ -228,7 +228,7 @@ export default {
       queryParams.image_modal = this.modality;
 
       Object.keys(queryParams).forEach((key) => {
-        if (queryParams[key] == null || queryParams[key] === undefined) {
+        if (queryParams[key] === null || queryParams[key] === undefined) {
           delete queryParams[key];
         }
       });
