@@ -2,7 +2,7 @@
     "onlyPublishWithReleaseLabel": true,
     "baseBranch": "main",
     "author": "Chef Bot <chef@neurobagel.org>",
-    "noVersionPrefix": true,
+    "noVersionPrefix": false,
     "plugins": [
         "git-tag",
         "released"
