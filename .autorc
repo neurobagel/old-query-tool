@@ -1,0 +1,10 @@
+{
+    "onlyPublishWithReleaseLabel": true,
+    "baseBranch": "main",
+    "author": "Chef Bot <chef@neurobagel.org>",
+    "noVersionPrefix": true,
+    "plugins": [
+        "git-tag",
+        "released"
+    ]
+}
