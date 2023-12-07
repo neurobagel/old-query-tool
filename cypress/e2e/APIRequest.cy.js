@@ -6,10 +6,10 @@ describe('API request', () => {
       method: 'GET',
       url: 'query/?*',
     }, mixedResponse).as('call');
-    cy.visit('/');
+    cy.visit('/?node=OpenNeuro');
     cy.get('[data-cy="Min Age-continuous-field-input"]').type('10');
     cy.get('[data-cy="Max Age-continuous-field-input"]').type('30');
     cy.get('[data-cy="submit-query"]').click();
-    cy.wait('@call').its('request.url').should('contains', 'min_age=10&max_age=30');
+    cy.wait('@call').its('request.url').should('contains', '&min_age=10&max_age=30');
   });
 });

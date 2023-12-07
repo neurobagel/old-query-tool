@@ -166,7 +166,7 @@ describe('Query form', () => {
       },
     });
     cy.get('[data-cy=submit-query]').click();
-    cy.wrap(getStub).should('have.been.calledWith', 'http://my.site.org/query/?&node_url=undefined');
+    cy.wrap(getStub).should('have.been.calledWith', 'http://my.site.org/query/?');
   });
 
   it('Does not append extra slash to the apiQueryURL if it ends with a slash', () => {
@@ -193,7 +193,7 @@ describe('Query form', () => {
       },
     });
     cy.get('[data-cy=submit-query]').click();
-    cy.wrap(getStub).should('have.been.calledWith', 'http://my.site.org/query/?&node_url=undefined');
+    cy.wrap(getStub).should('have.been.calledWith', 'http://my.site.org/query/?');
   });
   it('Displays a toast when diagnosis and assessment tool options are not retrieved', () => {
     props.categoricalOptions.Diagnosis = { All: null };
