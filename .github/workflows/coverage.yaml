@@ -1,9 +1,10 @@
-name: CI
+name: coverage
 
 on:
   push:
     branches:
       - main
+      - feat-330
   pull_request:
   workflow_dispatch:
 
