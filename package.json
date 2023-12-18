@@ -9,9 +9,13 @@
     "generate": "nuxt generate",
     "lint": "eslint --ext \".js,.vue\" .",
     "lintfix": "npm run lint -- --fix",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "test:e2e": "cypress run --e2e",
+    "test:component": "cypress run --component",
+    "test:all": "npm run test:e2e && npm run test:component"
   },
   "dependencies": {
+    "@cypress/code-coverage": "^3.12.14",
     "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/dotenv": "^1.4.1",
     "bootstrap": "^5.3.2",

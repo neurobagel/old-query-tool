@@ -41,7 +41,13 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
+    '@nuxtjs/istanbul',
   ],
+  istanbul: {
+    // Only enable coverage for development to avoid impact on production build
+    // You can use environment variables to control this behavior as needed
+    enabled: true,
+  },
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [

@@ -1,0 +1,37 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Node.js environment
+        uses: actions/setup-node@v4.0.0
+        with:
+          node-version: 16
+      - name: Create .env file
+        run: |
+          echo -e "API_QUERY_URL=${{ vars.API_QUERY_URL }}\nIS_FEDERATION_API=${{ vars.IS_FEDERATION_API }}" > .env
+      - name: Install Dependencies
+        run: npm install
+      - name: Build the project
+        run: npm run build
+      - name: Run E2E and Component tests with coverage
+        run: npm run test:all
+      - name: Collect Coverage
+        run: npx nyc report --reporter=json
+      - name: Upload Coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          files: ./coverage/*.json
+          flags: e2e,component
+          fail_ci_if_error: true
+          verbose: true

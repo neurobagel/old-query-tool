@@ -1,0 +1,3 @@
+DatasetID	DatasetName	PortalURI	NumMatchingSubjects	AvailableImageModalities
+https://someportal.org/datasets/ds0001	some name		3	http://purl.org/nidash/nidm#FlowWeighted, http://purl.org/nidash/nidm#T1Weighted
+https://someportal.org/datasets/ds0002	some coolname		5	http://purl.org/nidash/nidm#FlowWeighted, http://purl.org/nidash/nidm#T1Weighted
