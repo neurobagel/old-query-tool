@@ -78,7 +78,10 @@ export default {
   // fetch hook is only called during the generation phase thus any logic related to
   // updating the route would need to be moved to mounted hook
   async fetch() {
-    const diagnosisResponse = await this.$axios.get(`${this.$config.apiQueryURL}attributes/nb:Diagnosis`);
+    const url = this.$config.apiQueryURLServer;
+    const apiQueryURLServer = url.endsWith('/') ? `${url}` : `${url}/`;
+
+    const diagnosisResponse = await this.$axios.get(`${apiQueryURLServer}attributes/nb:Diagnosis`);
     const diagnosisOptions = diagnosisResponse.data['nb:Diagnosis'].reduce((tempArray, diagnosis) => ({
       ...tempArray,
       [diagnosis.Label]: diagnosis.TermURL,
@@ -86,7 +89,7 @@ export default {
     diagnosisOptions.All = null;
     this.categoricalOptions.Diagnosis = diagnosisOptions;
 
-    const assessmentResponse = await this.$axios.get(`${this.$config.apiQueryURL}attributes/nb:Assessment`);
+    const assessmentResponse = await this.$axios.get(`${apiQueryURLServer}attributes/nb:Assessment`);
     const assessmentOptions = assessmentResponse.data['nb:Assessment'].reduce((tempArray, assessment) => ({
       ...tempArray,
       [assessment.Label]: assessment.TermURL,
@@ -96,7 +99,7 @@ export default {
 
     if (this.isFederationApi) {
       // TODO: write a test for all these fancy things
-      const response = await this.$axios.get(`${this.$config.apiQueryURL}nodes/`);
+      const response = await this.$axios.get(`${apiQueryURLServer}nodes/`);
       this.availableNodes = response.data;
       // We need to also add our special "All" node
       // that we use to select all nodes.
