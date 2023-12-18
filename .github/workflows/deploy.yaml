@@ -20,7 +20,7 @@ jobs:
 
     - name: Create .env file
       run: |
-        echo -e "API_QUERY_URL=${{ vars.API_QUERY_URL }}\nIS_FEDERATION_API=${{ vars.IS_FEDERATION_API }}" > .env
+        echo -e "API_QUERY_URL_CLIENT=${{ vars.API_QUERY_URL_CLIENT }}\nAPI_QUERY_URL_SERVER=${{ vars.API_QUERY_URL_SERVER }}\nIS_FEDERATION_API=${{ vars.IS_FEDERATION_API }}" > .env
 
     - name: Install dependencies
       run: yarn
