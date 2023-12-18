@@ -25,6 +25,12 @@
               @input="$emit('selectNodes', $event)"
             />
           </div>
+          <div>
+            <hr>
+          </div>
+          <b-row>
+            <h6>Phenotypic fields (at baseline)</h6>
+          </b-row>
           <b-form-group class="col-md-6">
             <continuous-field
               name="Min Age"
@@ -93,6 +99,12 @@
           :options="Object.keys(categoricalOptions['Assessment tool'])"
           @update-categorical-field="updateField"
         />
+        <div>
+            <hr>
+          </div>
+          <b-row>
+            <h6>Imaging fields</h6>
+          </b-row>
         <categorical-field
           name="Imaging modality"
           data-cy="modality-field"
