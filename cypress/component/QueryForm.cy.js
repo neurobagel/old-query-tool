@@ -142,7 +142,7 @@ describe('Query form', () => {
     cy.get('[data-cy="node-field"]').should('contain', 'anotherNode');
   });
 
-  it('Appends a slash to the apiQueryURL if it does not end with a slash', () => {
+  it('Appends a slash to the apiQueryURLClient if it does not end with a slash', () => {
     const getStub = cy.stub().resolves({ data: 'mock response' });
 
     cy.mount(QueryForm, {
@@ -158,7 +158,7 @@ describe('Query form', () => {
       },
       mocks: {
         $config: {
-          apiQueryURL: 'http://my.site.org',
+          apiQueryURLClient: 'http://my.site.org',
         },
         $axios: {
           get: getStub,
@@ -169,7 +169,7 @@ describe('Query form', () => {
     cy.wrap(getStub).should('have.been.calledWith', 'http://my.site.org/query/?');
   });
 
-  it('Does not append extra slash to the apiQueryURL if it ends with a slash', () => {
+  it('Does not append extra slash to the apiQueryURLClient if it ends with a slash', () => {
     const getStub = cy.stub().resolves({ data: 'mock response' });
 
     cy.mount(QueryForm, {
@@ -185,7 +185,7 @@ describe('Query form', () => {
       },
       mocks: {
         $config: {
-          apiQueryURL: 'http://my.site.org',
+          apiQueryURLClient: 'http://my.site.org',
         },
         $axios: {
           get: getStub,
