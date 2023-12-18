@@ -151,8 +151,8 @@ export default {
     };
   },
   computed: {
-    apiQueryURL() {
-      const url = this.$config.apiQueryURL;
+    apiQueryURLClient() {
+      const url = this.$config.apiQueryURLClient;
       return url.endsWith('/') ? `${url}query/?` : `${url}/query/?`;
     },
   },
@@ -233,7 +233,7 @@ export default {
         }
       });
       const searchParams = new URLSearchParams(queryParams).toString();
-      return `${this.apiQueryURL}${searchParams}`;
+      return `${this.apiQueryURLClient}${searchParams}`;
     },
     async submitQuery() {
       this.isFetching = true;
