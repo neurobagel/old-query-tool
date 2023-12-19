@@ -74,9 +74,6 @@ export default {
   // According to Nuxt 2 docs https://v2.nuxt.com/docs/components-glossary/fetch/#nuxt--212,
   // fetch hook can be used to get asynchronous data therefore we'll keep all logic related
   // to fetching asynchronous data in this hook.
-  // Since we are currently deploying the app on Github Pages and using static site generation,
-  // fetch hook is only called during the generation phase thus any logic related to
-  // updating the route would need to be moved to mounted hook
   async fetch() {
     const apiQueryURL = this.$config.apiQueryURL.endsWith('/') ? `${this.$config.apiQueryURL}` : `${this.$config.apiQueryURL}/`;
 
@@ -107,40 +104,11 @@ export default {
         ApiURL: undefined,
       });
     }
-  },
-  fetchOnServer: false,
-  computed: {
-    isFederationApi() {
-      // We're naming the computed property isFederationApi (smallcaps API)
-      // because vue-linting rules require props to not be capitalized but
-      // hyphenated: is-federation-api. This gets converted to isFederationApi.
-      // So to keep things consistent, we call it isFederationApi here as well.
-      return this.$config.isFederationAPI === undefined ? true : this.$config.isFederationAPI;
-    },
-    queryingOpenNeuro() {
-      return (this.selectedNodes.some((node) => node.NodeName === 'OpenNeuro')
-      || (this.selectedNodes.some((node) => node.NodeName === 'All') && this.availableNodes.some((node) => node.NodeName === 'OpenNeuro')))
-      && !this.alertDismissed;
-    },
-  },
-  watch: {
-    selectedNodes(newNode) {
-      if (newNode.length > 0) {
-        this.$router.push({
-          path: this.$route.path,
-          query: { ...this.$route.query, node: newNode.map((node) => node.NodeName) },
-        });
-      } else if (newNode.length === 0) {
-        // If all nodes are removed, we default to the "All" node
-        this.selectTheAllNode();
-      }
-    },
-  },
-  mounted() {
-    // Once the component is mounted to DOM, check the URL
-    // for valid query parameters that refer to selected nodes.
-    // If we find any valid query parameters in the URL, then we
-    // update the app with these nodes selected!
+
+    // Since fetchOnServer is set to false the order of execution of
+    // hooks is such that fetch hook is called after mounted and therefore
+    // all logic related to updating the route needs to be in fetch since
+    // nodes are not available in the mounted hook.
     const { node: nodeName } = this.$route.query;
     if (nodeName !== undefined) {
       const availableNodeNames = this.availableNodes.map((node) => node.NodeName);
@@ -176,6 +144,34 @@ export default {
     if (this.selectedNodes.length === 0) {
       this.selectTheAllNode();
     }
+  },
+  fetchOnServer: false,
+  computed: {
+    isFederationApi() {
+      // We're naming the computed property isFederationApi (smallcaps API)
+      // because vue-linting rules require props to not be capitalized but
+      // hyphenated: is-federation-api. This gets converted to isFederationApi.
+      // So to keep things consistent, we call it isFederationApi here as well.
+      return this.$config.isFederationAPI === undefined ? true : this.$config.isFederationAPI;
+    },
+    queryingOpenNeuro() {
+      return (this.selectedNodes.some((node) => node.NodeName === 'OpenNeuro')
+      || (this.selectedNodes.some((node) => node.NodeName === 'All') && this.availableNodes.some((node) => node.NodeName === 'OpenNeuro')))
+      && !this.alertDismissed;
+    },
+  },
+  watch: {
+    selectedNodes(newNode) {
+      if (newNode.length > 0) {
+        this.$router.push({
+          path: this.$route.path,
+          query: { ...this.$route.query, node: newNode.map((node) => node.NodeName) },
+        });
+      } else if (newNode.length === 0) {
+        // If all nodes are removed, we default to the "All" node
+        this.selectTheAllNode();
+      }
+    },
   },
   methods: {
     updateResponse(results, error) {
