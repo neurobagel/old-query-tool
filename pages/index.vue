@@ -106,6 +106,7 @@ export default {
       });
     }
   },
+  fetchOnServer: false,
   computed: {
     isFederationApi() {
       // We're naming the computed property isFederationApi (smallcaps API)
