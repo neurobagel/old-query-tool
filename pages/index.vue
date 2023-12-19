@@ -118,7 +118,9 @@ export default {
       return this.$config.isFederationAPI === undefined ? true : this.$config.isFederationAPI;
     },
     queryingOpenNeuro() {
-      return this.selectedNodes.some((node) => node.NodeName === 'OpenNeuro' || node.NodeName === 'All') && !this.alertDismissed;
+      return (this.selectedNodes.some((node) => node.NodeName === 'OpenNeuro')
+      || (this.selectedNodes.some((node) => node.NodeName === 'All') && this.availableNodes.some((node) => node.NodeName === 'OpenNeuro')))
+      && !this.alertDismissed;
     },
   },
   watch: {
