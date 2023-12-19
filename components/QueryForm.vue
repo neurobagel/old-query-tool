@@ -29,7 +29,7 @@
             <hr>
           </div>
           <b-row>
-            <h6>Phenotypic fields (at baseline)</h6>
+            <h5>Phenotypic fields (at baseline)</h5>
           </b-row>
           <b-form-group class="col-md-6">
             <continuous-field
@@ -103,7 +103,7 @@
             <hr>
           </div>
           <b-row>
-            <h6>Imaging fields</h6>
+            <h5>Imaging fields</h5>
           </b-row>
         <categorical-field
           name="Imaging modality"
