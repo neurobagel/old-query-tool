@@ -105,10 +105,11 @@ export default {
       });
     }
 
-    // Since fetchOnServer is set to false the order of execution of
-    // hooks is such that fetch hook is called after mounted and therefore
-    // all logic related to updating the route needs to be in fetch since
-    // nodes are not available in the mounted hook.
+    // Since fetchOnServer is set to false, the fetch hook only runs on
+    // the client-side and since it makes asynchronous calls, it will lag
+    // behind the mounted hook. So we can either move all logic related
+    // to updating the route to fetch or use fetchState.pending to make
+    // sure mounted hook runs after fetch is done.
     const { node: nodeName } = this.$route.query;
     if (nodeName !== undefined) {
       const availableNodeNames = this.availableNodes.map((node) => node.NodeName);
