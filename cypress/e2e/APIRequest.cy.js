@@ -4,11 +4,11 @@ describe('API request', () => {
   it('Intercepts the request sent to the API and asserts over the request url', () => {
     cy.intercept({
       method: 'GET',
-      url: '**/query/?*',
+      url: 'query/?*',
     }, mixedResponse).as('call');
     cy.intercept({
       method: 'GET',
-      url: '**/nodes/',
+      url: '/nodes/',
     }).as('getNodes');
     cy.visit('/?node=OpenNeuro');
     // We need to wait for the fetch to complete and populate the

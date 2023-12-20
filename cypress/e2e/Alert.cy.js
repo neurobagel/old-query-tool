@@ -2,7 +2,7 @@ describe('Alert', () => {
   it('Correctly displays and dismisses the alert', () => {
     cy.intercept({
       method: 'GET',
-      url: '**/nodes/',
+      url: '/nodes/',
     }).as('getNodes');
     cy.visit('/?node=All');
     // We need to wait for the fetch to complete and populate the
