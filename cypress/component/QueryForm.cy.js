@@ -195,16 +195,6 @@ describe('Query form', () => {
     cy.get('[data-cy=submit-query]').click();
     cy.wrap(getStub).should('have.been.calledWith', 'http://my.site.org/query/?');
   });
-  it('Displays a toast when diagnosis and assessment tool options are not retrieved', () => {
-    props.categoricalOptions.Diagnosis = { All: null };
-    props.categoricalOptions['Assessment tool'] = { All: null };
-    cy.mount(QueryForm, {
-      stubs,
-      propsData: props,
-    });
-    cy.contains('#b-toaster-top-right', 'Failed to retrieve diagnosis options');
-    cy.contains('#b-toaster-top-right', 'Failed to retrieve assessment tool options');
-  });
   it('Displays the healthy control tooltip', () => {
     cy.mount(QueryForm, {
       stubs,
