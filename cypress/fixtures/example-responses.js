@@ -142,3 +142,11 @@ export const mixedResponse = [
   },
 
 ];
+
+export const emptyDiagnosisOptions = {
+  'nb:Diagnosis': [],
+};
+
+export const emptyAssessmentToolOptions = {
+  'nb:Assessment': [],
+};
