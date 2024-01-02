@@ -1,4 +1,4 @@
-import { mixedResponse } from '../fixtures/example-responses';
+import { mixedResponse, emptyDiagnosisOptions, emptyAssessmentToolOptions } from '../fixtures/example-responses';
 
 describe('API request', () => {
   it('Intercepts the request sent to the API and asserts over the request url', () => {
@@ -18,5 +18,35 @@ describe('API request', () => {
     cy.get('[data-cy="Max Age-continuous-field-input"]').type('30');
     cy.get('[data-cy="submit-query"]').click();
     cy.wait('@call').its('request.url').should('contains', '&min_age=10&max_age=30');
+  });
+  it('Intercepts the requests for retrieving options and mocks empty responses to assert over the info toasts', () => {
+    cy.intercept({
+      method: 'GET',
+      url: '/attributes/nb:Diagnosis',
+    }, emptyDiagnosisOptions).as('getDiagnosisOptions');
+    cy.intercept({
+      method: 'GET',
+      url: '/attributes/nb:Assessment',
+    }, emptyAssessmentToolOptions).as('getAssessmentToolOptions');
+    cy.visit('/');
+    cy.wait('@getDiagnosisOptions');
+    cy.contains('#b-toaster-top-right', 'No diagnosis options were available');
+    cy.wait('@getAssessmentToolOptions');
+    cy.contains('#b-toaster-top-right', 'No assessment tool options were available');
+  });
+  it('Intercepts the requests for retrieving options and mocks failed requests to assert over the error toasts', () => {
+    cy.intercept({
+      method: 'GET',
+      url: '/attributes/nb:Diagnosis',
+    }, { statusCode: 500 }).as('getDiagnosisOptions');
+    cy.intercept({
+      method: 'GET',
+      url: '/attributes/nb:Assessment',
+    }, { statusCode: 500 }).as('getAssessmentToolOptions');
+    cy.visit('/');
+    cy.wait('@getDiagnosisOptions');
+    cy.contains('#b-toaster-top-right', 'Failed to retrieve diagnosis options');
+    cy.wait('@getAssessmentToolOptions');
+    cy.contains('#b-toaster-top-right', 'Failed to retrieve assessment tool options');
   });
 });
