@@ -19,7 +19,7 @@ describe('API request', () => {
     cy.get('[data-cy="submit-query"]').click();
     cy.wait('@call').its('request.url').should('contains', '&min_age=10&max_age=30');
   });
-  it('Intercepts the requests for retrieving options and mocks empty responses to assert over the info toasts', () => {
+  it('Empty responses for diagnosis and Assessment make a toast appear', () => {
     cy.intercept({
       method: 'GET',
       url: '/attributes/nb:Diagnosis',
@@ -34,7 +34,7 @@ describe('API request', () => {
     cy.wait('@getAssessmentToolOptions');
     cy.contains('#b-toaster-top-right', 'No assessment tool options were available');
   });
-  it('Intercepts the requests for retrieving options and mocks failed requests to assert over the error toasts', () => {
+  it('Failed responses for diagnosis and assessment make an error toast appear', () => {
     cy.intercept({
       method: 'GET',
       url: '/attributes/nb:Diagnosis',
