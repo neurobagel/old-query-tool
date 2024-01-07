@@ -100,11 +100,11 @@
           @update-categorical-field="updateField"
         />
         <div>
-            <hr>
-          </div>
-          <b-row>
-            <h5>Imaging fields</h5>
-          </b-row>
+          <hr>
+        </div>
+        <b-row>
+          <h5>Imaging fields</h5>
+        </b-row>
         <categorical-field
           name="Imaging modality"
           data-cy="modality-field"
@@ -167,14 +167,6 @@ export default {
       const url = this.$config.apiQueryURL;
       return url.endsWith('/') ? `${url}query/?` : `${url}/query/?`;
     },
-  },
-  mounted() {
-    if (Object.keys(this.categoricalOptions.Diagnosis).length <= 1) {
-      this.displayToast('Failed to retrieve diagnosis options');
-    }
-    if (Object.keys(this.categoricalOptions['Assessment tool']).length <= 1) {
-      this.displayToast('Failed to retrieve assessment tool options');
-    }
   },
   methods: {
     updateField(name, input) {
