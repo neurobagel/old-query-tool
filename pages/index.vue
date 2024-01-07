@@ -77,19 +77,39 @@ export default {
   async fetch() {
     const apiQueryURL = this.$config.apiQueryURL.endsWith('/') ? `${this.$config.apiQueryURL}` : `${this.$config.apiQueryURL}/`;
 
-    const diagnosisResponse = await this.$axios.get(`${apiQueryURL}attributes/nb:Diagnosis`);
-    const diagnosisOptions = diagnosisResponse.data['nb:Diagnosis'].reduce((tempArray, diagnosis) => ({
-      ...tempArray,
-      [diagnosis.Label]: diagnosis.TermURL,
-    }), {});
+    let diagnosisOptions = {};
+    try {
+      const diagnosisResponse = await this.$axios.get(`${apiQueryURL}attributes/nb:Diagnosis`);
+      if (diagnosisResponse.data['nb:Diagnosis'].length === 0) {
+        this.displayToast('No diagnosis options were available', 'Info', 'info');
+      } else {
+        diagnosisOptions = diagnosisResponse.data['nb:Diagnosis'].reduce((tempArray, diagnosis) => ({
+          ...tempArray,
+          [diagnosis.Label]: diagnosis.TermURL,
+        }), {});
+      }
+    } catch (err) {
+      this.displayToast('Failed to retrieve diagnosis options');
+    }
+
     diagnosisOptions.All = null;
     this.categoricalOptions.Diagnosis = diagnosisOptions;
 
-    const assessmentResponse = await this.$axios.get(`${apiQueryURL}attributes/nb:Assessment`);
-    const assessmentOptions = assessmentResponse.data['nb:Assessment'].reduce((tempArray, assessment) => ({
-      ...tempArray,
-      [assessment.Label]: assessment.TermURL,
-    }), {});
+    let assessmentOptions = {};
+    try {
+      const assessmentResponse = await this.$axios.get(`${apiQueryURL}attributes/nb:Assessment`);
+      if (assessmentResponse.data['nb:Assessment'].length === 0) {
+        this.displayToast('No assessment tool options were available', 'Info', 'info');
+      } else {
+        assessmentOptions = assessmentResponse.data['nb:Assessment']?.reduce((tempArray, assessment) => ({
+          ...tempArray,
+          [assessment.Label]: assessment.TermURL,
+        }), {});
+      }
+    } catch (err) {
+      this.displayToast('Failed to retrieve assessment tool options');
+    }
+
     assessmentOptions.All = null;
     this.categoricalOptions['Assessment tool'] = assessmentOptions;
 
@@ -187,6 +207,16 @@ export default {
     },
     dismissAlert() {
       this.alertDismissed = true;
+    },
+    displayToast(message, title = 'Error', variant = 'danger') {
+      this.$bvToast.toast(message, {
+        appendToast: true,
+        autoHideDelay: '5000',
+        noCloseButton: true,
+        solid: true,
+        title,
+        variant,
+      });
     },
   },
 };
