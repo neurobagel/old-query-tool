@@ -1,1 +1,0 @@
-window.__NUXT__=(function(a,b,c){return {staticAssetsBase:"\u002F_nuxt\u002Fstatic\u002F1704949130",layout:"default",error:a,serverRendered:b,routePath:c,config:{apiQueryURL:"https:\u002F\u002Ffederate.neurobagel.org\u002F",isFederationAPI:b,_app:{basePath:c,assetsPath:"\u002F_nuxt\u002F",cdnURL:a}}}}(null,true,"\u002F"));
