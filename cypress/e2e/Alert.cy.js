@@ -9,7 +9,7 @@ describe('Alert', () => {
     // dropdown with nodes before searching for OpenNeuro
     cy.wait('@getNodes');
     cy.get('[data-cy="openneuro-alert"]').should('be.visible').should('contain', ' The OpenNeuro node is being actively annotated at the participant');
-    cy.get('[data-cy="node-field"]').type('Parkinson\'s Progression Markers Initiative{enter}');
+    cy.get('[data-cy="node-field"]').type('Quebec{enter}');
     cy.get('[data-cy="node-field"]').contains('All').find('.vs__deselect').click();
     cy.get('[data-cy="openneuro-alert"]').should('not.exist');
     cy.get('[data-cy="node-field"]').type('OpenNeuro{enter}');
